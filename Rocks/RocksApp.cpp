@@ -57,6 +57,7 @@ void RocksApp::draw() {
 
 	// draw your stuff here!
 	
+
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 
