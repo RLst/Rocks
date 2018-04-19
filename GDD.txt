@@ -1,0 +1,23 @@
+ROCKS
+=============
+Description: A super asteroids type game.
+
+* Ship and enemies wraps around the screen?
+
+SpaceShip
+* Can move WSAD
+* Rotates left/right via mouse
+* Can shoot bullets via mouse or spacebar
+* Interpolation
+* Bullets uses generic object pool
+
+Enemies
+* Rocks of various sizes that come into the game area at various speeds and directions
+* Large rock -> medium rock -> small rock -> kill rock
+* Rocks uses generic object pool
+* If a rock moves offscreen then it freed up 
+
+Scoring
+* Difficulty gets harder and harder ie. more rocks, faster rocks
+* Ship always a decent speed
+* Player has 3 lives
