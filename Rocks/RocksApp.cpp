@@ -2,6 +2,8 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
+#include "Player.h"
+#include <imgui.h>
 
 RocksApp::RocksApp() {
 
@@ -19,6 +21,10 @@ bool RocksApp::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
+	//Player stuff
+	m_timer = 0;
+	m_player = new Player(...);
+
 	return true;
 }
 
@@ -26,6 +32,9 @@ void RocksApp::shutdown() {
 
 	delete m_font;
 	delete m_2dRenderer;
+
+	//Player stuff
+	delete m_player;
 }
 
 void RocksApp::update(float deltaTime) {
