@@ -2,7 +2,7 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
-#include "Player.h"
+#include "SpaceFighter.h"
 #include <imgui.h>
 
 RocksApp::RocksApp() {
@@ -21,9 +21,14 @@ bool RocksApp::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	//Player stuff
-	m_timer = 0;
-	m_player = new Player(...);
+	//Setup the game scene
+	//m_timer = 0;
+	//m_player = new Player(...);\
+	
+	//Spaceship
+
+	//Bullets
+	Bullet*			m_bullets;
 
 	return true;
 }
