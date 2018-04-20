@@ -1,6 +1,4 @@
-#include "Player.h"
-
-
+#include "SpaceFighter.h"
 
 Player::Player()
 {
@@ -9,7 +7,6 @@ Player::Player()
 	m_playerPosY = 100.0f;
 	m_playerSpeed = 100.0f;
 }
-
 
 Player::~Player()
 {
