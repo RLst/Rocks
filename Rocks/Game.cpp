@@ -1,4 +1,4 @@
-#include "RocksApp.h"
+#include "Game.h"
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
@@ -25,10 +25,11 @@ bool Game::startup() {
 	//m_timer = 0;
 	//m_player = new Player(...);\
 	
-	//Spaceship
+	//Space Fighter
+	m_player = new SpaceFighter;
 
 	//Bullets
-	Bullet*			m_bullets;
+	m_bullet_pool = new BulletPool(50);
 
 	return true;
 }

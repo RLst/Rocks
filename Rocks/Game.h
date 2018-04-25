@@ -4,7 +4,7 @@
 #include "Renderer2D.h"
 
 #include "SpaceFighter.h"
-#include "Bullet.h"
+#include "BulletPool.h"
 
 class SpaceFighter;
 
@@ -25,10 +25,10 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 
-	//Player*				m_player;
+	//Player*			m_player;
 	//float				m_timer;
 
-	SpaceFighter		m_player;
-	Bullet*				m_bullets;
+	SpaceFighter*		m_player;
+	BulletPool*			m_bullet_pool;
 	
 };

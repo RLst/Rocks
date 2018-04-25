@@ -2,20 +2,25 @@
 #include "Bullet.h"
 #include <cassert>
 
-BulletPool::BulletPool()
+BulletPool::BulletPool(int poolSize) : POOL_SIZE(poolSize)
 {
+	//Load textures
+	m_tex_small
+
+	//Create bullet pool
+	m_bullets = new Bullet[POOL_SIZE];
+
 	//The first one is available
-	m_firstAvailable = m_bullets[0];
+	m_firstAvailable = &m_bullets[0];
 
 	//Each particle points to the next
 	for (int i = 0; i < POOL_SIZE - 1; ++i) {
-		m_bullets[i].setNext(m_bullets[i - 1]);
+		m_bullets[i].setNext(&m_bullets[i - 1]);
 	}
 
 	//the last one terminates the list
 	m_bullets[POOL_SIZE - 1].setNext(NULL);
 }
-
 
 BulletPool::~BulletPool()
 {
