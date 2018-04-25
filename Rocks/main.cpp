@@ -3,7 +3,7 @@
 int main() {
 	
 	// allocation
-	auto app = new RocksApp();
+	auto app = new Game();
 
 	// initialise and loop
 	app->run("AIE", 1280, 720, false);
