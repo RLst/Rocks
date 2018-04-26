@@ -1,4 +1,4 @@
-#include "RocksApp.h"
+#include "Game.h"
 #include "GameDefines.h"
 
 int main() {

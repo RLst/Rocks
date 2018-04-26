@@ -4,7 +4,7 @@
 #include <Input.h>
 #include <Renderer2D.h>
 
-SpaceFighter::SpaceFighter()
+Fighter::Fighter()
 {
 	m_player = new aie::Texture("../bin/testures/ship.png");
 	m_playerPos.x = 100.0f;
@@ -12,12 +12,12 @@ SpaceFighter::SpaceFighter()
 	m_playerSpeed = 100.0f;
 }
 
-SpaceFighter::~SpaceFighter()
+Fighter::~Fighter()
 {
 	delete m_player;
 }
 
-void SpaceFighter::update(float deltaTime, aie::Input * input)
+void Fighter::update(float deltaTime, aie::Input * input)
 {
 	if (input->isKeyDown(aie::INPUT_KEY_A))
 	{
@@ -30,7 +30,7 @@ void SpaceFighter::update(float deltaTime, aie::Input * input)
 	}
 }
 
-void SpaceFighter::draw(aie::Renderer2D * spriteBatch)
+void Fighter::draw(aie::Renderer2D * spriteBatch)
 {
 	spriteBatch->drawSprite(m_player, m_playerPos.x, m_playerPos.y);
 }

@@ -164,16 +164,20 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletPool.cpp" />
-    <ClCompile Include="SpaceFighter.cpp" />
+    <ClCompile Include="Fighter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="RockPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletPool.h" />
     <ClInclude Include="GameDefines.h" />
-    <ClInclude Include="SpaceFighter.h" />
+    <ClInclude Include="Fighter.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Rock.h" />
+    <ClInclude Include="RockPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

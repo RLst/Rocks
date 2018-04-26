@@ -2,16 +2,14 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
-#include "SpaceFighter.h"
+
+#include "Fighter.h"
+#include "BulletPool.h"
 #include <imgui.h>
 
-Game::Game() {
+Game::Game() {}
 
-}
-
-Game::~Game() {
-
-}
+Game::~Game() {}
 
 bool Game::startup() {
 	
@@ -25,11 +23,17 @@ bool Game::startup() {
 	//m_timer = 0;
 	//m_player = new Player(...);\
 	
-	//Space Fighter
-	m_player = new SpaceFighter;
 
-	//Bullets
+	///Load game objects
+
+	//Space fighter (player)
+	m_player = new Fighter;
+
+	//Space fighter bullets
 	m_bullet_pool = new BulletPool(50);
+
+	//Enemy asteroids
+	m_rock_pool = new RockPool(50);
 
 	return true;
 }

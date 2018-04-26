@@ -7,11 +7,9 @@ class Bullet
 	glm::vec2 m_pos;
 	glm::vec2 m_vel;
 
-	union
-	{
+	union {
 		//In use
-		struct
-		{
+		struct {
 			glm::vec2 m_pos;
 			glm::vec2 m_vel;
 		} live;
@@ -25,12 +23,11 @@ public:
 	{}
 	~Bullet();
 
-	void init(glm::vec2 pos, glm::vec2 vel, int lifetime);
+	void init(glm::vec2 pos, glm::vec2 vel);
 	bool animate();
 	bool inUse() const { return m_framesLeft > 0; }
 
 	Bullet* getNext() const { return m_state.next; }
 	void setNext(Bullet* next) { m_state.next = next; }
-
 };
 

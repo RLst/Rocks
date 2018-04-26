@@ -11,7 +11,7 @@ namespace aie
 class Bullet;
 
 
-class SpaceFighter
+class Fighter
 {
 	aie::Texture*	m_player;
 	glm::vec2		m_playerPos;
@@ -21,8 +21,8 @@ class SpaceFighter
 	//float			m_playerPosY;
 
 public:
-	SpaceFighter();
-	~SpaceFighter();
+	Fighter();
+	~Fighter();
 	void update(float deltaTime, aie::Input* input);
 	void draw(aie::Renderer2D* spriteBatch);
 };

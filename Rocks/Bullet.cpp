@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include <glm/vec2.hpp>
 
 Bullet::Bullet()
 {
@@ -9,12 +10,10 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::init(glm::vec2 pos, glm::vec2 vel, int lifetime) :
-	m_pos(pos),
-	m_vel(vel),
-	m_framesLeft(lifetime)
+void Bullet::init(glm::vec2 pos, glm::vec2 vel)
 {
-	
+	m_pos = pos;
+	m_vel = vel;
 }
 
 bool Bullet::animate()
