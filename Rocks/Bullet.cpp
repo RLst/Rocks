@@ -1,6 +1,8 @@
 #include "Bullet.h"
 #include <glm/vec2.hpp>
 
+namespace pkr {
+
 Bullet::Bullet()
 {
 }
@@ -24,4 +26,6 @@ bool Bullet::animate()
 	m_pos += m_vel;
 
 	return m_framesLeft == 0;
+}
+
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <glm/vec2.hpp>
 
+namespace pkr {
+
 class Bullet
 {
 	int m_framesLeft;
@@ -31,3 +33,4 @@ public:
 	void setNext(Bullet* next) { m_state.next = next; }
 };
 
+}

@@ -3,4 +3,9 @@
 const unsigned int const SCREEN_WIDTH = 1440;
 const unsigned int const SCREEN_HEIGHT = 900;
 
-int Random(int min, int max);
+int Random(int min, int max);namespace pkr {	//pokoro
+namespace pkr {	//pokoro
+//Flexi vector
+
+
+}

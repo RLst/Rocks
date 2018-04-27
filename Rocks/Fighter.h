@@ -8,8 +8,8 @@ namespace aie
 	class Renderer2D;
 	class Input;
 }
-class Bullet;
 
+namespace pkr {
 
 class Fighter
 {
@@ -27,3 +27,4 @@ public:
 	void draw(aie::Renderer2D* spriteBatch);
 };
 
+}

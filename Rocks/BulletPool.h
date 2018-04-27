@@ -3,10 +3,11 @@
 //Prototypes
 #include <glm\vec2.hpp>
 
-class Bullet;
 namespace aie {
 	class Texture;
 }
+namespace pkr {
+	class Bullet;
 
 class BulletPool
 {
@@ -29,3 +30,4 @@ public:
 	void animate();
 };
 
+}

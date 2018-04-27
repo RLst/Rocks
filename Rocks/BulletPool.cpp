@@ -3,6 +3,9 @@
 #include <Texture.h>
 #include <cassert>
 
+
+namespace pkr {
+
 BulletPool::BulletPool(int PoolSize) : POOL_SIZE(PoolSize)
 {
 	//Load rock textures
@@ -50,4 +53,6 @@ void BulletPool::animate()
 			m_firstAvailable = &m_bullet_pool[i];
 		}
 	}
+}
+
 }
