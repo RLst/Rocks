@@ -166,6 +166,7 @@
     <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Fighter.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameDefines.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="RockPool.cpp" />

@@ -36,6 +36,9 @@
     <ClCompile Include="Rock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameDefines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
