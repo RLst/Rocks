@@ -13,18 +13,21 @@ namespace pkr {
 
 class Fighter
 {
-	aie::Texture*	m_player;
-	glm::vec2		m_playerPos;
-	float			m_playerAngle;
-	float			m_playerSpeed;
-	//float			m_playerPosX;
-	//float			m_playerPosY;
-
+	aie::Texture*	m_tex;
+	glm::vec2		m_pos;
+	glm::vec2		m_vel;		//velocity
+	glm::vec2		m_ang;
+	float			m_smooth;
+	//float			m_playerAngle;
+	//float			m_playerSpeed;
 public:
 	Fighter();
 	~Fighter();
 	void update(float deltaTime, aie::Input* input);
 	void draw(aie::Renderer2D* spriteBatch);
+
+	//Getters
+	glm::vec2 getPos() { return m_pos; }
 };
 
 }
