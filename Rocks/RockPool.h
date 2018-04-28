@@ -27,6 +27,15 @@ public:
 	RockPool();
 	RockPool(unsigned int);
 	~RockPool();
+
+	void hurl(Fighter &player);	//A random size rock will be hurled at the player
+	void wrap(Fighter &player);
+
+	void update(float deltaTime);
+	void draw(aie::Renderer2D* renderer);
+
+	//Getters and setters
+	int size() { return MAX_ROCKS; }
 };
 
 }
