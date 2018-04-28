@@ -1,22 +1,37 @@
 ROCKS
 =============
 Description: A super asteroids type game.
-//Ship and enemies wraps around the screen?
-* Ship moves about the screen; isn't centred
-* Rocks do not wrap around
+* Basically a top down FPS
+* Rounds of say 10-20 rocks that increase in speed every time
+* Win game after 10 rounds?
 
-SpaceShip
-* Basically the ship moves like a top down 
+Fighter ship
+//10. WSAD movement
+//20. WSAD angled movement
 * Top down WSAD, aim's at where the mouse cursor is
 * Can shoot bullets via mouse or spacebar
-* WSAD movement is interpolated
-* Bullets uses generic object pool 
+* Movement is interpolated slightly
+* Bullets uses generic object pool
+//10.
 
-Enemies
-* Rocks of various sizes that come into the game area at various speeds and directions
+Bullets
+//10. Bullets uses an object pool
+//20. Bullets fire from the fighter's cannon
+//21. Bullets fire in the direction of the fighter
+//30. Bullets do damage
+
+Rocks (enemies)
+* Rocks of various sizes come into the game area at various speeds and directions
 * Large rock -> medium rock -> small rock -> kill rock
 * Rocks uses generic object pool
-* If a rock moves offscreen then it freed up 
+* If a rock moves offscreen then it simply gets aimed at the player again, with the same velocity
+
+//Features to implement
+//10. Rock dies if it gets hit by a bullet
+//20. Rock can take some damage before dying
+//30. Rock dies with particles
+//31. Bullets collisions have particles
+//40. Rock 
 
 Scoring
 * Difficulty gets harder and harder ie. more rocks, faster rocks
