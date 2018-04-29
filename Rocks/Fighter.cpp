@@ -31,7 +31,13 @@ Fighter::~Fighter()
 void Fighter::update(float deltaTime)
 {
 	aie::Input* input = aie::Input::getInstance();
-	static float angAdj = 90.0f;			//Angle offset (if required)
+
+	//Orient towards mouse
+	int mx, my;
+	input->getMouseXY(&mx, &my);		//Get mouse position
+										//Calculate correct rotation
+	m_ang = (atan2(my - m_pos.y, mx - m_pos.x) * 180.0f / PI) - 90.0f;
+
 
 	///MOVEMENT
 	m_vel = { 0 , 0 };
@@ -63,17 +69,21 @@ void Fighter::update(float deltaTime)
 		m_vel.y = sin((angAdj + m_ang - 90.0f) * PI / 180.0f) * (m_speed * deltaTime);
 	}
 
+	//Set the position
+	m_pos += m_vel;
+
 	///ROTATION
 	//static float angSpeed = 200.0f;
 	//Angle
-	if (input->isKeyDown(aie::INPUT_KEY_Q)) {
-		//Rotate left
-		rotate(m_angSpeed * deltaTime);
-	}
-	if (input->isKeyDown(aie::INPUT_KEY_E)) {
-		//Rotate right
-		rotate(-m_angSpeed * deltaTime);
-	}
+	//if (input->isKeyDown(aie::INPUT_KEY_Q)) {
+	//	//Rotate left
+	//	rotate(m_angSpeed * deltaTime);
+	//}
+	//if (input->isKeyDown(aie::INPUT_KEY_E)) {
+	//	//Rotate right
+	//	rotate(-m_angSpeed * deltaTime);
+	//}
+
 }
 
 void Fighter::draw(aie::Renderer2D * spriteBatch)
