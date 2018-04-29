@@ -7,7 +7,6 @@ Bullet::Bullet()
 {
 }
 
-
 Bullet::~Bullet()
 {
 }

@@ -1,11 +1,13 @@
 #include "Game.h"
-#include "Texture.h"
 #include "Font.h"
 #include "Input.h"
-
-#include "Fighter.h"
-#include "BulletPool.h"
 #include <imgui.h>
+#include "Texture.h"
+#include "Fighter.h"
+#include "RockPool.h"
+#include "BulletPool.h"
+
+#include <iostream>
 
 Game::Game() {}
 
@@ -27,13 +29,13 @@ bool Game::startup() {
 	///Load game objects
 
 	//Space fighter (player)
-	m_player = new Fighter;
+	m_player = new pkr::Fighter;
 
 	//Space fighter bullets
-	m_bullet_pool = new BulletPool(50);
+	m_bullet_pool = new pkr::BulletPool(50);
 
 	//Enemy asteroids
-	m_rock_pool = new RockPool(50);
+	m_rock_pool = new pkr::RockPool(50);
 
 	return true;
 }
@@ -51,26 +53,37 @@ void Game::update(float deltaTime) {
 
 	// input example
 	aie::Input* input = aie::Input::getInstance();
-
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
+
+	//Movement
+	m_player->update(deltaTime);
+
+
 }
 
 void Game::draw() {
 
 	// wipe the screen to the background colour
 	clearScreen();
-
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-	// draw your stuff here!
-	
+	//DRAW
+	m_player->draw(m_2dRenderer);
+
+
+	//DEBUGS
+	//system("cls");
+	std::cout << m_player->getAng() << std::endl;
+	//char dbg[32];
+	//sprintf_s(dbg, 32, "m_player::m_ang = : %i", m_player->getAng());
+	//m_2dRenderer->drawText(m_font, dbg, 0, 32);
+	//m_2dRenderer->drawText(m_font, "Fighter::m_ang = " + m_player->getAng(), 0, 32);
 
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
-
 	// done drawing sprites
 	m_2dRenderer->end();
 }

@@ -21,8 +21,7 @@ class Bullet
 	} m_state;
 
 public:
-	Bullet() : m_framesLeft(0)
-	{}
+	Bullet();
 	~Bullet();
 
 	void init(glm::vec2 pos, glm::vec2 vel);

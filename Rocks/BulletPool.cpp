@@ -30,6 +30,10 @@ BulletPool::BulletPool(int PoolSize) : POOL_SIZE(PoolSize)
 
 BulletPool::~BulletPool()
 {
+	delete m_tex_rock_sml;
+	delete m_tex_rock_med;
+	delete m_tex_rock_lge;
+	delete[] m_bullet_pool;
 }
 
 void BulletPool::create(glm::vec2 pos, glm::vec2 vel)
@@ -39,7 +43,7 @@ void BulletPool::create(glm::vec2 pos, glm::vec2 vel)
 
 	//Remove it from the available list
 	Bullet* newBullet = m_firstAvailable;
-	m_firstAvailable = newBullet->getNext;
+	m_firstAvailable = newBullet->getNext();
 
 	newBullet->init(pos, vel);
 }
