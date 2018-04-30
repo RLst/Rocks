@@ -57,9 +57,8 @@ void Game::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 
-	//Movement
+	//MOVEMENT
 	m_player->update(deltaTime);
-
 
 }
 

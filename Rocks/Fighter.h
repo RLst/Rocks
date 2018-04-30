@@ -14,11 +14,11 @@ namespace pkr {
 class Fighter
 {
 	aie::Texture*	m_tex;
-	glm::vec2		m_pos;
-	glm::vec2		m_vel;		//Unit vectors
-	float			m_ang;
-	float			m_speed;	//Linear speed
-	float			m_angSpeed;	
+	glm::vec2		m_pos, m_targetPos;		//t for target
+	glm::vec2		m_vel;				//Unit vectors
+	float			m_ang, m_targetAng;
+	float			m_speed;			//Linear speed
+	float			m_angSpeed;			//Angular speed
 	float			m_smooth;
 	//float			m_playerAngle;
 	//float			m_playerSpeed;
@@ -29,11 +29,11 @@ public:
 	void draw(aie::Renderer2D* spriteBatch);
 
 	//Rotation
-	void rotate(float amount);
+	void angleWrap();
 
 	//Getters
-	glm::vec2 getPos() { return m_pos; }
-	float getAng() { return m_ang; }
+	glm::vec2		getPos() { return m_pos; }
+	float			getAng() { return m_ang; }
 };
 
 }

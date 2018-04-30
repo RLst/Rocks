@@ -1,8 +1,8 @@
 #pragma once
 
 //Game settings and constatns
-const unsigned int const SCREEN_WIDTH = 1680;
-const unsigned int const SCREEN_HEIGHT = 1080;
+const unsigned int const SCREEN_WIDTH = 1440;
+const unsigned int const SCREEN_HEIGHT = 900;
 const float PI = 3.1415927f;
 
 //Enums
@@ -15,7 +15,7 @@ enum RockType {
 //Core functions
 int Random(int min, int max);
 
-float rads(float degrees); 
+float degTOrads(float degrees); 
 
 namespace pkr {	//pokoro
 //Flexi vector
