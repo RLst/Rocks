@@ -32,8 +32,13 @@ public:
 	void angleWrap();
 
 	//Getters
-	glm::vec2		getPos() { return m_pos; }
+	glm::vec2		getCannonPos();
+	glm::vec2		getCannonVec();
 	float			getAng() { return m_ang; }
+
+	//debugs
+	glm::vec2 getPos() { return m_pos; }
+	glm::vec2 getVel() { return m_vel; }
 };
 
 }

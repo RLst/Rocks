@@ -21,8 +21,8 @@ Fighter::Fighter()
 
 	//Basic speed and interpolation settings
 	m_speed = 600.0f;
-	m_angSpeed = 250.0f;
-	m_smooth = 1.5f;		//Lower is more lerpy
+	m_angSpeed = 300.0f;
+	m_smooth = 2.0f;		//Lower is more lerpy
 }
 
 Fighter::~Fighter()
@@ -33,13 +33,13 @@ Fighter::~Fighter()
 void Fighter::update(float deltaTime)
 {
 	//* Process user inputs and controls (move and fire)
-	//* Clamp angle within bounds
+	//* Clamp/Wrap angle within bounds
 	//* Keep player within bounds of screen
 
 	aie::Input* input = aie::Input::getInstance();
 
 	///MOVEMENT
-	static float angAdj = 90.0f;			//Angle offset (if required)
+	static float angAdj = 90.0f;			//Angle offset (if needed)
 
 	m_vel = { 0 , 0 };
 	//Forward
@@ -56,22 +56,20 @@ void Fighter::update(float deltaTime)
 	m_targetPos += m_vel;
 
 	///ROTATION
-	//static float angSpeed = 200.0f;
-	//Angle
+	//Rotate left
 	if (input->isKeyDown(aie::INPUT_KEY_A)) {
-		//Rotate left
 		m_targetAng += m_angSpeed * deltaTime;	//Why is this seemingly inverted?
 	}
+	//Rotate right
 	if (input->isKeyDown(aie::INPUT_KEY_D)) {
-		//Rotate right
 		m_targetAng -= m_angSpeed * deltaTime;
 	}
 	angleWrap();	//Keep angle within bounds
 
-	//LERP - Smoothly move towards the target position
+	//LERP: Smoothly move towards the target position
+	//m_pos = lerp(actual, target, smoothingFactor, dt)
 	m_pos -= (m_pos - m_targetPos) * m_smooth * deltaTime;
 	m_ang -= (m_ang - m_targetAng) * m_smooth * deltaTime;
-	//m_pos = lerp(actual, target, smoothingFactor, dt)
 }
 
 void Fighter::draw(aie::Renderer2D * spriteBatch)
@@ -85,7 +83,7 @@ void Fighter::angleWrap()
 	//Keep wrapping until target (leading) angle is within bounds
 	while (m_targetAng < 0.0f /*|| m_ang < 0.0f*/) {
 		m_targetAng += 360.0f;
-		m_ang += 360.0f;
+		m_ang += 360.0f;	//The actual angle also needs to be wrapped otherwise will cause sudden twists
 	}
 	while (m_targetAng > 360.0f /*|| m_ang > 360.0f*/) {
 		m_targetAng -= 360.0f;
@@ -93,6 +91,28 @@ void Fighter::angleWrap()
 	}
 }
 
+glm::vec2 Fighter::getCannonPos()
+{
+	//glm::vec2 cannonPos = { 0,0 };
+	//glm::vec2 cannonVec = { 0,0 };
+	//cannonVec.x = cos((90.0f + m_ang) * PI / 180.0f) * 20.0f;
+	//cannonVec.y = sin((90.0f + m_ang) * PI / 180.0f) * 20.0f;
 
+	//cannonPos.x = m_pos.x + cannonVec.x;
+	//cannonPos.y = m_pos.y + cannonVec.y;
+
+	glm::vec2 cannonPos = m_pos;	//bare minimum for now
+	return cannonPos;
+}
+
+glm::vec2 Fighter::getCannonVec()
+{
+	//glm::vec2 cannonVec = { 0,0 };
+	//cannonVec.x = cos((90.0f + m_ang) * PI / 180.0f) * 4;
+	//cannonVec.y = sin((90.0f + m_ang) * PI / 180.0f) * 4;
+
+	glm::vec2 cannonVec = { 5.0f, 5.0f };
+	return cannonVec;
+}
 
 }

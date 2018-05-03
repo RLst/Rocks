@@ -1,8 +1,8 @@
 #pragma once
 
 //Game settings and constatns
-const unsigned int const SCREEN_WIDTH = 1440;
-const unsigned int const SCREEN_HEIGHT = 900;
+const unsigned int SCREEN_WIDTH = 1440;
+const unsigned int SCREEN_HEIGHT = 900;
 const float PI = 3.1415927f;
 
 //Enums

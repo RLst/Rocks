@@ -90,19 +90,19 @@ void RockPool::hurl(Fighter & player)
 	{
 	case 1:	//Top
 		newPos.y = SCREEN_HEIGHT;
-		newPos.x = Random(0, SCREEN_WIDTH);
+		newPos.x = (float)Random(0, SCREEN_WIDTH);
 		break;
 	case 2: //Bottom
 		newPos.y = 0;
-		newPos.x = newPos.x = Random(0, SCREEN_WIDTH);
+		newPos.x = newPos.x = (float)Random(0, SCREEN_WIDTH);
 		break;
 	case 3: //Left
 		newPos.x = 0;
-		newPos.y = Random(0, SCREEN_HEIGHT);
+		newPos.y = (float)Random(0, SCREEN_HEIGHT);
 		break;
 	case 4: //Right
 		newPos.x = SCREEN_WIDTH;
-		newPos.y = Random(0, SCREEN_HEIGHT);
+		newPos.y = (float)Random(0, SCREEN_HEIGHT);
 		break;
 	}
 
@@ -112,8 +112,8 @@ void RockPool::hurl(Fighter & player)
 
 	//ANGLE; put a random spin on the rock
 	static int angRough = 5;
-	newAng.r = Random(angRough, angRough);		//rotational velocity
-	newAng.g = Random(0, 360);	//real-time z angle
+	newAng.r = (float)Random(angRough, angRough);		//rotational velocity
+	newAng.g = (float)Random(0, 360);	//real-time z angle
 
 	//LAUNCH
 	//Remove it from the available list

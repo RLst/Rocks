@@ -45,8 +45,9 @@ void Game::shutdown() {
 	delete m_font;
 	delete m_2dRenderer;
 
-	//Player stuff
 	delete m_player;
+	delete m_bullet_pool;
+	delete m_rock_pool;
 }
 
 void Game::update(float deltaTime) {
@@ -57,8 +58,22 @@ void Game::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 
-	//MOVEMENT
+	//PLAYER
 	m_player->update(deltaTime);
+
+	//PLAYER FIRE
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
+		//m_bullet_pool->request(m_player->getCannonPos(), m_player->getCannonVec());
+		//m_bullet_pool->request(m_player->getPos(), m_player->getVel());
+		glm::vec2 reqPos = { 250.0f, 500.0f };	//debug
+		glm::vec2 reqVel = { 25.0f, 50.0f };
+		m_bullet_pool->request(reqPos, reqVel);
+		std::cout << "Bullet requested" << std::endl; //debug
+	}
+	m_bullet_pool->update(deltaTime);
+
+	//ROCKS
+
 
 }
 
@@ -69,13 +84,15 @@ void Game::draw() {
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-	//DRAW
+	///DRAW
+	//Player
 	m_player->draw(m_2dRenderer);
-
+	//Bullets
+	m_bullet_pool->draw(m_2dRenderer);
 
 	//DEBUGS
 	//system("cls");
-	std::cout << m_player->getAng() << std::endl;
+	//std::cout << m_player->getAng() << std::endl;
 	//char dbg[32];
 	//sprintf_s(dbg, 32, "m_player::m_ang = : %i", m_player->getAng());
 	//m_2dRenderer->drawText(m_font, dbg, 0, 32);
