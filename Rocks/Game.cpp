@@ -26,7 +26,7 @@ bool Game::startup() {
 	//m_player = new Player(...);\
 	
 
-	///Load game objects
+	////Load game objects
 
 	//Space fighter (player)
 	m_player = new pkr::Fighter;
@@ -61,14 +61,9 @@ void Game::update(float deltaTime) {
 	//PLAYER
 	m_player->update(deltaTime);
 
-	//PLAYER FIRE
+	//CONTROL PLAYER FIRE
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
-		//m_bullet_pool->request(m_player->getCannonPos(), m_player->getCannonVec());
-		//m_bullet_pool->request(m_player->getPos(), m_player->getVel());
-		glm::vec2 reqPos = { 250.0f, 500.0f };	//debug
-		glm::vec2 reqVel = { 25.0f, 50.0f };
-		m_bullet_pool->request(reqPos, reqVel);
-		std::cout << "Bullet requested" << std::endl; //debug
+		m_bullet_pool->request(m_player->getGunPos(), m_player->getGunVel());
 	}
 	m_bullet_pool->update(deltaTime);
 
@@ -83,6 +78,7 @@ void Game::draw() {
 	clearScreen();
 	// begin drawing sprites
 	m_2dRenderer->begin();
+	//////////////////////////////////////////////////////////////////////////////////////////
 
 	///DRAW
 	//Player
@@ -98,6 +94,7 @@ void Game::draw() {
 	//m_2dRenderer->drawText(m_font, dbg, 0, 32);
 	//m_2dRenderer->drawText(m_font, "Fighter::m_ang = " + m_player->getAng(), 0, 32);
 
+	/////////////////////////////////////////////////////////////////////////////////////////
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 	// done drawing sprites

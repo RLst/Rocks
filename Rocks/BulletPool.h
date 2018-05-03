@@ -21,15 +21,12 @@ class BulletPool
 
 	//Textures
 	aie::Texture*			m_tex_bullet;
-	aie::Texture*			m_tex_rock_sml;
-	aie::Texture*			m_tex_rock_med;
-	aie::Texture*			m_tex_rock_lge;
 
 public:
 	BulletPool(int maxBullets);
 	~BulletPool();
 
-	void request(glm::vec2 &pos, glm::vec2 &vel);
+	void request(glm::vec2 pos, glm::vec2 vel);
 	void update(float dt);
 	void draw(aie::Renderer2D* renderer);
 	int size() { return MAX_BULLETS; }

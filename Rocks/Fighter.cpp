@@ -12,7 +12,8 @@ namespace pkr {
 
 Fighter::Fighter()
 {
-	m_tex = new aie::Texture("../bin/textures/ship.png");	//New ship texture on hep
+	//New ship texture on heap
+	m_tex = new aie::Texture("../bin/textures/ship.png");	
 	
 	//Position in centre of screen, 0 degrees is facing upwards
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;
@@ -21,7 +22,7 @@ Fighter::Fighter()
 
 	//Basic speed and interpolation settings
 	m_speed = 600.0f;
-	m_angSpeed = 300.0f;
+	m_angSpeed = 250.0f;
 	m_smooth = 2.0f;		//Lower is more lerpy
 }
 
@@ -91,28 +92,34 @@ void Fighter::angleWrap()
 	}
 }
 
-glm::vec2 Fighter::getCannonPos()
+glm::vec2 Fighter::getGunPos()
 {
-	//glm::vec2 cannonPos = { 0,0 };
-	//glm::vec2 cannonVec = { 0,0 };
-	//cannonVec.x = cos((90.0f + m_ang) * PI / 180.0f) * 20.0f;
-	//cannonVec.y = sin((90.0f + m_ang) * PI / 180.0f) * 20.0f;
+	//Returns the position of the fighter's gun turret
 
-	//cannonPos.x = m_pos.x + cannonVec.x;
-	//cannonPos.y = m_pos.y + cannonVec.y;
+	//static int gunOffset = 30;		//Gun is about 20px from the centre of the ship
 
-	glm::vec2 cannonPos = m_pos;	//bare minimum for now
-	return cannonPos;
+	//Clear
+	glm::vec2 offset = { 0,0 };
+
+	//Position 
+	offset.x = cos((90.0f + m_ang) * PI / 180.0f) * m_gunOffset;
+	offset.y = sin((90.0f + m_ang) * PI / 180.0f) * m_gunOffset;
+
+	return m_pos + offset;
 }
 
-glm::vec2 Fighter::getCannonVec()
+glm::vec2 Fighter::getGunVel()
 {
-	//glm::vec2 cannonVec = { 0,0 };
-	//cannonVec.x = cos((90.0f + m_ang) * PI / 180.0f) * 4;
-	//cannonVec.y = sin((90.0f + m_ang) * PI / 180.0f) * 4;
+	//Returns a gun velocity + speed of ship
+	//(That way the ship isn't able to chase after the bullets)
 
-	glm::vec2 cannonVec = { 5.0f, 5.0f };
-	return cannonVec;
+	//static float bulletSpeed = 500.0f;
+
+	glm::vec2 gunVel = { 0,0 };
+	gunVel.x = cos((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;
+	gunVel.y = sin((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;
+
+	return getVel() + gunVel;
 }
 
 }

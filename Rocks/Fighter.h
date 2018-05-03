@@ -22,6 +22,10 @@ class Fighter
 	float			m_smooth;
 	//float			m_playerAngle;
 	//float			m_playerSpeed;
+	int				m_gunOffset = 30;
+	float			m_bulletSpeed = 700.0f;
+	float			m_bulletDelay = 200.0f;		//miliseconds
+
 public:
 	Fighter();
 	~Fighter();
@@ -32,13 +36,12 @@ public:
 	void angleWrap();
 
 	//Getters
-	glm::vec2		getCannonPos();
-	glm::vec2		getCannonVec();
+	glm::vec2		getGunPos();
+	glm::vec2		getGunVel();
+	glm::vec2		getPos() { return m_pos; }
+	glm::vec2		getVel() { return m_vel; }
 	float			getAng() { return m_ang; }
 
-	//debugs
-	glm::vec2 getPos() { return m_pos; }
-	glm::vec2 getVel() { return m_vel; }
 };
 
 }
