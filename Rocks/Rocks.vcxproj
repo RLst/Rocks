@@ -169,7 +169,6 @@
     <ClCompile Include="GameDefines.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rock.cpp" />
-    <ClCompile Include="RockFactory.cpp" />
     <ClCompile Include="RockPool.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +178,6 @@
     <ClInclude Include="Fighter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Rock.h" />
-    <ClInclude Include="RockFactory.h" />
     <ClInclude Include="RockPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
