@@ -23,11 +23,11 @@ class BulletPool
 	aie::Texture*			m_tex_bullet;
 
 public:
-	BulletPool(int maxBullets);
+	BulletPool(int poolsize);
 	~BulletPool();
 
 	void request(glm::vec2 pos, glm::vec2 vel);
-	void update(float dt);
+	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
 	int size() { return MAX_BULLETS; }
 };

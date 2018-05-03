@@ -24,6 +24,7 @@ public:
 	//Core
 	void init(glm::vec2 pos, glm::vec2 vel);
 	bool update(float deltaTime);
+	//void draw(aie::Renderer2D* renderer);
 
 	//Active
 	bool isActive() const { return m_active == true; }

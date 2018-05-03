@@ -2,6 +2,7 @@
 #include "RockPool.h"
 #include <glm/vec2.hpp>
 #include "GameDefines.h"
+#include <Renderer2D.h>
 
 namespace pkr {
 

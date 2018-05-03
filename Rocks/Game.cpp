@@ -6,6 +6,7 @@
 #include "Fighter.h"
 #include "RockPool.h"
 #include "BulletPool.h"
+#include "GameDefines.h"
 
 #include <iostream>
 
@@ -35,6 +36,7 @@ bool Game::startup() {
 	m_bullet_pool = new pkr::BulletPool(50);
 
 	//Enemy asteroids
+	//m_rock_pool = new pkr::RockPool(50);
 	m_rock_pool = new pkr::RockPool(50);
 
 	return true;
@@ -68,6 +70,12 @@ void Game::update(float deltaTime) {
 	m_bullet_pool->update(deltaTime);
 
 	//ROCKS
+	//Insert random rocks
+	if (Random(50) == 1) {
+		m_rock_pool->request(m_player);
+		std::cout << "m_rock_pool->request()" << std::endl;
+	}
+	m_rock_pool->update(deltaTime);
 
 
 }
@@ -80,11 +88,13 @@ void Game::draw() {
 	m_2dRenderer->begin();
 	//////////////////////////////////////////////////////////////////////////////////////////
 
-	///DRAW
+	////DRAW
 	//Player
 	m_player->draw(m_2dRenderer);
 	//Bullets
 	m_bullet_pool->draw(m_2dRenderer);
+	//Rocks
+	m_rock_pool->draw(m_2dRenderer);
 
 	//DEBUGS
 	//system("cls");

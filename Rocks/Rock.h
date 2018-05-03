@@ -4,6 +4,7 @@
 #include "GameDefines.h"
 namespace aie {
 	class Texture;
+	class Renderer2D;
 }
 
 namespace pkr {
@@ -22,16 +23,17 @@ class Player;
 class Rock
 {
 private:
-	bool					m_alive;
+	bool					m_active;
 	union {
 		//State while in use/unavailable
 		struct {
+			aie::Texture*	tex;		//Points to a texture stored in RockPool
 			glm::vec2		pos;
-			glm::vec2		vec;
-			glm::vec2		ang;		//r = current rotation, g = angular velocity
+			glm::vec2		vel;
+			glm::vec2		ang;		//r = angular velocity, g = current rotation
+			
 			float			health;
 			float			radius;
-			aie::Texture*	tex;		//Points to a texture stored in RockPool
 		} live;
 
 		//State while available
@@ -49,21 +51,31 @@ public:
 	Rock();
 	~Rock();
 
-	Rock* getNext() const { return m_state.next; }
-	void setNext(Rock* next) { m_state.next = next; }
-
-	void init(
-		glm::vec2 pos, glm::vec2 vec,
-		glm::vec2 ang, float health, 
-		float radius, aie::Texture* tex);
-
+	//Core
+	void init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, aie::Texture* tex);
 	bool update(float deltaTime);		//Returns true rock goes out of bounds/screen
+	void draw(aie::Renderer2D* renderer);
 
-	void kill();
-	bool isAlive() const { return m_alive == true; }
-
+	//Collisions
 	bool hasBeenShot(Bullet &bullet);		//returns true if bullet hits rock
 	bool hasHitPlayer(Player &player);		//???returns true if rock hits player
+
+	bool outOfBounds();
+	void kill();
+	bool isActive() const;
+											
+	//Gets
+	Rock* getNext() const { return m_state.next; }
+	glm::vec2 getPos() { return m_state.live.pos; }
+	glm::vec2 getVec() { return m_state.live.vel; }
+
+	//Sets
+	void setNext(Rock* next) { m_state.next = next; }
+
+
+
+
+
 };
 
 }

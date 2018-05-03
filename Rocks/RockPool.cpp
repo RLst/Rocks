@@ -1,67 +1,84 @@
-#include "RockPool.h"
 #include "Rock.h"
 #include "Fighter.h"
-#include "GameDefines.h"
 #include <Texture.h>
+#include <Renderer2D.h>
+#include "RockPool.h"
+#include "GameDefines.h"
+
+#include <iostream>
 
 namespace pkr {
 
 //Default
 RockPool::RockPool()
 {
-	//Initialise rocks
-	MAX_ROCKS = 100;
-	m_rocks = new Rock[MAX_ROCKS];
+	//Load rock textures
+	m_tex_rock_sml = new aie::Texture("../bin/textures/rock_small.png");
+	m_tex_rock_med = new aie::Texture("../bin/textures/rock_medium.png");
+	m_tex_rock_lge = new aie::Texture("../bin/textures/rock_large.png");
 
+	//Initialise rocks
+	m_rocks = new Rock[MAX_ROCKS];		//Default of 100
+
+	////Set up the availability lists
 	//The first one is available
 	m_firstAvailable = &m_rocks[0];
 
 	//Each particle points to the next
-	for (int i = 0; i <= MAX_ROCKS; ++i) {
+	for (int i = 0; i < MAX_ROCKS - 1; ++i) {
 		m_rocks[i].setNext(&m_rocks[i + 1]);
 	}
 
 	//The last one terminates the list
 	m_rocks[MAX_ROCKS - 1].setNext(NULL);
 
-	//Load rock textures
-	m_rock_sml = new aie::Texture("..\bin\textures\rock_small.png");
-	m_rock_med = new aie::Texture("..\bin\textures\rock_medium.png");
-	m_rock_lge = new aie::Texture("..\bin\textures\rock_large.png");
 }
 //Overload
-RockPool::RockPool(unsigned int PoolSize) : MAX_ROCKS(PoolSize = 100)
+RockPool::RockPool(int PoolSize) : MAX_ROCKS(PoolSize)
 {
+	//Load rock textures
+	m_tex_rock_sml = new aie::Texture("../bin/textures/rock_small.png");
+	m_tex_rock_med = new aie::Texture("../bin/textures/rock_medium.png");
+	m_tex_rock_lge = new aie::Texture("../bin/textures/rock_large.png");
+
 	//Initialise rocks
 	m_rocks = new Rock[MAX_ROCKS];
 
-	//Load rock textures
-	m_rock_sml = new aie::Texture("..\bin\textures\rock_small.png");
-	m_rock_med = new aie::Texture("..\bin\textures\rock_medium.png");
-	m_rock_lge = new aie::Texture("..\bin\textures\rock_large.png");
+	////Set up the availability lists
+	//The first one is available
+	m_firstAvailable = &m_rocks[0];
+
+	//Each particle points to the next
+	for (int i = 0; i < MAX_ROCKS - 1; ++i) {
+		m_rocks[i].setNext(&m_rocks[i + 1]);
+	}
+
+	//The last one terminates the list
+	m_rocks[MAX_ROCKS - 1].setNext(NULL);
+
 }
 //Deconstructor
 RockPool::~RockPool()
 {
 	delete[] m_rocks;
-	delete m_rock_sml;
-	delete m_rock_med;
-	delete m_rock_lge;
+	delete m_tex_rock_sml;
+	delete m_tex_rock_med;
+	delete m_tex_rock_lge;
 }
 
-void RockPool::hurl(Fighter & player)
+void RockPool::request(Fighter * player)
 //Hurls a random sized rock with random direction and velocity at player
 {
 	//assert(m_firstAvailable != NULL);		//Make sure the pool isn't full
 	if (m_firstAvailable == NULL) return;	//OR if the pool is full/don't have any objects available, then take no action
 
 	//Initialise variables to be passed in
-	glm::vec2 newPos;
-	glm::vec2 newVec;
-	glm::vec2 newAng;
-	float newHealth;
-	float newRadius;
-	aie::Texture* newTex;
+	glm::vec2		newPos;
+	glm::vec2		newVec;
+	glm::vec2		newAng;
+	float			newHealth;
+	float			newRadius;
+	aie::Texture*	newTex;
 
 	//Set random rock type
 	int rockSelect = Random(1, 3);
@@ -71,74 +88,88 @@ void RockPool::hurl(Fighter & player)
 	newRadius = 25.0f * rockSelect;
 
 	//TEXTURE
-	switch (Random(1, 3)) {
+	switch (rockSelect) {
 	case SML_ROCK:
-		newTex = m_rock_sml;
+		newTex = m_tex_rock_sml;
 		break;
 	case MED_ROCK:
-		newTex = m_rock_med;
+		newTex = m_tex_rock_med;
 		break;
 	case LGE_ROCK:
-		newTex = m_rock_lge;
+		newTex = m_tex_rock_lge;
 		break;
-	default:
-		assert(false);
 	}
 
 	//POSITION: Set initial position at a random point offscreen
-	switch (Random(1, 4))
-	{
-	case 1:	//Top
-		newPos.y = SCREEN_HEIGHT;
-		newPos.x = (float)Random(0, SCREEN_WIDTH);
-		break;
-	case 2: //Bottom
-		newPos.y = 0;
-		newPos.x = newPos.x = (float)Random(0, SCREEN_WIDTH);
-		break;
-	case 3: //Left
-		newPos.x = 0;
-		newPos.y = (float)Random(0, SCREEN_HEIGHT);
-		break;
-	case 4: //Right
-		newPos.x = SCREEN_WIDTH;
-		newPos.y = (float)Random(0, SCREEN_HEIGHT);
-		break;
-	}
+	//switch (Random(1, 4))
+	//{
+	//case 1:	//Top
+	//	newPos.y = SCREEN_HEIGHT;
+	//	newPos.x = (float)Random(0, SCREEN_WIDTH);
+	//	break;
+	//case 2: //Bottom
+	//	newPos.y = 0;
+	//	newPos.x = newPos.x = (float)Random(0, SCREEN_WIDTH);
+	//	break;
+	//case 3: //Left
+	//	newPos.x = 0;
+	//	newPos.y = (float)Random(0, SCREEN_HEIGHT);
+	//	break;
+	//case 4: //Right
+	//	newPos.x = SCREEN_WIDTH;
+	//	newPos.y = (float)Random(0, SCREEN_HEIGHT);
+	//	break;
+	//}
+	newPos = { 100.0f, 100.0f };	//debug
 
 	//VECTOR; roughly hurl towards player
 	static int vecRough = 10;		//rough trajectory towards player
-	newVec += (player.getPos() - newPos) + (float)Random(-vecRough, vecRough);
+	glm::vec2 tempVec = { 50.0f, 50.0f };	//debug
+	newVec += tempVec;
+	//newVec += (player->getTargetPos() - newPos) + (float)Random(-vecRough, vecRough);
 
 	//ANGLE; put a random spin on the rock
 	static int angRough = 5;
-	newAng.r = (float)Random(angRough, angRough);		//rotational velocity
+	newAng.r = (float)Random(-angRough, angRough);		//rotational velocity
 	newAng.g = (float)Random(0, 360);	//real-time z angle
 
 	//LAUNCH
 	//Remove it from the available list
 	Rock* newRock = m_firstAvailable;			//Set new rock ptr to first available
 	m_firstAvailable = newRock->getNext();		//Set first available ptr to next avail
+
 	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newTex);
+	std::cout << "newRock->init()" << std::endl;
 }
 
 void RockPool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_ROCKS; ++i) {
-		//If rock
-		if (m_rocks[i].update(deltaTime)) {	//returns false if out of bounds
+		if (m_rocks[i].update(deltaTime)) {
+			//If the rock gets killed
+
 			//Add to the front of the list
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
 		}
-		else {
-
-		}
+		//else {
+		//	//?
+		//}
 	}
 
 }
 
+void RockPool::draw(aie::Renderer2D * renderer)
+{
+	for (int i = 0; i < MAX_ROCKS; ++i) {
+		//If the rock is active then draw it (including it's rotation)
+		if (m_rocks[i].isActive()) {
+			std::cout << "Rock being drawn" << std::endl;
+			renderer->drawSprite(m_tex_rock_sml, m_rocks[i].getPos().x, m_rocks[i].getPos().y); //debug
+			//m_rocks[i].draw(renderer);
+		}
+	}
 
-
+}
 
 }

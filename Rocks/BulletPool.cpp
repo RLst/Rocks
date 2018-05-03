@@ -77,7 +77,6 @@ void BulletPool::update(float deltaTime)
 
 void BulletPool::draw(aie::Renderer2D * renderer)
 {
-
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//If the bullet is alive then draw it
 		if (m_bullets[i].isActive()) {

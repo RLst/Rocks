@@ -44,12 +44,12 @@ void Fighter::update(float deltaTime)
 
 	m_vel = { 0 , 0 };
 	//Forward
-	if (input->isKeyDown(aie::INPUT_KEY_W)) {
+	if (input->isKeyDown(aie::INPUT_KEY_UP)) {
 		m_vel.x = cos((angAdj + m_ang) * PI / 180.0f) * (m_speed * deltaTime);
 		m_vel.y = sin((angAdj + m_ang) * PI / 180.0f) * (m_speed * deltaTime);
 	}
 	//Backward
-	if (input->isKeyDown(aie::INPUT_KEY_S)) {
+	if (input->isKeyDown(aie::INPUT_KEY_DOWN)) {
 		m_vel.x = cos((angAdj + m_ang) * PI / 180.0f) * (-m_speed * deltaTime);
 		m_vel.y = sin((angAdj + m_ang) * PI / 180.0f) * (-m_speed * deltaTime);
 	}
@@ -58,11 +58,11 @@ void Fighter::update(float deltaTime)
 
 	///ROTATION
 	//Rotate left
-	if (input->isKeyDown(aie::INPUT_KEY_A)) {
+	if (input->isKeyDown(aie::INPUT_KEY_LEFT)) {
 		m_targetAng += m_angSpeed * deltaTime;	//Why is this seemingly inverted?
 	}
 	//Rotate right
-	if (input->isKeyDown(aie::INPUT_KEY_D)) {
+	if (input->isKeyDown(aie::INPUT_KEY_RIGHT)) {
 		m_targetAng -= m_angSpeed * deltaTime;
 	}
 	angleWrap();	//Keep angle within bounds

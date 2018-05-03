@@ -42,6 +42,9 @@ public:
 	glm::vec2		getVel() { return m_vel; }
 	float			getAng() { return m_ang; }
 
+	//debugs
+	glm::vec2		getTargetPos() { return m_targetPos; }
+
 };
 
 }

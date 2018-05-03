@@ -1,8 +1,8 @@
 #pragma once
 
 //Game settings and constatns
-const unsigned int SCREEN_WIDTH = 1440;
-const unsigned int SCREEN_HEIGHT = 900;
+const unsigned int SCREEN_WIDTH = 1024;
+const unsigned int SCREEN_HEIGHT = 640;
 const float PI = 3.1415927f;
 
 //Enums
@@ -13,6 +13,7 @@ enum RockType {
 };
 
 //Core functions
+int Random(int max);
 int Random(int min, int max);
 
 float degTOrads(float degrees); 
