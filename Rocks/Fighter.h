@@ -24,11 +24,11 @@ class Fighter
 	float			m_smooth;
 
 	//Health
-	float			m_health = 100;
+	float			m_health;
 
 	//Gun
 	double			m_lastFired;
-	float			m_fireRate = 0.3f;		//in seconds
+	float			m_fireRate = 0.2f;		//in seconds
 	int				m_gunOffset = 30;
 	float			m_bulletSpeed = 750.0f;
 

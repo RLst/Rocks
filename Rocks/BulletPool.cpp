@@ -13,8 +13,8 @@ namespace pkr {
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
 	//Set bullet settings
-	m_bulletLife = 40;	//in frams
-	m_bulletDamage = 50;
+	m_bulletLife = 90;	//in frames/// should make this in seconds so it's consistent with other systems
+	m_bulletDamage = 25.0f;
 
 	//Load textures
 	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
@@ -78,7 +78,7 @@ void BulletPool::update(float deltaTime)
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//Update and control bullet deaths
 		if (m_bullets[i].update(deltaTime) ||
-			m_bullets[i].isAlive() == false) 
+			!m_bullets[i].isAlive()) 
 		{
 			//Put back into it's object pool
 			m_bullets[i].setNext(m_firstAvailable);

@@ -28,7 +28,7 @@ public:
 
 	//Active
 	bool isAlive() const { return m_life > 0; }
-	void kill() { m_life = false; }
+	void kill() { m_life = 0; }
 
 	//Checks
 	bool outOfBounds();

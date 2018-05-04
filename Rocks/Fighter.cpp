@@ -27,11 +27,14 @@ Fighter::Fighter()
 
 	//Cannon settings
 	m_lastFired = 0.0;
-	m_fireRate = 0.3f;		//300ms in between shots
+	m_fireRate = 0.2f;		//300ms in between shots
 	m_gunOffset = 30;
 
 	//Bullet settings
 	m_bulletSpeed = 750.0f;
+
+	//Health
+	m_health = 100;
 }
 
 Fighter::~Fighter()
@@ -53,7 +56,7 @@ void Fighter::update(float deltaTime)
 		//Explosion
 
 		//Reset
-		reset();			//Position
+		reset();					//Position
 		m_health = 100;		//Health
 	}
 

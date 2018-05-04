@@ -90,7 +90,7 @@ void RockPool::request(Fighter * player)
 	//HEALTH, RADIUS and ATTACK
 	newHealth = 50.0f * rockType;
 	newRadius = 25.0f * rockType;
-	newAttack = 40.0f * rockType;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
+	newAttack = 10.0f * rockType;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
 
 	//TEXTURE
 	switch (rockType) {
@@ -106,22 +106,23 @@ void RockPool::request(Fighter * player)
 	}
 
 	//POSITION: Set initial position at a random point offscreen
+	static float padding = 50;
 	switch (Random(1, 4))
 	{
 	case 1:	//Top
-		newPos.y = SCREEN_HEIGHT;
+		newPos.y = SCREEN_HEIGHT + padding;
 		newPos.x = (float)Random(0, SCREEN_WIDTH);
 		break;
 	case 2: //Bottom
-		newPos.y = 0;
+		newPos.y = 0 - padding;
 		newPos.x = newPos.x = (float)Random(0, SCREEN_WIDTH);
 		break;
 	case 3: //Left
-		newPos.x = 0;
+		newPos.x = 0 - padding;
 		newPos.y = (float)Random(0, SCREEN_HEIGHT);
 		break;
 	case 4: //Right
-		newPos.x = SCREEN_WIDTH;
+		newPos.x = SCREEN_WIDTH + padding;
 		newPos.y = (float)Random(0, SCREEN_HEIGHT);
 		break;
 	}
@@ -129,7 +130,6 @@ void RockPool::request(Fighter * player)
 	//VECTOR; add velocity to the rock
 	//Aim imprecisely at player
 	static int aimInaccuracy = 200;			//HIGHER is more inaccurate
-	//newVec.x = (player->getPos().x - newPos.x + ()
 	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
 	//Normalize
 	newVec.x /= newVec.length();
@@ -137,7 +137,6 @@ void RockPool::request(Fighter * player)
 	//Add a velocity
 	static int maxRockSpeed = 1;
 	newVec *= (float)Random(maxRockSpeed);
-	//newVec *= 10.0f;
 
 	//ANGLE; put a random spin on the rock
 	static int angRough = 10;

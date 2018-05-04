@@ -77,7 +77,7 @@ void Game::update(float deltaTime) {
 
 	//ROCKS
 	//Insert random rocks
-	static int spawnOccurence = 50;		//HIGHER is less
+	static int spawnOccurence = 250;		//HIGHER is less
 	if (Random(spawnOccurence) == spawnOccurence) {
 		m_rock_pool->request(m_player);
 	}
