@@ -42,10 +42,6 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 	//If pool is empty then do nothing
 	if (m_firstAvailable == NULL) return;
 
-	//Delay bullets so they don't shoot too fast
-	//static float minimumBulletDelay = 200.0f;	//200ms
-	//if (getLastBulletTime() < minimumBulletDelay) return;
-
 	//Bullet request granted; remove it from the available list
 	Bullet* newBullet = m_firstAvailable;
 
