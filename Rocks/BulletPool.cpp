@@ -12,8 +12,9 @@ namespace pkr {
 //Overloaded Constructor
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
-	//Set bullet life (in frames)
-	m_bulletLife = 30;
+	//Set bullet settings
+	m_bulletLife = 40;	//in frams
+	m_bulletDamage = 50;
 
 	//Load textures
 	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
@@ -29,6 +30,11 @@ BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 	}
 	//the last one terminates the list
 	m_bullets[MAX_BULLETS - 1].setNext(nullptr);
+
+	////In use pointers (temp)
+	m_firstInUse = nullptr;
+	m_nextInUse = nullptr;
+	m_InUseIndex = NULL;
 }
 //Deconstructor
 BulletPool::~BulletPool()
@@ -72,7 +78,7 @@ void BulletPool::update(float deltaTime)
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//Update and control bullet deaths
 		if (m_bullets[i].update(deltaTime) ||
-			m_bullets[i].isAlive == false) 
+			m_bullets[i].isAlive() == false) 
 		{
 			//Put back into it's object pool
 			m_bullets[i].setNext(m_firstAvailable);
@@ -90,6 +96,34 @@ void BulletPool::draw(aie::Renderer2D * renderer)
 			renderer->drawSprite(m_tex_bullet, m_bullets[i].getPos().x, m_bullets[i].getPos().y);
 		}
 	}
+}
+
+Bullet * BulletPool::getNextInUse()
+{
+	//Returns next in use
+	if (m_InUseIndex != NULL);
+	if (m_firstInUse != nullptr);
+
+	for (int i = 0; i < size(); ++i)
+	{
+		if (m_bullets[i].isAlive()) {
+			//If the bullet is active increment in use index...
+			++m_InUseIndex;
+
+			//Wrap back to the start if it goes higher than the size of the pool..
+			if (m_InUseIndex > size())
+				m_InUseIndex = 0;
+
+			//and return bullet*
+			return &m_bullets[i];
+		}
+	}
+
+}
+
+Bullet * BulletPool::operator[](int index) const
+{
+	return &m_bullets[index];
 }
 
 }

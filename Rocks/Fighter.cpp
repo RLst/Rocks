@@ -108,7 +108,7 @@ void Fighter::takeDamage(float damage)
 	m_health -= damage;
 }
 
-void Fighter::reset()
+void Fighter::reset()		//to be turned into a death function
 {
 	//Just reset the position
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;

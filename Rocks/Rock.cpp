@@ -69,10 +69,20 @@ bool Rock::isAlive() const
 bool Rock::hasBeenShot(Bullet * bullet)
 {
 	//If the bullet is in range of rock
-	
-		//Take damage
+	if (distance(this->getPos(), bullet->getPos()) < this->getRadius())
+		return true;
+	else 
+		return false;
+}
 
-		//Kill bullet
+bool Rock::hasHitPlayer(Fighter * player)
+{
+	//Return true if hit
+	if (distance(this->getPos(), player->getPos()) < this->getRadius())
+		return true;
+	else
+		return false;
+}
 
 void Rock::wrapAroundScreen()
 {

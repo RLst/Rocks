@@ -35,10 +35,11 @@ public:
 	void			restore(Rock* rock);
 
 	//Collisions
-	
+	void HandlePlayerCollision(Fighter * player);
+	void HandleBulletCollision(BulletPool * bullets);
 				
 	//Getters and setters
-	Rock			operator[](int index) const;	//?
+	Rock*			operator[](int index) const;	//?
 	int				size() { return MAX_ROCKS; }
 };
 

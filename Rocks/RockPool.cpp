@@ -4,6 +4,7 @@
 #include <Renderer2D.h>
 #include "RockPool.h"
 #include "GameDefines.h"
+#include "Bullet.h"
 #include "BulletPool.h"
 
 #include <iostream>
@@ -159,9 +160,43 @@ void RockPool::restore(Rock * rock)
 	m_firstAvailable = rock;
 }
 
-Rock  RockPool::operator[](int index) const
+void RockPool::HandlePlayerCollision(Fighter * player)
 {
-	return m_rocks[index];
+	for (int i = 0; i < MAX_ROCKS; ++i) {
+		//Check if rock is alive
+		if (m_rocks[i].isAlive()) {
+			//If player is hit then deals damage to player
+			if (m_rocks[i].hasHitPlayer(player)) {
+				player->takeDamage(m_rocks[i].getAttack());
+			}
+		}
+	}
+}
+
+void RockPool::HandleBulletCollision(BulletPool * bullets)
+{
+	//Get each active bullet from the bullet pool
+	for (int i = 0; i < size(); ++i)
+	{
+		for (int j = 0; j < bullets->size(); ++j)
+		{
+			//Check if bullet is alive
+			if (bullets->m_bullets->isAlive()) {
+				//If bullet hits rock...
+				if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {
+					//..deals damage to rock
+					m_rocks[i].takeDamage(bullets->getBulletDamage());
+					//..bullet dies too
+					bullets->m_bullets[i].kill();
+				}
+			}
+		}
+	}
+}
+
+Rock * RockPool::operator[](int index) const
+{
+	return &m_rocks[index];
 }
 
 void RockPool::update(float deltaTime)
@@ -169,9 +204,9 @@ void RockPool::update(float deltaTime)
 	for (int i = 0; i < MAX_ROCKS; ++i) {
 		
 		//Handle rock life
-		if (!m_rocks[i].isAlive()) {
-			//Restore back to pool
-			//m_rocks[i].kill();
+		if (!m_rocks[i].isAlive()) {	//Life goes too low
+			//Kill + Restore back to pool
+			m_rocks[i].kill();
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
 		}

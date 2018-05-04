@@ -85,10 +85,10 @@ void Game::update(float deltaTime) {
 
 	//HANDLE COLLISIONS
 	//Player < Rock
-	handleCollisionsWithPlayerAndRocks();
+	HandleCollisionsWithPlayerAndRocks();
 
 	//Bullet <> Rock
-	handleCollisionWithBulletsAndRocks();
+	HandleCollisionWithBulletsAndRocks();
 
 
 }
@@ -124,12 +124,10 @@ void Game::draw() {
 	m_2dRenderer->end();
 }
 
-void Game::handleCollisionsWithPlayerAndRocks()
+void Game::HandleCollisionsWithPlayerAndRocks()
 {
 	//Go through rock pool and check if it collides with player
-	m_rock_pool->get
-
-
+	m_rock_pool->HandlePlayerCollision(m_player);
 	//m_rock_pool.HandleCollisionWithPlayer
 	//for (int i = 0; i < m_rock_pool->size(); ++i) 
 	//{
@@ -139,10 +137,13 @@ void Game::handleCollisionsWithPlayerAndRocks()
 
 }
 
-void Game::handleCollisionWithBulletsAndRocks()
+void Game::HandleCollisionWithBulletsAndRocks()
 {
-	//Go through Rock pool and check if it collides with any Bullets (in bullet pool)
-
+	//Go through bullet pool and handle bullet collisions with rock pool
+	m_rock_pool->HandleBulletCollision(m_bullet_pool);
+	//for (int i = 0; i < m_bullet_pool->size(); ++i) 
+	//{
+	//}
 	////Handle player collision
 	//if (m_rock_pool->g    
 	//	m_rocks   [i].hasHitPlayer(player)) {
