@@ -33,10 +33,9 @@ bool Rock::update(float deltaTime)
 
 	//Move the rock
 	m_state.live.pos += m_state.live.vel * deltaTime;
-	//Continue rotating the rock
-	//m_state.live.ang.g += m_state.live.ang.r * deltaTime;
 
-	//Kill if out of bounds
+	//Rotate the rock
+	m_state.live.ang.g += m_state.live.ang.r * deltaTime;
 
 	//Wrap if out of bounds
 	if (outOfBounds()) {
