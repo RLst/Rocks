@@ -22,12 +22,8 @@ bool Game::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	//Setup the game scene
+	////Setup the game
 	//m_timer = 0;
-	//m_player = new Player(...);\
-	
-
-	////Load game objects
 
 	//Space fighter (player)
 	m_player = new pkr::Fighter;
@@ -36,7 +32,6 @@ bool Game::startup() {
 	m_bullet_pool = new pkr::BulletPool(50);
 
 	//Enemy asteroids
-	//m_rock_pool = new pkr::RockPool(50);
 	m_rock_pool = new pkr::RockPool(50);
 
 	return true;
@@ -71,7 +66,7 @@ void Game::update(float deltaTime) {
 
 	//ROCKS
 	//Insert random rocks
-	if (Random(50) == 1) {
+	if (Random(100) == 1) {
 		m_rock_pool->request(m_player);
 		std::cout << "m_rock_pool->request()" << std::endl;
 	}

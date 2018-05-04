@@ -9,8 +9,8 @@ class Bullet
 	union {
 		//In use
 		struct {
-			glm::vec2	m_pos;
-			glm::vec2	m_vel;
+			glm::vec2	pos;
+			glm::vec2	vel;
 		} live;
 
 		//Available
@@ -36,8 +36,8 @@ public:
 	//Gets
 	Bullet* getNext() const { return m_state.next; }
 	//aie::Texture getTex() const { return m_state.live.}
-	glm::vec2 getPos() const { return m_state.live.m_pos; }
-	glm::vec2 getVel() const { return m_state.live.m_vel; }
+	glm::vec2 getPos() const { return m_state.live.pos; }
+	glm::vec2 getVel() const { return m_state.live.vel; }
 	//float posx() const { return m_state.live.m_pos.x; }
 	//float posy() const { return m_state.live.m_pos.y; }
 

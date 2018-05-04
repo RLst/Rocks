@@ -58,7 +58,7 @@ public:
 
 	//Collisions
 	bool hasBeenShot(Bullet &bullet);		//returns true if bullet hits rock
-	bool hasHitPlayer(Player &player);		//???returns true if rock hits player
+	//bool hasHitPlayer(Player &player);		//???returns true if rock hits player
 
 	bool outOfBounds();
 	void kill();

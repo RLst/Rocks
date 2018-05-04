@@ -1,7 +1,6 @@
 #pragma once
 
-//#include <Texture.h>		//Won't work without this!!!
-//#include "Rock.h"
+//Prototypes
 namespace aie {
 	class Renderer2D;
 	class Texture;
@@ -14,7 +13,7 @@ namespace pkr {
 class RockPool
 {
 private:
-	int				MAX_ROCKS = 100;	//Default 100
+	int				MAX_ROCKS;
 	Rock*			m_rocks;			//Rock array
 	Rock*			m_firstAvailable;
 
@@ -24,15 +23,14 @@ private:
 	aie::Texture*	m_tex_rock_lge;
 
 public:
-	RockPool();
+	//RockPool();
 	RockPool(int poolsize);
 	~RockPool();
 
-	void request(Fighter * player);	//A random size rock will be hurled at the player
-	void wrapAround(Fighter &player);
-
+	void request(Fighter * player);	//A random size rock will be roughly hurled at the player
 	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
+	//void wrapAround(Fighter &player);
 
 	//Getters and setters
 	int size() { return MAX_ROCKS; }

@@ -16,8 +16,8 @@ void Bullet::init(glm::vec2 pos, glm::vec2 vel)
 {
 	//Set bullet as active and init with pos and velocity
 	m_active = true;
-	m_state.live.m_pos = pos;
-	m_state.live.m_vel = vel;
+	m_state.live.pos = pos;
+	m_state.live.vel = vel;
 }
 
 bool Bullet::update(float deltaTime)
@@ -29,7 +29,7 @@ bool Bullet::update(float deltaTime)
 	if (!isActive()) return false;	//End and return false if not active
 
 	//Move the object
-	m_state.live.m_pos += m_state.live.m_vel * deltaTime;
+	m_state.live.pos += m_state.live.vel * deltaTime;
 
 	////Check for bullet "death" conditions
 	//Out of bounds
@@ -50,10 +50,10 @@ bool Bullet::update(float deltaTime)
 bool Bullet::outOfBounds()
 {
 	//Returns true if bullet goes off screen
-	if (m_state.live.m_pos.x < 0 ||
-		m_state.live.m_pos.x > SCREEN_WIDTH ||
-		m_state.live.m_pos.y < 0 ||
-		m_state.live.m_pos.y > SCREEN_HEIGHT)
+	if (m_state.live.pos.x < 0 ||
+		m_state.live.pos.x > SCREEN_WIDTH ||
+		m_state.live.pos.y < 0 ||
+		m_state.live.pos.y > SCREEN_HEIGHT)
 		return true;
 	else 
 		return false;

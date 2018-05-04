@@ -29,6 +29,8 @@ public:
 	void request(glm::vec2 pos, glm::vec2 vel);
 	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
+
+	//Getters and setters
 	int size() { return MAX_BULLETS; }
 };
 

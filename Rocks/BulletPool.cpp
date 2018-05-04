@@ -9,7 +9,7 @@
 
 
 namespace pkr {
-
+//Overloaded Constructor
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
 	//Load textures
@@ -27,11 +27,11 @@ BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 	//the last one terminates the list
 	m_bullets[MAX_BULLETS - 1].setNext(nullptr);
 }
-
+//Deconstructor
 BulletPool::~BulletPool()
 {
-	delete m_tex_bullet;
 	delete[] m_bullets;
+	delete m_tex_bullet;
 }
 
 void BulletPool::request(glm::vec2 pos, glm::vec2 vel)

@@ -23,10 +23,12 @@ public:
 
 protected:
 
+	//float				m_timer;
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 
 	pkr::Fighter*		m_player;			//Holds the player's fighter
 	pkr::BulletPool*	m_bullet_pool;		//Holds the bullets of the player's fighter ship
 	pkr::RockPool*		m_rock_pool;		//Holds the enemy asteroids
+
 };
