@@ -34,6 +34,7 @@ private:
 			
 			float			health;
 			float			radius;
+			float			attack;
 		} live;
 
 		//State while available
@@ -76,6 +77,10 @@ public:
 
 
 
+	//Damage and health
+	float					getHealth() { return m_state.live.health; }
+	float					getAttack() { return m_state.live.attack; }
+	
 };
 
 }

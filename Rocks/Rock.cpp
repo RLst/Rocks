@@ -13,7 +13,7 @@ Rock::~Rock()
 {
 }
 
-void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, aie::Texture* tex)
+void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex)
 {
 	m_active = true;
 	m_state.live.pos = pos;
@@ -21,6 +21,7 @@ void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float
 	m_state.live.ang = ang;
 	m_state.live.health = health;
 	m_state.live.radius = radius;
+	m_state.live.attack = attack;
 	m_state.live.tex = tex;
 }
 
