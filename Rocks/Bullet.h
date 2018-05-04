@@ -5,7 +5,7 @@ namespace pkr {
 
 class Bullet
 {
-	bool				m_active;
+	int					m_life;
 	union {
 		//In use
 		struct {
@@ -22,13 +22,13 @@ public:
 	~Bullet();
 
 	//Core
-	void init(glm::vec2 pos, glm::vec2 vel);
+	void init(glm::vec2 pos, glm::vec2 vel, int life);
 	bool update(float deltaTime);
 	//void draw(aie::Renderer2D* renderer);
 
 	//Active
-	bool isActive() const { return m_active == true; }
-	void kill() { m_active = false; }
+	bool isAlive() const { return m_life > 0; }
+	void kill() { m_life = false; }
 
 	//Checks
 	bool outOfBounds();

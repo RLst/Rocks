@@ -12,6 +12,9 @@ namespace pkr {
 //Overloaded Constructor
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
+	//Set bullet life (in frames)
+	m_bulletLife = 30;
+
 	//Load textures
 	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
 
@@ -49,7 +52,7 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 	m_firstAvailable = newBullet->getNext();
 
 	//Initialise the bullet
-	newBullet->init(pos, vel);
+	newBullet->init(pos, vel, m_bulletLife);
 }
 
 void BulletPool::restore(Bullet * bullet)
@@ -67,10 +70,11 @@ void BulletPool::update(float deltaTime)
 	//}
 
 	for (int i = 0; i < MAX_BULLETS; ++i) {
-		if (m_bullets[i].update(deltaTime)) {
-			//If the bullet died
-
-			//Add this bullet to the front of the availability list
+		//Update and control bullet deaths
+		if (m_bullets[i].update(deltaTime) ||
+			m_bullets[i].isAlive == false) 
+		{
+			//Put back into it's object pool
 			m_bullets[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_bullets[i];
 		}
@@ -81,7 +85,7 @@ void BulletPool::draw(aie::Renderer2D * renderer)
 {
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//If the bullet is alive then draw it
-		if (m_bullets[i].isActive()) {
+		if (m_bullets[i].isAlive()) {
 			//Draw the bullet
 			renderer->drawSprite(m_tex_bullet, m_bullets[i].getPos().x, m_bullets[i].getPos().y);
 		}

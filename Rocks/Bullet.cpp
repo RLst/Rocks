@@ -6,16 +6,16 @@
 
 namespace pkr {
 
-Bullet::Bullet() : m_active(false)
+Bullet::Bullet() : m_life(false)
 {}
 
 Bullet::~Bullet()
 {}
 
-void Bullet::init(glm::vec2 pos, glm::vec2 vel)
+void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life)
 {
 	//Set bullet as active and init with pos and velocity
-	m_active = true;
+	m_life = life;
 	m_state.live.pos = pos;
 	m_state.live.vel = vel;
 }
@@ -26,38 +26,28 @@ bool Bullet::update(float deltaTime)
 	//Returns TRUE if the bullet dies
 	//Returns FALSE if the bullet is inactive
 
-	if (!isActive()) return false;	//End and return false if not active
+	if (!isAlive()) return false;	//End and return false if not active
 
 	//Move the object
 	m_state.live.pos += m_state.live.vel * deltaTime;
 
-	////Check for bullet "death" conditions
-	//Out of bounds
-	if (outOfBounds()) {
-		m_active = false;
-		return m_active == false;
-	}
-	//Hit a rock
-	//else if (hasCollided(RockPool* rockpool)) {
-	//	rockPool->takeDamage();
-	//	m_active = false;
-	//	return false;
-	//}
+	//Decrease life of bullet
+	--m_life;
 
-	//return true;	//Update executed fine. Still alive //********** this was causing the major headache!
+	return m_life == 0;
 }
 
-bool Bullet::outOfBounds()
-{
-	//Returns true if bullet goes off screen
-	if (m_state.live.pos.x < 0 ||
-		m_state.live.pos.x > SCREEN_WIDTH ||
-		m_state.live.pos.y < 0 ||
-		m_state.live.pos.y > SCREEN_HEIGHT)
-		return true;
-	else 
-		return false;
-}
+//bool Bullet::outOfBounds()
+//{
+//	//Returns true if bullet goes off screen
+//	if (m_state.live.pos.x < 0 ||
+//		m_state.live.pos.x > SCREEN_WIDTH ||
+//		m_state.live.pos.y < 0 ||
+//		m_state.live.pos.y > SCREEN_HEIGHT)
+//		return true;
+//	else 
+//		return false;
+//}
 
 }
 

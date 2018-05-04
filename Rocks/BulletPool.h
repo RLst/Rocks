@@ -18,6 +18,7 @@ class BulletPool
 	int						MAX_BULLETS;
 	Bullet*					m_bullets;
 	Bullet*					m_firstAvailable;
+	int						m_bulletLife;
 
 	//Textures
 	aie::Texture*			m_tex_bullet;
