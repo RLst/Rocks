@@ -3,6 +3,8 @@
 #include "glm/vec2.hpp"
 #include "GameDefines.h"
 #include <Renderer2D.h>
+#include "Fighter.h"
+#include "Bullet.h"
 
 namespace pkr {
 
@@ -27,6 +29,10 @@ void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float
 
 bool Rock::update(float deltaTime)
 {
+	//NOTICE! This function must return something
+	//RETURN true to kill this object
+	//RETURN false to continue rendering this object
+
 	//Moves and kills the rock if it goes out of bounds?
 	//NOPE -> JUST DO ONE THING. Let RockPool::update() deal with this
 	if (!isActive()) return false;
@@ -44,15 +50,11 @@ bool Rock::update(float deltaTime)
 		return false;
 	}
 
-	////If the rock moves offscreen then flag (should I just kill it)
-	//if (m_state.live.pos.x < (0 - m_state.live.radius * 2) &&
-	//	m_state.live.pos.x >(SCREEN_WIDTH + m_state.live.radius * 2) &&
-	//	m_state.live.pos.y < (0 - m_state.live.radius * 2) &&
-	//	m_state.live.pos.y >(SCREEN_HEIGHT + m_state.live.radius * 2)) {
-	//	return true;
-	//}
-	//else
-	//	return false;
+	//CHECK COLLISION CONDITIONS
+	//if (hasBeenShot)
+
+
+	
 }
 
 void Rock::draw(aie::Renderer2D * renderer)
@@ -75,8 +77,6 @@ bool Rock::outOfBounds()
 void Rock::kill()
 {
 	m_active = false;
-
-	//setup next?
 }
 
 bool Rock::isActive() const
@@ -92,7 +92,6 @@ bool Rock::hasBeenShot(Bullet & bullet)
 
 		//Kill bullet
 
-	return false;
 void Rock::wrapAroundScreen()
 {
 	static int padding = 40;

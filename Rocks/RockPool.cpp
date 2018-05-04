@@ -150,13 +150,9 @@ void RockPool::update(float deltaTime)
 		if (m_rocks[i].update(deltaTime)) {
 			//If the rock gets killed
 
-			//Add to the front of the list
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
 		}
-		//else {
-		//	//?
-		//}
 	}
 
 }
@@ -165,9 +161,7 @@ void RockPool::draw(aie::Renderer2D * renderer)
 {
 	for (int i = 0; i < MAX_ROCKS; ++i) {
 		//If the rock is active then draw it (including it's rotation)
-		if (m_rocks[i].isActive()) {
-			std::cout << "Rock being drawn" << std::endl;
-			//renderer->drawSprite(m_tex_rock_sml, m_rocks[i].getPos().x, m_rocks[i].getPos().y); //debug
+		if (m_rocks[i].isAlive()) {
 			m_rocks[i].draw(renderer);
 		}
 	}

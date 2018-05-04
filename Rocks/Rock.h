@@ -9,7 +9,7 @@ namespace aie {
 
 namespace pkr {
 class Bullet;
-class Player;
+class Fighter;
 
 //struct RockModel {
 //	float m_health;
@@ -53,29 +53,29 @@ public:
 	~Rock();
 
 	//Core
-	void init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, aie::Texture* tex);
-	bool update(float deltaTime);		//Returns true rock goes out of bounds/screen
-	void draw(aie::Renderer2D* renderer);
+	void					init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex);
+	bool					update(float deltaTime);		//Returns true rock goes out of bounds/screen
+	void					draw(aie::Renderer2D* renderer);
 
 	//Collisions
-	bool hasBeenShot(Bullet &bullet);		//returns true if bullet hits rock
-	//bool hasHitPlayer(Player &player);		//???returns true if rock hits player
+	bool					hasBeenShot(Bullet * bullet);		//returns true if bullet hits rock
+	bool					hasHitPlayer(Fighter * player);		//???returns true if rock hits player
 
-	bool outOfBounds();
-	void kill();
-	bool isActive() const;
-											
-	//Gets
-	Rock* getNext() const { return m_state.next; }
-	glm::vec2 getPos() { return m_state.live.pos; }
-	glm::vec2 getVec() { return m_state.live.vel; }
+	bool					outOfBounds();
+	void					wrapAroundScreen();
 
-	//Sets
-	void setNext(Rock* next) { m_state.next = next; }
+	void					kill();
+	bool					isActive() const;
 
+	float					getRadius() { return m_state.live.radius; }
+	
+	//Pool
+	Rock*					getNext() const { return m_state.next; }
+	void					setNext(Rock* next) { m_state.next = next; }
 
-
-
+	//Vectors
+	glm::vec2				getPos() { return m_state.live.pos; }
+	glm::vec2				getVec() { return m_state.live.vel; }
 
 	//Damage and health
 	float					getHealth() { return m_state.live.health; }
