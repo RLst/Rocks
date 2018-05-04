@@ -9,6 +9,7 @@ namespace aie {
 namespace pkr {
 	class Rock;
 	class Fighter;
+	class BulletPool;
 
 class RockPool
 {
@@ -27,13 +28,18 @@ public:
 	RockPool(int poolsize);
 	~RockPool();
 
-	void request(Fighter * player);	//A random size rock will be roughly hurled at the player
-	void update(float deltaTime);
-	void draw(aie::Renderer2D* renderer);
-	//void wrapAround(Fighter &player);
+	void			update(float deltaTime);
+	void			draw(aie::Renderer2D* renderer);
+	
+	void			request(Fighter * player);	//A random size rock will be roughly hurled at the player
+	void			restore(Rock* rock);
 
+	//Collisions
+	
+				
 	//Getters and setters
-	int size() { return MAX_ROCKS; }
+	Rock			operator[](int index) const;	//?
+	int				size() { return MAX_ROCKS; }
 };
 
 }

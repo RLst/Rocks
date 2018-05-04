@@ -59,7 +59,7 @@ public:
 	void			setLastFired(double timer) { m_lastFired = timer; }
 
 	//debugs
-	glm::vec2		getTargetPos() { return m_targetPos; }
+	//glm::vec2		getTargetPos() { return m_targetPos; }
 
 };
 

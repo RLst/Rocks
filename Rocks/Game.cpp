@@ -57,7 +57,7 @@ void Game::update(float deltaTime) {
 
 	//TIMER
 	m_timer += deltaTime;
-	std::cout << m_timer << std::endl;
+	std::cout << m_timer << std::endl;	//DEBUG
 
 	//PLAYER
 	m_player->update(deltaTime);
@@ -66,8 +66,8 @@ void Game::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
 
 		//Delay bullets so they don't shoot too fast
-		//if ((timer - lastFired) > fireRate)
-		std::cout << "Last Fired = " << m_player->getLastFired() << std::endl;
+		//if ((timer - lastFired) > fireRate)	//PSEUDO
+		std::cout << "Last Fired = " << m_player->getLastFired() << std::endl;	//DEBUG
 		if ((m_timer - m_player->getLastFired()) > m_player->getFireRate()) {
 			m_bullet_pool->request(m_player->getGunPos(), m_player->getGunVel());
 			m_player->setLastFired(m_timer);
@@ -77,11 +77,18 @@ void Game::update(float deltaTime) {
 
 	//ROCKS
 	//Insert random rocks
-	if (Random(100) == 1) {
+	static int spawnOccurence = 50;		//HIGHER is less
+	if (Random(spawnOccurence) == spawnOccurence) {
 		m_rock_pool->request(m_player);
-		std::cout << "m_rock_pool->request()" << std::endl;
 	}
 	m_rock_pool->update(deltaTime);
+
+	//HANDLE COLLISIONS
+	//Player < Rock
+	handleCollisionsWithPlayerAndRocks();
+
+	//Bullet <> Rock
+	handleCollisionWithBulletsAndRocks();
 
 
 }
@@ -115,4 +122,32 @@ void Game::draw() {
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 	// done drawing sprites
 	m_2dRenderer->end();
+}
+
+void Game::handleCollisionsWithPlayerAndRocks()
+{
+	//Go through rock pool and check if it collides with player
+	m_rock_pool->get
+
+
+	//m_rock_pool.HandleCollisionWithPlayer
+	//for (int i = 0; i < m_rock_pool->size(); ++i) 
+	//{
+	//	if (m_rock_pool->checkPlayerCollision())
+	//	for (int j = 0; j < m_)
+	//}
+
+}
+
+void Game::handleCollisionWithBulletsAndRocks()
+{
+	//Go through Rock pool and check if it collides with any Bullets (in bullet pool)
+
+	////Handle player collision
+	//if (m_rock_pool->g    
+	//	m_rocks   [i].hasHitPlayer(player)) {
+	//	//Damage player
+	//	player->takeDamage(m_rocks[i].getAttack());
+	//	//Explosion
+	//}
 }

@@ -11,15 +11,6 @@ namespace pkr {
 class Bullet;
 class Fighter;
 
-//struct RockModel {
-//	float m_health;
-//};
-//class RockModel {
-//	RockType			m_type;
-//	aie::Texture*		m_tex;
-//	float				m_hit_radius;
-//};
-
 class Rock
 {
 private:
@@ -41,20 +32,13 @@ private:
 		Rock*				next;
 	} m_state;
 
-	//glm::vec2			m_pos;
-	//glm::vec2			m_vector;	
-	//float				m_angle;
-	//unsigned short		m_rock_size;	//1 = small, 2 = medium, 3 = large
-	//aie::Texture*		m_tex;			//Texture changes with the size
-	//float				m_radius;		//For collision
-
 public:
 	Rock();
 	~Rock();
 
 	//Core
 	void					init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex);
-	bool					update(float deltaTime);		//Returns true rock goes out of bounds/screen
+	void					update(float deltaTime);		//Returns true rock goes out of bounds/screen
 	void					draw(aie::Renderer2D* renderer);
 
 	//Collisions
@@ -65,7 +49,7 @@ public:
 	void					wrapAroundScreen();
 
 	void					kill();
-	bool					isActive() const;
+	bool					isAlive() const;
 
 	float					getRadius() { return m_state.live.radius; }
 	

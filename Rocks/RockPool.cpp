@@ -143,24 +143,29 @@ void RockPool::request(Fighter * player)
 
 	m_firstAvailable = newRock->getNext();		//Set first available ptr to next avail
 
-	std::cout << "newRock->init()" << std::endl;	//DEBUG
-	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newTex);
+	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newAttack, newTex);
+}
+
+void RockPool::restore(Rock * rock)
+{
+	//rock->kill();
+	rock->setNext(m_firstAvailable);
+	m_firstAvailable = rock;
+}
+
+Rock  RockPool::operator[](int index) const
+{
+	return m_rocks[index];
 }
 
 void RockPool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_ROCKS; ++i) {
-		if (m_rocks[i].update(deltaTime)) {
-			//If the rock gets killed
-
-void RockPool::update(float deltaTime, BulletPool * bullets, Fighter * player)
-{
-	for (int i = 0; i < MAX_ROCKS; ++i) {
 		
 		//Handle rock life
 		if (!m_rocks[i].isAlive()) {
-			//Kill and restore back to pool
-			m_rocks[i].kill();
+			//Restore back to pool
+			//m_rocks[i].kill();
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
 		}
@@ -184,7 +189,6 @@ void RockPool::draw(aie::Renderer2D * renderer)
 			m_rocks[i].draw(renderer);
 		}
 	}
-
 }
 
 }

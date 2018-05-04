@@ -37,11 +37,6 @@ void Rock::update(float deltaTime)
 
 	//Rotate the rock
 	m_state.live.ang.g += m_state.live.ang.r * deltaTime;
-
-	//Wrap if out of bounds
-	if (outOfBounds()) {
-		wrapAroundScreen();
-	}
 }
 
 void Rock::draw(aie::Renderer2D * renderer)
@@ -66,12 +61,12 @@ void Rock::kill()
 	m_active = false;
 }
 
-bool Rock::isActive() const
+bool Rock::isAlive() const
 {
 	return m_active == true;
 }
 
-bool Rock::hasBeenShot(Bullet & bullet)
+bool Rock::hasBeenShot(Bullet * bullet)
 {
 	//If the bullet is in range of rock
 	

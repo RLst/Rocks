@@ -21,6 +21,9 @@ public:
 	virtual void update(float deltaTime);
 	virtual void draw();
 
+	void handleCollisionsWithPlayerAndRocks();
+	void handleCollisionWithBulletsAndRocks();
+
 protected:
 
 	double				m_timer;
