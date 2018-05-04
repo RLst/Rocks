@@ -4,6 +4,7 @@
 #include <Renderer2D.h>
 #include "RockPool.h"
 #include "GameDefines.h"
+#include "BulletPool.h"
 
 #include <iostream>
 
@@ -79,14 +80,16 @@ void RockPool::request(Fighter * player)
 	glm::vec2		newAng = { 0,0 };
 	float			newHealth = 0.0f;
 	float			newRadius = 0.0f;
+	float			newAttack = 0.0f;
 	aie::Texture*	newTex = nullptr;
 
 	//ROCK TYPE
 	int rockType = Random(1, 3);
 
-	//HEALTH and RADIUS
+	//HEALTH, RADIUS and ATTACK
 	newHealth = 50.0f * rockType;
 	newRadius = 25.0f * rockType;
+	newAttack = 40.0f * rockType;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
 
 	//TEXTURE
 	switch (rockType) {
