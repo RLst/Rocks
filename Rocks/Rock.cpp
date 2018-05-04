@@ -37,10 +37,12 @@ bool Rock::update(float deltaTime)
 	//m_state.live.ang.g += m_state.live.ang.r * deltaTime;
 
 	//Kill if out of bounds
+
+	//Wrap if out of bounds
 	if (outOfBounds()) {
-		kill();
-		return m_active == false;
-		//return true;
+		wrapAroundScreen();
+		//return m_active == false;
+		return false;
 	}
 
 	////If the rock moves offscreen then flag (should I just kill it)
@@ -92,6 +94,24 @@ bool Rock::hasBeenShot(Bullet & bullet)
 		//Kill bullet
 
 	return false;
+void Rock::wrapAroundScreen()
+{
+	static int padding = 40;
+	//Wrap from top to bottom
+	if (m_state.live.pos.y > SCREEN_HEIGHT + padding)
+		m_state.live.pos.y = 0;
+
+	//Wrap from bottom to top
+	if (m_state.live.pos.y < 0 - padding)
+		m_state.live.pos.y = SCREEN_HEIGHT;
+
+	//Wrap from left to right
+	if (m_state.live.pos.x < 0 - padding)
+		m_state.live.pos.x = SCREEN_WIDTH;
+
+	//Wrap from right to left
+	if (m_state.live.pos.x > SCREEN_WIDTH + padding)
+		m_state.live.pos.x = 0;
 }
 
 }
