@@ -52,6 +52,12 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 	newBullet->init(pos, vel);
 }
 
+void BulletPool::restore(Bullet * bullet)
+{
+	bullet->setNext(m_firstAvailable);
+	m_firstAvailable = bullet;
+}
+
 void BulletPool::update(float deltaTime)
 {
 	//aie::Input* input = aie::Input::getInstance();

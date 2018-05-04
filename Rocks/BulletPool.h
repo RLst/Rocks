@@ -27,6 +27,8 @@ public:
 	~BulletPool();
 
 	void request(glm::vec2 pos, glm::vec2 vel);
+	void restore(Bullet* bullet);
+
 	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
 
