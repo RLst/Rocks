@@ -27,15 +27,10 @@ void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float
 	m_state.live.tex = tex;
 }
 
-bool Rock::update(float deltaTime)
+void Rock::update(float deltaTime)
 {
-	//NOTICE! This function must return something
-	//RETURN true to kill this object
-	//RETURN false to continue rendering this object
-
-	//Moves and kills the rock if it goes out of bounds?
-	//NOPE -> JUST DO ONE THING. Let RockPool::update() deal with this
-	if (!isActive()) return false;
+	//Do nothing if rock not alive
+	if (!isAlive()) return;
 
 	//Move the rock
 	m_state.live.pos += m_state.live.vel * deltaTime;
@@ -46,15 +41,7 @@ bool Rock::update(float deltaTime)
 	//Wrap if out of bounds
 	if (outOfBounds()) {
 		wrapAroundScreen();
-		//return m_active == false;
-		return false;
 	}
-
-	//CHECK COLLISION CONDITIONS
-	//if (hasBeenShot)
-
-
-	
 }
 
 void Rock::draw(aie::Renderer2D * renderer)

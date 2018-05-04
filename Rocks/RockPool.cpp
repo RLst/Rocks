@@ -153,8 +153,24 @@ void RockPool::update(float deltaTime)
 		if (m_rocks[i].update(deltaTime)) {
 			//If the rock gets killed
 
+void RockPool::update(float deltaTime, BulletPool * bullets, Fighter * player)
+{
+	for (int i = 0; i < MAX_ROCKS; ++i) {
+		
+		//Handle rock life
+		if (!m_rocks[i].isAlive()) {
+			//Kill and restore back to pool
+			m_rocks[i].kill();
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
+		}
+
+		//Draw the rock
+		m_rocks[i].update(deltaTime);
+
+		//Wrap the rock if it goes off screen
+		if (m_rocks[i].outOfBounds()) {
+			m_rocks[i].wrapAroundScreen();
 		}
 	}
 
