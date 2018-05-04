@@ -124,13 +124,19 @@ void RockPool::request(Fighter * player)
 		newPos.y = (float)Random(0, SCREEN_HEIGHT);
 		break;
 	}
-	//newPos = { 250.0f, 250.0f };	//debug
 
-	//VECTOR; roughly hurl towards player
-	static int vecRough = 100;		//rough trajectory towards player
-	//glm::vec2 tempVec = { 50, 50 };	//debug
-	//newVec = tempVec;
-	newVec += (player->getTargetPos() - newPos) + (float)Random(-vecRough, vecRough);
+	//VECTOR; add velocity to the rock
+	//Aim imprecisely at player
+	static int aimInaccuracy = 200;			//HIGHER is more inaccurate
+	//newVec.x = (player->getPos().x - newPos.x + ()
+	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
+	//Normalize
+	newVec.x /= newVec.length();
+	newVec.y /= newVec.length();
+	//Add a velocity
+	static int maxRockSpeed = 1;
+	newVec *= (float)Random(maxRockSpeed);
+	//newVec *= 10.0f;
 
 	//ANGLE; put a random spin on the rock
 	static int angRough = 10;
