@@ -23,7 +23,7 @@ bool Game::startup() {
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
 	////Setup the game
-	//m_timer = 0;
+	m_timer = 0;
 
 	//Space fighter (player)
 	m_player = new pkr::Fighter;
@@ -55,12 +55,23 @@ void Game::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 
+	//TIMER
+	m_timer += deltaTime;
+	std::cout << m_timer << std::endl;
+
 	//PLAYER
 	m_player->update(deltaTime);
 
 	//CONTROL PLAYER FIRE
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
-		m_bullet_pool->request(m_player->getGunPos(), m_player->getGunVel());
+
+		//Delay bullets so they don't shoot too fast
+		//if ((timer - lastFired) > fireRate)
+		std::cout << "Last Fired = " << m_player->getLastFired() << std::endl;
+		if ((m_timer - m_player->getLastFired()) > m_player->getFireRate()) {
+			m_bullet_pool->request(m_player->getGunPos(), m_player->getGunVel());
+			m_player->setLastFired(m_timer);
+		}
 	}
 	m_bullet_pool->update(deltaTime);
 

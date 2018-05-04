@@ -24,6 +24,14 @@ Fighter::Fighter()
 	m_speed = 600.0f;
 	m_angSpeed = 250.0f;
 	m_smooth = 2.0f;		//Lower is more lerpy
+
+	//Cannon settings
+	m_lastFired = 0.0;
+	m_fireRate = 0.3f;		//300ms in between shots
+	m_gunOffset = 30;
+
+	//Bullet settings
+	m_bulletSpeed = 750.0f;
 }
 
 Fighter::~Fighter()

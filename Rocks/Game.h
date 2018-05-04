@@ -23,7 +23,7 @@ public:
 
 protected:
 
-	//float				m_timer;
+	double				m_timer;
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 
