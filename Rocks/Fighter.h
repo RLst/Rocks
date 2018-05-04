@@ -14,14 +14,18 @@ namespace pkr {
 class Fighter
 {
 	aie::Texture*	m_tex;
+
+	//Movement
 	glm::vec2		m_pos, m_targetPos;		//t for target
 	glm::vec2		m_vel;				//Unit vectors
 	float			m_ang, m_targetAng;
 	float			m_speed;			//Linear speed
 	float			m_angSpeed;			//Angular speed
 	float			m_smooth;
-	//float			m_playerAngle;
-	//float			m_playerSpeed;
+
+	//Health
+	float			m_health = 100;
+
 	//Gun
 	double			m_lastFired;
 	float			m_fireRate = 0.3f;		//in seconds
@@ -31,14 +35,20 @@ class Fighter
 public:
 	Fighter();
 	~Fighter();
+
+	//Core
 	void update(float deltaTime);
-	void draw(aie::Renderer2D* spriteBatch);
+	void draw(aie::Renderer2D* renderer);
 
-	//Rotation
-	void angleWrap();
+	//Health
+	void takeDamage(float damage);
+	bool isAlive() { return m_health > 0; }
+	void reset();
 
+	//Vectors
 	glm::vec2		getPos() { return m_pos; }
 	glm::vec2		getVel() { return m_vel; }
+	void			angleWrap();
 	float			getAng() { return m_ang; }
 
 	//Guns

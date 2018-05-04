@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/vec2.hpp>
+
 //Game settings and constatns
 const unsigned int SCREEN_WIDTH = 1280;
 const unsigned int SCREEN_HEIGHT = 800;
@@ -15,6 +17,10 @@ enum RockType {
 //Core functions
 int Random(int max);
 int Random(int min, int max);
+
+//template<typename T>
+//T distance(T a, T b);
+float distance(glm::vec2 a, glm::vec2 b);
 
 float degTOrads(float degrees); 
 
@@ -75,3 +81,4 @@ union vector2
 
 
 }
+

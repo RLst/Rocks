@@ -47,8 +47,24 @@ void Fighter::update(float deltaTime)
 
 	aie::Input* input = aie::Input::getInstance();
 
+	//Check if alive
+	if (!isAlive()) {
+		std::cout << "Player has died!" << std::endl;
+		//Explosion
+
+		//Reset
+		reset();			//Position
+		m_health = 100;		//Health
+	}
+
+
 	///MOVEMENT
 	static float angAdj = 90.0f;			//Angle offset (if needed)
+
+	//Reset
+	if (input->isKeyDown(aie::INPUT_KEY_R)) {
+		reset();
+	}
 
 	m_vel = { 0 , 0 };
 	//Forward
@@ -85,6 +101,18 @@ void Fighter::draw(aie::Renderer2D * spriteBatch)
 {
 	//Draw the ship including rotation
 	spriteBatch->drawSprite(m_tex, m_pos.x, m_pos.y, 0.0f, 0.0f, degTOrads(m_ang));
+}
+
+void Fighter::takeDamage(float damage)
+{
+	m_health -= damage;
+}
+
+void Fighter::reset()
+{
+	//Just reset the position
+	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;
+	m_pos.y = m_targetPos.y = SCREEN_HEIGHT / 2;
 }
 
 void Fighter::angleWrap()
