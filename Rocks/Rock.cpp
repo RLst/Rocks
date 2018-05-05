@@ -69,8 +69,12 @@ bool Rock::isAlive() const
 bool Rock::hasBeenShot(Bullet * bullet)
 {
 	//If the bullet is in range of rock
-	if (distance(this->getPos(), bullet->getPos()) < this->getRadius())
-		return true;
+	if (distance(this->getPos(), bullet->getPos()) < this->getRadius()) {
+		//Kill bullet and damage rock
+		bullet->kill();
+		this->takeDamage(bullet->getAttack());
+	}
+		//return true;
 	else 
 		return false;
 }
