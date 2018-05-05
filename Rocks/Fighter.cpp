@@ -34,7 +34,7 @@ Fighter::Fighter()
 	m_bulletSpeed = 750.0f;
 
 	//Health
-	m_health = 100;
+	m_health = m_defaultHealth = 500;
 }
 
 Fighter::~Fighter()
@@ -57,7 +57,7 @@ void Fighter::update(float deltaTime)
 
 		//Reset
 		reset();					//Position
-		m_health = 100;		//Health
+		m_health = m_defaultHealth;		//Health
 	}
 
 

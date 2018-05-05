@@ -25,6 +25,7 @@ class Fighter
 
 	//Health
 	float			m_health;
+	float			m_defaultHealth;
 
 	//Gun
 	double			m_lastTimeShot;
