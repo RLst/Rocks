@@ -39,7 +39,7 @@ public:
 	void HandleBulletCollision(BulletPool * bullets);
 				
 	//Getters and setters
-	Rock*			operator[](int index) const;	//?
+	//Rock*			operator[](int index) const;	//?
 	int				size() { return MAX_ROCKS; }
 };
 

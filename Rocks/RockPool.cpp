@@ -7,7 +7,7 @@
 #include "Bullet.h"
 #include "BulletPool.h"
 
-#include <iostream>
+#include <iostream>		//For Debuggin
 
 namespace pkr {
 
@@ -154,7 +154,7 @@ void RockPool::request(Fighter * player)
 
 void RockPool::restore(Rock * rock)
 {
-	//rock->kill();
+	rock->kill();	//DEBUG
 	rock->setNext(m_firstAvailable);
 	m_firstAvailable = rock;
 }

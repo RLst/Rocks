@@ -1,8 +1,8 @@
 #pragma once
+#include <glm\vec2.hpp>
+#include "BulletIterator.h"
 
 //Prototypes
-#include <glm\vec2.hpp>
-
 namespace aie {
 	class Texture;
 	class Renderer2D;
@@ -16,13 +16,14 @@ class BulletPool
 	//static const int POOL_SIZE = 25;
 	//Bullet* m_bullets[POOL_SIZE];
 	int						MAX_BULLETS;
-	Bullet*					m_firstAvailable;
 	int						m_bulletLife;
 	float					m_bulletDamage;
 
-	Bullet*					m_firstInUse;	//test
-	Bullet*					m_nextInUse;	//test
-	int						m_InUseIndex;	//test
+	Bullet*					m_firstAvailable;
+
+	//Bullet*					m_firstInUse;	//test
+	//Bullet*					m_nextInUse;	//test
+	//int						m_InUseIndex;	//test
 
 	//Textures
 	aie::Texture*			m_tex_bullet;
@@ -39,7 +40,7 @@ public:
 	void					draw(aie::Renderer2D* renderer);
 
 	//Get pointers to in use
-	Bullet*					getNextInUse();	//Test
+	//Bullet*					getNextInUse();	//Test
 	float					getBulletDamage() { return m_bulletDamage; }
 
 	//Getters and setters
