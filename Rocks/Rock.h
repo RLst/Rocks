@@ -14,7 +14,6 @@ class Fighter;
 class Rock
 {
 private:
-	bool					m_active;
 	union {
 		//State while in use/unavailable
 		struct {
