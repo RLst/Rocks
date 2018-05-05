@@ -18,6 +18,7 @@ void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life)
 	m_life = life;
 	m_state.live.pos = pos;
 	m_state.live.vel = vel;
+	m_state.live.attack = 25;	//DEBUG
 }
 
 bool Bullet::update(float deltaTime)

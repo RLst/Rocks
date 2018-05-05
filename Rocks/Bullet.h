@@ -11,6 +11,7 @@ class Bullet
 		struct {
 			glm::vec2	pos;
 			glm::vec2	vel;
+			float		attack;
 		} live;
 
 		//Available
