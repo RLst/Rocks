@@ -44,7 +44,6 @@ public:
 	bool					hasHitPlayer(Fighter * player);		//???returns true if rock hits player
 	bool					hasBeenShot(Bullet * bullet);		//returns true if bullet hits rock
 
-	bool					outOfBounds();
 	void					wrapAroundScreen();
 
 	//void					kill();

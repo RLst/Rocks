@@ -43,18 +43,6 @@ void Rock::draw(aie::Renderer2D * renderer)
 	renderer->drawSprite(m_state.live.tex, m_state.live.pos.x, m_state.live.pos.y, 0.0f, 0.0f, m_state.live.ang.g);
 }
 
-bool Rock::outOfBounds()
-{
-	//returns true if rock is out of bounds
-	if (m_state.live.pos.x < 0 ||
-		m_state.live.pos.x > SCREEN_WIDTH ||
-		m_state.live.pos.y < 0 ||
-		m_state.live.pos.y > SCREEN_HEIGHT)
-		return true;
-	else
-		return false;		
-}
-
 bool Rock::isAlive() const
 {
 	return m_state.live.health > 0;
