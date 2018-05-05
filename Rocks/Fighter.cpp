@@ -83,7 +83,12 @@ void Fighter::update(float deltaTime)
 	//Targets
 	m_targetPos += m_vel;
 
-	///ROTATION
+	//Wrap around screen
+	ClampAroundScreen();
+
+	//////////
+	//ROTATION
+	//////////
 	//Rotate left
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT)) {
 		m_targetAng += m_angSpeed * deltaTime;	//Why is this seemingly inverted?
@@ -128,6 +133,34 @@ void Fighter::angleWrap()
 	while (m_targetAng > 360.0f /*|| m_ang > 360.0f*/) {
 		m_targetAng -= 360.0f;
 		m_ang -= 360.0f;
+	}
+}
+
+void Fighter::ClampAroundScreen()
+{
+	static int padding = 10;
+	//Clamp top
+	if (m_pos.y > SCREEN_HEIGHT + padding) {
+		m_targetPos.y = SCREEN_HEIGHT + padding;
+		m_pos.y = SCREEN_HEIGHT + padding;
+	}
+
+	//Clamp bottom
+	if (m_pos.y < 0 - padding) {
+		m_targetPos.y = 0 - padding;
+		m_pos.y = 0 - padding;
+	}
+
+	//Clamp left
+	if (m_pos.x < 0 - padding) {
+		m_targetPos.x = 0 - padding;
+		m_pos.x = 0 - padding;
+	}
+
+	//Clamp right
+	if (m_pos.x > SCREEN_WIDTH + padding) {
+		m_targetPos.x = SCREEN_WIDTH + padding;
+		m_pos.x = SCREEN_WIDTH + padding;
 	}
 }
 

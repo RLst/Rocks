@@ -51,6 +51,7 @@ public:
 	glm::vec2		getVel() { return m_vel; }
 	void			angleWrap();
 	float			getAng() { return m_ang; }
+	void			ClampAroundScreen();
 
 	//Guns
 	glm::vec2		getGunPos();
