@@ -42,13 +42,13 @@ public:
 	void					draw(aie::Renderer2D* renderer);
 
 	//Collisions
-	bool					hasBeenShot(Bullet * bullet);		//returns true if bullet hits rock
 	bool					hasHitPlayer(Fighter * player);		//???returns true if rock hits player
+	bool					hasBeenShot(Bullet * bullet);		//returns true if bullet hits rock
 
 	bool					outOfBounds();
 	void					wrapAroundScreen();
 
-	void					kill();
+	//void					kill();
 	bool					isAlive() const;
 
 	float					getRadius() { return m_state.live.radius; }

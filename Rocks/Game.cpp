@@ -29,7 +29,7 @@ bool Game::startup() {
 	m_player = new pkr::Fighter;
 
 	//Space fighter bullets
-	m_bullet_pool = new pkr::BulletPool(50);
+	m_bullet_pool = new pkr::BulletPool(200);
 
 	//Enemy asteroids
 	m_rock_pool = new pkr::RockPool(50);
@@ -57,7 +57,6 @@ void Game::update(float deltaTime) {
 
 	//TIMER
 	m_timer += deltaTime;
-	std::cout << m_timer << std::endl;	//DEBUG
 
 	//PLAYER
 	m_player->update(deltaTime);
@@ -67,8 +66,7 @@ void Game::update(float deltaTime) {
 
 		//Delay bullets so they don't shoot too fast
 		//if ((timer - lastFired) > fireRate)	//PSEUDO
-		std::cout << "Last Fired = " << m_player->getLastFired() << std::endl;	//DEBUG
-		if ((m_timer - m_player->getLastFired()) > m_player->getFireRate()) {
+		if ((m_timer - m_player->getTimeLastFired()) > m_player->getShootDelay()) {
 			m_bullet_pool->request(m_player->getGunPos(), m_player->getGunVel());
 			m_player->setLastFired(m_timer);
 		}
@@ -77,7 +75,7 @@ void Game::update(float deltaTime) {
 
 	//ROCKS
 	//Insert random rocks
-	static int spawnOccurence = 250;		//HIGHER is less
+	static int spawnOccurence = 500;		//HIGHER is less spawn
 	if (Random(spawnOccurence) == spawnOccurence) {
 		m_rock_pool->request(m_player);
 	}
@@ -85,11 +83,10 @@ void Game::update(float deltaTime) {
 
 	//HANDLE COLLISIONS
 	//Player < Rock
-	HandleCollisionsWithPlayerAndRocks();
+	m_rock_pool->HandlePlayerCollision(m_player);
 
 	//Bullet <> Rock
-	HandleCollisionWithBulletsAndRocks();
-
+	m_rock_pool->HandleBulletCollision(m_bullet_pool);
 
 }
 
@@ -99,7 +96,9 @@ void Game::draw() {
 	clearScreen();
 	// begin drawing sprites
 	m_2dRenderer->begin();
-	//////////////////////////////////////////////////////////////////////////////////////////
+	///////
+	//BEGIN
+	///////
 
 	////DRAW
 	//Player
@@ -117,38 +116,11 @@ void Game::draw() {
 	//m_2dRenderer->drawText(m_font, dbg, 0, 32);
 	//m_2dRenderer->drawText(m_font, "Fighter::m_ang = " + m_player->getAng(), 0, 32);
 
-	/////////////////////////////////////////////////////////////////////////////////////////
+	/////
+	//END
+	/////
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 	// done drawing sprites
 	m_2dRenderer->end();
-}
-
-void Game::HandleCollisionsWithPlayerAndRocks()
-{
-	//Go through rock pool and check if it collides with player
-	m_rock_pool->HandlePlayerCollision(m_player);
-	//m_rock_pool.HandleCollisionWithPlayer
-	//for (int i = 0; i < m_rock_pool->size(); ++i) 
-	//{
-	//	if (m_rock_pool->checkPlayerCollision())
-	//	for (int j = 0; j < m_)
-	//}
-
-}
-
-void Game::HandleCollisionWithBulletsAndRocks()
-{
-	//Go through bullet pool and handle bullet collisions with rock pool
-	m_rock_pool->HandleBulletCollision(m_bullet_pool);
-	//for (int i = 0; i < m_bullet_pool->size(); ++i) 
-	//{
-	//}
-	////Handle player collision
-	//if (m_rock_pool->g    
-	//	m_rocks   [i].hasHitPlayer(player)) {
-	//	//Damage player
-	//	player->takeDamage(m_rocks[i].getAttack());
-	//	//Explosion
-	//}
 }

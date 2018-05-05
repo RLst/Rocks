@@ -13,7 +13,7 @@ namespace pkr {
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
 	//Set bullet settings
-	m_bulletLife = 90;	//in frames/// should make this in seconds so it's consistent with other systems
+	m_bulletLifeTime = 150;		//In float seconds
 	m_bulletDamage = 25.0f;
 
 	//Load textures
@@ -31,10 +31,6 @@ BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 	//the last one terminates the list
 	m_bullets[MAX_BULLETS - 1].setNext(NULL);
 
-	////In use pointers (temp)
-	//m_firstInUse = nullptr;
-	//m_nextInUse = nullptr;
-	//m_InUseIndex = NULL;
 }
 //Deconstructor
 BulletPool::~BulletPool()
@@ -58,7 +54,7 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 	m_firstAvailable = newBullet->getNext();
 
 	//Initialise the bullet
-	newBullet->init(pos, vel, m_bulletLife);
+	newBullet->init(pos, vel, m_bulletLifeTime);
 }
 
 void BulletPool::restore(Bullet * bullet)
@@ -77,8 +73,7 @@ void BulletPool::update(float deltaTime)
 
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//Update and control bullet deaths
-		if (m_bullets[i].update(deltaTime) ||
-			!m_bullets[i].isAlive()) 
+		if (m_bullets[i].update(deltaTime) || !m_bullets[i].isAlive()) 
 		{
 			//Put back into it's object pool
 			m_bullets[i].setNext(m_firstAvailable);

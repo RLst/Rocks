@@ -57,13 +57,12 @@ bool Rock::outOfBounds()
 }
 
 void Rock::kill()
-{
-	m_active = false;
-}
-
 bool Rock::isAlive() const
 {
-	return m_active == true;
+	return m_state.live.health > 0;
+}
+
+{
 }
 
 bool Rock::hasBeenShot(Bullet * bullet)

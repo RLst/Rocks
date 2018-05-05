@@ -70,12 +70,13 @@ RockPool::~RockPool()
 }
 
 void RockPool::request(Fighter * player)
-//Hurls a random sized rock with random direction and velocity at player
 {
 	//assert(m_firstAvailable != NULL);		//Make sure the pool isn't full
 	if (m_firstAvailable == NULL) return;	//OR if the pool is full/don't have any objects available, then take no action
 
+	//////////////////
 	//INIT AND NULLIFY variables to be passed in
+	//////////////////
 	glm::vec2		newPos = { 0, 0 };
 	glm::vec2		newVec = { 0,0 };			//****** NOT DOING THIS TRIGGERED THE MAJOR HEADACHE!!!!
 	glm::vec2		newAng = { 0,0 };
@@ -84,16 +85,24 @@ void RockPool::request(Fighter * player)
 	float			newAttack = 0.0f;
 	aie::Texture*	newTex = nullptr;
 
-	//ROCK TYPE
-	int rockType = Random(1, 3);
+	///////////
+	//ROCK SIZE
+	//Initially set the rock size. All other parameters are worked off this
+	///////////
+	int RockSize = Random(1, 3);
 
+	///////////////////////////
 	//HEALTH, RADIUS and ATTACK
-	newHealth = 50.0f * rockType;
-	newRadius = 25.0f * rockType;
-	newAttack = 10.0f * rockType;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
+	///////////////////////////
+	newHealth = 25.0f * RockSize;
+	newRadius = 23.0f * RockSize;
+	newAttack = 10.0f * RockSize;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
 
+	/////////
 	//TEXTURE
-	switch (rockType) {
+	//Select texture according to rock size
+	/////////
+	switch (RockSize) {
 	case SML_ROCK:
 		newTex = m_tex_rock_sml;
 		break;
@@ -105,7 +114,10 @@ void RockPool::request(Fighter * player)
 		break;
 	}
 
-	//POSITION: Set initial position at a random point offscreen
+	//////////
+	//POSITION
+	//Set initial position at a random point around the edgeo of the screen
+	//////////
 	static float padding = 50;
 	switch (Random(1, 4))
 	{
@@ -127,41 +139,52 @@ void RockPool::request(Fighter * player)
 		break;
 	}
 
-	//VECTOR; add velocity to the rock
-	//Aim imprecisely at player
-	static int aimInaccuracy = 200;			//HIGHER is more inaccurate
-	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
-	//Normalize
-	newVec.x /= newVec.length();
-	newVec.y /= newVec.length();
-	//Add a velocity
-	static int maxRockSpeed = 1;
-	newVec *= (float)Random(maxRockSpeed);
+	/////////
+	//VECTOR
+	//Add velocity to the rock
+	////////
 
-	//ANGLE; put a random spin on the rock
-	static int angRough = 10;
+	//Aim imprecisely at player
+	static int aimInaccuracy = 50;			//HIGHER is more inaccurate
+	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
+
+	//Normalize
+	//newVec.x /= newVec.length();
+	//newVec.y /= newVec.length();
+	newVec.x = newVec.x / newVec.length();
+	newVec.y = newVec.y / newVec.length();
+
+	//Add speed
+	//static int maxRockSpeed = 1;
+	//newVec *= (float)Random(maxRockSpeed);
+
+	////////
+	//ANGLE
+	//Random spin on the rock
+	////////
+	static int angRough = 6;
 	newAng.r = (float)Random(-angRough, angRough);		//rotational velocity
 	newAng.g = (float)Random(0, 360);	//real-time z angle
 
+	////////
 	//LAUNCH
 	//Remove it from the available list
+	////////
 	Rock* newRock = m_firstAvailable;			//Set new rock ptr to first available
-
 	m_firstAvailable = newRock->getNext();		//Set first available ptr to next avail
-
 	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newAttack, newTex);
 }
 
 void RockPool::restore(Rock * rock)
 {
-	rock->kill();	//DEBUG
+	//rock->kill();	//DEBUG
 	rock->setNext(m_firstAvailable);
 	m_firstAvailable = rock;
 }
 
 void RockPool::HandlePlayerCollision(Fighter * player)
 {
-	for (int i = 0; i < MAX_ROCKS; ++i) {
+	for (int i = 0; i < this->size(); ++i) {
 		//Check if rock is alive
 		if (m_rocks[i].isAlive()) {
 			//If player is hit then deals damage to player
@@ -193,19 +216,13 @@ void RockPool::HandleBulletCollision(BulletPool * bullets)
 	}
 }
 
-Rock * RockPool::operator[](int index) const
-{
-	return &m_rocks[index];
-}
-
 void RockPool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_ROCKS; ++i) {
 		
 		//Handle rock life
-		if (!m_rocks[i].isAlive()) {	//Life goes too low
-			//Kill + Restore back to pool
-			m_rocks[i].kill();
+		if (!m_rocks[i].isAlive()) {
+			//Rock life is too low; Restore back to pool
 			m_rocks[i].setNext(m_firstAvailable);
 			m_firstAvailable = &m_rocks[i];
 		}
@@ -214,9 +231,7 @@ void RockPool::update(float deltaTime)
 		m_rocks[i].update(deltaTime);
 
 		//Wrap the rock if it goes off screen
-		if (m_rocks[i].outOfBounds()) {
-			m_rocks[i].wrapAroundScreen();
-		}
+		m_rocks[i].wrapAroundScreen();
 	}
 
 }

@@ -16,20 +16,15 @@ class BulletPool
 	//static const int POOL_SIZE = 25;
 	//Bullet* m_bullets[POOL_SIZE];
 	int						MAX_BULLETS;
-	int						m_bulletLife;
+	float					m_bulletLifeTime;
 	float					m_bulletDamage;
 
 	Bullet*					m_firstAvailable;
-
-	//Bullet*					m_firstInUse;	//test
-	//Bullet*					m_nextInUse;	//test
-	//int						m_InUseIndex;	//test
 
 	//Textures
 	aie::Texture*			m_tex_bullet;
 
 public:
-	Bullet*					m_bullets;		//BAD!!!
 	BulletPool(int poolsize);
 	~BulletPool();
 

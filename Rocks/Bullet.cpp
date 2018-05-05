@@ -18,7 +18,7 @@ void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life)
 	m_life = life;
 	m_state.live.pos = pos;
 	m_state.live.vel = vel;
-	m_state.live.attack = 25;	//DEBUG
+	m_state.live.attack = 50;	//DEBUG
 }
 
 bool Bullet::update(float deltaTime)
@@ -35,7 +35,7 @@ bool Bullet::update(float deltaTime)
 	//Decrease life of bullet
 	--m_life;
 
-	return m_life == 0;
+	return m_life <= 0;
 }
 
 //bool Bullet::outOfBounds()

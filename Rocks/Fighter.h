@@ -27,10 +27,10 @@ class Fighter
 	float			m_health;
 
 	//Gun
-	double			m_lastFired;
-	float			m_fireRate = 0.2f;		//in seconds
-	int				m_gunOffset = 30;
-	float			m_bulletSpeed = 750.0f;
+	double			m_lastTimeShot;
+	float			m_shootDelay;		//in seconds
+	int				m_gunOffset;
+	float			m_bulletSpeed;
 
 public:
 	Fighter();
@@ -54,9 +54,9 @@ public:
 	//Guns
 	glm::vec2		getGunPos();
 	glm::vec2		getGunVel();
-	double			getLastFired() { return m_lastFired; }
-	float			getFireRate() { return m_fireRate; }
-	void			setLastFired(double timer) { m_lastFired = timer; }
+	double			getTimeLastFired() { return m_lastTimeShot; }
+	float			getShootDelay() { return m_shootDelay; }
+	void			setLastFired(double timer) { m_lastTimeShot = timer; }
 
 	//debugs
 	//glm::vec2		getTargetPos() { return m_targetPos; }

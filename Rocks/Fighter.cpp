@@ -18,17 +18,17 @@ Fighter::Fighter()
 	//Position in centre of screen, 0 degrees is facing upwards
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;
 	m_pos.y = m_targetPos.y = SCREEN_HEIGHT / 2;
-	m_ang = m_targetAng = 0.0f;
+	m_ang = m_targetAng = 0;
 
 	//Basic speed and interpolation settings
 	m_speed = 600.0f;
-	m_angSpeed = 250.0f;
+	m_angSpeed = 300.0f;
 	m_smooth = 2.0f;		//Lower is more lerpy
 
 	//Cannon settings
-	m_lastFired = 0.0;
-	m_fireRate = 0.2f;		//300ms in between shots
-	m_gunOffset = 30;
+	m_lastTimeShot = 0;
+	m_shootDelay = 0.001f;		//300ms in between shots
+	m_gunOffset = 35;
 
 	//Bullet settings
 	m_bulletSpeed = 750.0f;
