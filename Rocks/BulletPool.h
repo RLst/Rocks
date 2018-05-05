@@ -33,6 +33,10 @@ public:
 	BulletPool(int poolsize);
 	~BulletPool();
 
+	Bullet*					m_bullets;		//BAD!!! THIS SHOULD BE PRIVATE!!!
+	BulletIterator			begin() { return BulletIterator(m_firstAvailable); }
+	BulletIterator			end() { return BulletIterator(); }
+
 	void					request(glm::vec2 pos, glm::vec2 vel);
 	void					restore(Bullet* bullet);
 

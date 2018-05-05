@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletIterator.h" />
     <ClInclude Include="BulletPool.h" />
     <ClInclude Include="GameDefines.h" />
     <ClInclude Include="Fighter.h" />
