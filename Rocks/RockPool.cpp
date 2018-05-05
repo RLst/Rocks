@@ -197,19 +197,24 @@ void RockPool::HandlePlayerCollision(Fighter * player)
 
 void RockPool::HandleBulletCollision(BulletPool * bullets)
 {
-	//Get each active bullet from the bullet pool
-	for (int i = 0; i < size(); ++i)
+	//Get each active rock from the rock pool
+	for (int i = 0; i < this->size(); ++i)
 	{
-		for (int j = 0; j < bullets->size(); ++j)
-		{
-			//Check if bullet is alive
-			if (bullets->m_bullets->isAlive()) {
-				//If bullet hits rock...
-				if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {
-					//..deals damage to rock
-					m_rocks[i].takeDamage(bullets->getBulletDamage());
-					//..bullet dies too
-					bullets->m_bullets[i].kill();
+		if (m_rocks[i].isAlive()) {
+
+			//For each active bullet check if it hits a rock
+			for (int j = 0; j < bullets->size(); ++j)
+			{
+				//Check if bullet is alive
+				if (bullets->m_bullets[j].isAlive()) {
+					//If bullet hits rock...
+					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {
+						std::cout << "Rock shot!!!" << std::endl;
+						//..deals damage to rock
+						//m_rocks[i].takeDamage(bullets->getBulletDamage());
+						//..bullet dies too
+						//bullets->m_bullets[i].kill();
+					}
 				}
 			}
 		}

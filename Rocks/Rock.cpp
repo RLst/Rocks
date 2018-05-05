@@ -55,26 +55,9 @@ bool Rock::outOfBounds()
 		return false;		
 }
 
-void Rock::kill()
 bool Rock::isAlive() const
 {
 	return m_state.live.health > 0;
-}
-
-{
-}
-
-bool Rock::hasBeenShot(Bullet * bullet)
-{
-	//If the bullet is in range of rock
-	if (distance(this->getPos(), bullet->getPos()) < this->getRadius()) {
-		//Kill bullet and damage rock
-		bullet->kill();
-		this->takeDamage(bullet->getAttack());
-	}
-		//return true;
-	else 
-		return false;
 }
 
 bool Rock::hasHitPlayer(Fighter * player)
@@ -83,6 +66,19 @@ bool Rock::hasHitPlayer(Fighter * player)
 	if (distance(this->getPos(), player->getPos()) < this->getRadius())
 		return true;
 	else
+		return false;
+}
+
+bool Rock::hasBeenShot(Bullet * bullet)
+{
+	//If the bullet is in range of rock
+	if ( distance(this->getPos(), bullet->getPos()) < this->getRadius() ) {
+		//Kill bullet and damage rock
+        bullet->kill();
+		this->takeDamage(bullet->getAttack());
+	}
+		//return true;
+	else 
 		return false;
 }
 
