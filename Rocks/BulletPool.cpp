@@ -42,10 +42,10 @@ BulletPool::~BulletPool()
 void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 {
 	//Make sure the pool has objects to take
-	//assert(m_firstAvailable != NULL);			//All pool objects exhausted!!!
+	assert(m_firstAvailable != NULL);			//All pool objects exhausted!!!
 
 	//If pool is empty then do nothing
-	if (m_firstAvailable == NULL) return;
+	//if (m_firstAvailable == NULL) return;
 
 	//Bullet request granted; remove it from the available list
 	Bullet* newBullet = m_firstAvailable;
