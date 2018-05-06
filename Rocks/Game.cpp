@@ -75,16 +75,22 @@ void Game::update(float deltaTime) {
 
 	//ROCKS
 	//Insert random rocks
-	static int spawnOccurence = 500;		//HIGHER is less spawn
-	if (Random(spawnOccurence) == spawnOccurence) {
+	static float spawnMinTime = 1.0f;	//Time all in seconds
+	static float spawnMaxTime = 3.0f;
+	static float nextSpawnTime = 2.0f;	//Initial delay before the first rock is spawned
+	//Spawn rock according to next spawn time
+	if (nextSpawnTime < m_timer) {
 		m_rock_pool->request(m_player);
+		//Set the spawn time for the next rock
+		nextSpawnTime = m_timer + Random(spawnMinTime, spawnMaxTime);
 	}
+
+	//Update
 	m_rock_pool->update(deltaTime);
 
 	//HANDLE COLLISIONS
 	//Player < Rock
 	m_rock_pool->HandlePlayerCollision(m_player);
-
 	//Bullet <> Rock
 	m_rock_pool->HandleBulletCollision(m_bullet_pool);
 
