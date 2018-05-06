@@ -49,19 +49,19 @@ void Game::shutdown() {
 
 void Game::update(float deltaTime) {
 
-	// input example
 	aie::Input* input = aie::Input::getInstance();
-	// exit the application
-	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
-		quit();
 
+	///////
 	//TIMER
+	///////
 	m_timer += deltaTime;
 
+	////////
 	//PLAYER
+	////////
 	m_player->update(deltaTime);
 
-	//CONTROL PLAYER FIRE
+	//SHOOTING
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
 
 		//Delay bullets so they don't shoot too fast
@@ -71,11 +71,18 @@ void Game::update(float deltaTime) {
 			m_player->setLastFired(m_timer);
 		}
 	}
+
+	/////////
+	//BULLETS
+	/////////
 	m_bullet_pool->update(deltaTime);
 
+	///////
 	//ROCKS
-	//Insert random rocks
-	static float spawnMinTime = 1.0f;	//Time all in seconds
+	///////
+	m_rock_pool->update(deltaTime);
+	//Spawn rocks
+	static float spawnMinTime = 1.0f;	//All time in seconds
 	static float spawnMaxTime = 3.0f;
 	static float nextSpawnTime = 2.0f;	//Initial delay before the first rock is spawned
 	//Spawn rock according to next spawn time
@@ -85,10 +92,9 @@ void Game::update(float deltaTime) {
 		nextSpawnTime = m_timer + Random(spawnMinTime, spawnMaxTime);
 	}
 
-	//Update
-	m_rock_pool->update(deltaTime);
-
+	///////////////////
 	//HANDLE COLLISIONS
+	///////////////////
 	//Player < Rock
 	m_rock_pool->HandlePlayerCollision(m_player);
 	//Bullet <> Rock
