@@ -5,7 +5,7 @@ namespace pkr {
 
 class Bullet
 {
-	float					m_life;
+	float				m_life;
 	union {
 		//In use
 		struct {
@@ -35,7 +35,7 @@ public:
 	bool				outOfBounds();
 
 	//Gets
-	Bullet*				getNext() const { return m_state.next; }
+    Bullet*				getNext() const { return m_state.next; }
 	//aie::Texture getTex() const { return m_state.live.}
 	glm::vec2			getPos() const { return m_state.live.pos; }
 	glm::vec2			getVel() const { return m_state.live.vel; }

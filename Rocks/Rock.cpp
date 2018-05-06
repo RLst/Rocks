@@ -8,12 +8,8 @@
 
 namespace pkr {
 
-Rock::Rock()
-{
-}
-Rock::~Rock()
-{
-}
+Rock::Rock() {}
+Rock::~Rock() {}
 
 void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex)
 {
@@ -40,6 +36,10 @@ void Rock::update(float deltaTime)
 
 void Rock::draw(aie::Renderer2D * renderer)
 {
+	//DEBUG: Collision box
+	//renderer->drawCircle(m_state.live.pos.x, m_state.live.pos.y, m_state.live.radius);
+	
+	//Rock
 	renderer->drawSprite(m_state.live.tex, m_state.live.pos.x, m_state.live.pos.y, 0.0f, 0.0f, m_state.live.ang.g);
 }
 

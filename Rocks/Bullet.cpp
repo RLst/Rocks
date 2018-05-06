@@ -38,17 +38,5 @@ bool Bullet::update(float deltaTime)
 	return m_life <= 0;
 }
 
-//bool Bullet::outOfBounds()
-//{
-//	//Returns true if bullet goes off screen
-//	if (m_state.live.pos.x < 0 ||
-//		m_state.live.pos.x > SCREEN_WIDTH ||
-//		m_state.live.pos.y < 0 ||
-//		m_state.live.pos.y > SCREEN_HEIGHT)
-//		return true;
-//	else 
-//		return false;
-//}
-
 }
 

@@ -11,31 +11,6 @@
 
 namespace pkr {
 
-//Default
-//RockPool::RockPool()
-//{
-//	//Load rock textures
-//	m_tex_rock_sml = new aie::Texture("../bin/textures/rock_small.png");
-//	m_tex_rock_med = new aie::Texture("../bin/textures/rock_medium.png");
-//	m_tex_rock_lge = new aie::Texture("../bin/textures/rock_large.png");
-//
-//	//Initialise rocks
-//	MAX_ROCKS = 100;	//Default of 100
-//	m_rocks = new Rock[MAX_ROCKS];		
-//
-//	////Set up the availability lists
-//	//The first one is available
-//	m_firstAvailable = &m_rocks[0];
-//
-//	//Each particle points to the next
-//	for (int i = 0; i < MAX_ROCKS - 1; ++i) {
-//		m_rocks[i].setNext(&m_rocks[i + 1]);
-//	}
-//
-//	//The last one terminates the list
-//	m_rocks[MAX_ROCKS - 1].setNext(NULL);
-//
-//}
 //Overload
 RockPool::RockPool(int PoolSize) : MAX_ROCKS(PoolSize)
 {
@@ -95,7 +70,7 @@ void RockPool::request(Fighter * player)
 	//HEALTH, RADIUS and ATTACK
 	///////////////////////////
 	newHealth = 25.0f * RockSize;
-	newRadius = 23.0f * RockSize;
+	newRadius = 13.0f * RockSize;
 	newAttack = 10.0f * RockSize;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
 
 	/////////
@@ -174,7 +149,7 @@ void RockPool::request(Fighter * player)
 
 void RockPool::restore(Rock * rock)
 {
-	//rock->kill();	//DEBUG
+	//Done after rock checked not alive
 	rock->setNext(m_firstAvailable);
 	m_firstAvailable = rock;
 }
@@ -206,7 +181,7 @@ void RockPool::HandleBulletCollision(BulletPool * bullets)
 				if (bullets->m_bullets[j].isAlive()) {
 					//If bullet hits rock...
 					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {
-						std::cout << "Rock shot!!!" << std::endl;
+						std::cout << "Nice shot!!!" << std::endl;
 						//..deals damage to rock
 						//m_rocks[i].takeDamage(bullets->getBulletDamage());
 						//..bullet dies too

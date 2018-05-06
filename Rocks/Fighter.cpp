@@ -27,7 +27,7 @@ Fighter::Fighter()
 
 	//Cannon settings
 	m_lastTimeShot = 0;
-	m_shootDelay = 0.001f;		//300ms in between shots
+	m_shootDelay = 0.2f;		//300ms in between shots
 	m_gunOffset = 35;
 
 	//Bullet settings
@@ -60,8 +60,9 @@ void Fighter::update(float deltaTime)
 		m_health = m_defaultHealth;		//Health
 	}
 
-
-	///MOVEMENT
+	//////////
+	//MOVEMENT
+	//////////
 	static float angAdj = 90.0f;			//Angle offset (if needed)
 
 	//Reset
@@ -99,7 +100,18 @@ void Fighter::update(float deltaTime)
 	}
 	angleWrap();	//Keep angle within bounds
 
-	//LERP: Smoothly move towards the target position
+	//////////
+	//SHOOTING
+	//////////
+	//if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
+	//	if ((timer - getTimeLastFired()) > getShootDelay()) {
+	//	}
+	//}
+
+	//////
+	//LERP
+	//Smoothly move towards the target position
+	//////
 	//m_pos = lerp(actual, target, smoothingFactor, dt)
 	m_pos -= (m_pos - m_targetPos) * m_smooth * deltaTime;
 	m_ang -= (m_ang - m_targetAng) * m_smooth * deltaTime;
@@ -126,11 +138,11 @@ void Fighter::reset()		//to be turned into a death function
 void Fighter::angleWrap()
 {
 	//Keep wrapping until target (leading) angle is within bounds
-	while (m_targetAng < 0.0f /*|| m_ang < 0.0f*/) {
+	while (m_targetAng < 0.0f) {
 		m_targetAng += 360.0f;
 		m_ang += 360.0f;	//The actual angle also needs to be wrapped otherwise will cause sudden twists
 	}
-	while (m_targetAng > 360.0f /*|| m_ang > 360.0f*/) {
+	while (m_targetAng > 360.0f) {
 		m_targetAng -= 360.0f;
 		m_ang -= 360.0f;
 	}
