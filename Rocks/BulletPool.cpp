@@ -13,8 +13,8 @@ namespace pkr {
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
 	//Set bullet settings
-	m_bulletLifeTime = 150;		//In float seconds
-	m_bulletDamage = 25.0f;
+	m_bulletLifeTime = 1.0f;		//In float seconds
+	m_bulletAttack = 25.0f;
 
 	//Load textures
 	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
@@ -54,7 +54,7 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 	m_firstAvailable = newBullet->getNext();
 
 	//Initialise the bullet
-	newBullet->init(pos, vel, m_bulletLifeTime);
+	newBullet->init(pos, vel, m_bulletLifeTime, m_bulletAttack);
 }
 
 void BulletPool::restore(Bullet * bullet)

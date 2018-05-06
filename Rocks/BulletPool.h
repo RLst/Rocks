@@ -17,7 +17,7 @@ class BulletPool
 	//Bullet* m_bullets[POOL_SIZE];
 	int						MAX_BULLETS;
 	float					m_bulletLifeTime;
-	float					m_bulletDamage;
+	float					m_bulletAttack;
 
 	Bullet*					m_firstAvailable;
 
@@ -40,7 +40,7 @@ public:
 
 	//Get pointers to in use
 	//Bullet*					getNextInUse();	//Test
-	float					getBulletDamage() { return m_bulletDamage; }
+	float					getBulletDamage() { return m_bulletAttack; }
 
 	//Getters and setters
 	Bullet*					operator[](int index) const;	//?

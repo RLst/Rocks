@@ -12,13 +12,13 @@ Bullet::Bullet() : m_life(false)
 Bullet::~Bullet()
 {}
 
-void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life)
+void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life, float attack)
 {
 	//Set bullet as active and init with pos and velocity
 	m_life = life;
 	m_state.live.pos = pos;
 	m_state.live.vel = vel;
-	m_state.live.attack = 50;	//DEBUG
+	m_state.live.attack = attack;
 }
 
 bool Bullet::update(float deltaTime)
@@ -33,7 +33,7 @@ bool Bullet::update(float deltaTime)
 	m_state.live.pos += m_state.live.vel * deltaTime;
 
 	//Decrease life of bullet
-	--m_life;
+	m_life -= deltaTime;
 
 	return m_life <= 0;
 }
