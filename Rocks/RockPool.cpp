@@ -118,7 +118,7 @@ void RockPool::request(Fighter * player)
 	//POSITION
 	//Set initial position at a random point around the edgeo of the screen
 	//////////
-	static float padding = 50;
+	static float padding = -10;
 	switch (Random(1, 4))
 	{
 	case 1:	//Top
