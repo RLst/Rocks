@@ -16,6 +16,12 @@ int Random(int min, int max)
 	return min + rand() % (max-min+1);
 }
 
+float Random(float min, float max)
+{
+	float percentage = (rand() % 10000) / 10000.0f;
+	return min + ((max - min) * percentage);
+}
+
 //template<typename T>
 //T distance<T>(T a, T b)
 //{
@@ -28,6 +34,16 @@ int Random(int min, int max)
 float distance(glm::vec2 a, glm::vec2 b)
 {
 	return ( sqrt((b.x - a.x)*(b.x - a.x) + (b.y - a.y)*(b.y - a.y)) );
+}
+
+float magnitude(glm::vec2 vec2)
+{
+	return sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
+}
+
+void normalise(glm::vec2 & input)
+{
+	input /= sqrt(input.x * input.x + input.y * input.y);
 }
 
 float degTOrads(float degrees)

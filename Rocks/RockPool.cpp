@@ -149,14 +149,11 @@ void RockPool::request(Fighter * player)
 	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
 
 	//Normalize
-	//newVec.x /= newVec.length();
-	//newVec.y /= newVec.length();
-	newVec.x = newVec.x / newVec.length();
-	newVec.y = newVec.y / newVec.length();
+	normalise(newVec);
 
-	//Add speed
-	//static int maxRockSpeed = 1;
-	//newVec *= (float)Random(maxRockSpeed);
+	//Speed
+	static float maxRockSpeed = 200.0f;
+	newVec *= Random(0.0f, maxRockSpeed);
 
 	////////
 	//ANGLE

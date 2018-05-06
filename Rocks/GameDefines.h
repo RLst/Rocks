@@ -17,10 +17,13 @@ enum RockType {
 //Core functions
 int Random(int max);
 int Random(int min, int max);
+float Random(float min, float max);
 
 //template<typename T>
 //T distance(T a, T b);
 float distance(glm::vec2 a, glm::vec2 b);
+float magnitude(glm::vec2 input);
+void normalise(glm::vec2 &input);
 
 float degTOrads(float degrees); 
 
