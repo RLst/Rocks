@@ -60,6 +60,7 @@ void RockPool::request(Fighter * player)
 	float			newRadius = 0.0f;
 	float			newAttack = 0.0f;
 	aie::Texture*	newTex = nullptr;
+	RockType		newType;
 
 	///////////
 	//ROCK SIZE
@@ -81,12 +82,15 @@ void RockPool::request(Fighter * player)
 	switch (RockSize) {
 	case SML_ROCK:
 		newTex = m_tex_rock_sml;
+		newType = SML_ROCK;
 		break;
 	case MED_ROCK:
 		newTex = m_tex_rock_med;
+		newType = MED_ROCK;
 		break;
 	case LGE_ROCK:
 		newTex = m_tex_rock_lge;
+		newType = LGE_ROCK;
 		break;
 	}
 
@@ -145,7 +149,7 @@ void RockPool::request(Fighter * player)
 	////////
 	Rock* newRock = m_firstAvailable;			//Set new rock ptr to first available
 	m_firstAvailable = newRock->getNext();		//Set first available ptr to next avail
-	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newAttack, newTex);
+	newRock->init(newPos, newVec, newAng, newHealth, newRadius, newAttack, newTex, newType);
 }
 
 void RockPool::restore(Rock * rock)
@@ -170,7 +174,7 @@ void RockPool::HandlePlayerCollision(Fighter * player, ParticlePool* particles)
 	}
 }
 
-void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool)
+void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool, int &score)
 {
 	//Get each active rock from the rock pool
 	for (int i = 0; i < this->size(); ++i)
@@ -186,6 +190,20 @@ void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particl
 					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {	//kill bullet and damage rock
 						//Explosions
 						particlePool->create(bullets->m_bullets[j].getPos(), pkr::BASIC);
+						//Scoring
+						static int ScoreMultiplier = 100;
+						switch (m_rocks[i].getType())
+						{
+						case LGE_ROCK:	//Gives you 300
+							score += ScoreMultiplier * 1;
+							break;
+						case MED_ROCK:	//Gives you 600
+							score += ScoreMultiplier * 3;
+							break;
+						case SML_ROCK:	//900
+							score += ScoreMultiplier * 9;
+							break;
+						}
 					}
 				}
 			}

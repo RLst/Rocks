@@ -11,7 +11,7 @@ namespace pkr {
 Rock::Rock() {}
 Rock::~Rock() {}
 
-void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex)
+void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type)
 {
 	m_state.live.pos = pos;
 	m_state.live.vel = vec;
@@ -20,6 +20,7 @@ void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float
 	m_state.live.radius = radius;
 	m_state.live.attack = attack;
 	m_state.live.tex = tex;
+	m_state.live.type = type;
 }
 
 void Rock::update(float deltaTime)

@@ -25,6 +25,7 @@ private:
 			float			health;
 			float			radius;
 			float			attack;
+			RockType		type;
 		} live;
 
 		//State while available
@@ -58,6 +59,7 @@ public:
 	//Vectors
 	glm::vec2				getPos() { return m_state.live.pos; }
 	glm::vec2				getVec() { return m_state.live.vel; }
+	RockType				getType() { return m_state.live.type; }
 
 	//Damage and health
 	float					getHealth() { return m_state.live.health; }

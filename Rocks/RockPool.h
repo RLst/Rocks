@@ -37,7 +37,7 @@ public:
 
 	//Collisions
 	void HandlePlayerCollision(Fighter * player, ParticlePool* particlePool);
-	void HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool);
+	void HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool, int &score);
 				
 	//Getters and setters
 	//Rock*			operator[](int index) const;	//?
