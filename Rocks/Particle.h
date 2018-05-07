@@ -8,7 +8,7 @@ namespace aie {
 
 namespace pkr {
 
-enum PARTICLE_EFFECT;
+enum ParticleEffect;
 
 class Particle
 {
@@ -21,7 +21,7 @@ private:
 			glm::vec2		pos;	//Position
 			glm::vec2		vel;	//Velocity
 			aie::Texture*	tex;	//Texture
-			PARTICLE_EFFECT	type;	//Particle effect type
+			ParticleEffect	type;	//Particle effect type
 		} live;
 		//Free
 		Particle*			next;
@@ -31,7 +31,7 @@ public:
 	Particle();
 	~Particle();
 
-	void					init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, PARTICLE_EFFECT type);
+	void					init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type);
 	
 	Particle*				getNext() { return m_state.next; }
 	void					setNext(Particle* next) { m_state.next = next; }

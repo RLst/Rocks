@@ -33,13 +33,13 @@ bool Game::startup() {
 	m_player = new pkr::Fighter;
 
 	//Space fighter bullets
-	m_bullet_pool = new pkr::BulletPool(25);
+	m_bullet_pool = new pkr::BulletPool(30);
 
 	//Enemy asteroids
-	m_rock_pool = new pkr::RockPool(50);
+	m_rock_pool = new pkr::RockPool(100);
 
 	//Particles
-	m_particle_pool = new pkr::ParticlePool(200);
+	m_particle_pool = new pkr::ParticlePool(100);
 
 	return true;
 }
@@ -97,7 +97,7 @@ void Game::update(float deltaTime) {
 	if (nextSpawnTime < m_timer) {
 		m_rock_pool->request(m_player);
 		//Set the spawn time for the next rock
-		nextSpawnTime = m_timer + Random(spawnMinTime, spawnMaxTime);
+		nextSpawnTime = (float)m_timer + Random(spawnMinTime, spawnMaxTime);
 	}
 
 	///////////
@@ -114,7 +114,9 @@ void Game::update(float deltaTime) {
 	m_rock_pool->HandleBulletCollision(m_bullet_pool, m_particle_pool);
 
 
+	///////////
 	//QUIT GAME
+	///////////
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 }

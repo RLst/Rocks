@@ -1,9 +1,9 @@
+#include <cassert>
 #include <Input.h>
 #include "Bullet.h"
 #include <Texture.h>
 #include "BulletPool.h"
 #include <Renderer2D.h>
-#include <cassert>
 
 #include <iostream>		//DEBUG
 
@@ -14,7 +14,7 @@ BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 {
 	//Set bullet settings
 	m_bulletLifeTime = 1.0f;		//In float seconds
-	m_bulletAttack = 25.0f;
+	m_bulletAttack = 25.0f;			//Amount of damage a bullet does
 
 	//Load textures
 	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
@@ -43,7 +43,6 @@ void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
 {
 	//Make sure the pool has objects to take
 	assert(m_firstAvailable != NULL);			//All pool objects exhausted!!!
-
 	//If pool is empty then do nothing
 	//if (m_firstAvailable == NULL) return;
 
@@ -65,18 +64,12 @@ void BulletPool::restore(Bullet * bullet)
 
 void BulletPool::update(float deltaTime)
 {
-	//aie::Input* input = aie::Input::getInstance();
-	////Fire bullet
-	//if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
-	//	request(m_player->getGunPos(), m_player->getGunVel());
-	//}
 	for (int i = 0; i < MAX_BULLETS; ++i) {
 		//Update and control bullet deaths
 		if (m_bullets[i].update(deltaTime) || !m_bullets[i].isAlive()) 
 		{
 			//Bullet is dead so put back into avail list
-			m_bullets[i].setNext(m_firstAvailable);
-			m_firstAvailable = &m_bullets[i];
+			restore(&m_bullets[i]);
 		}
 	}
 }

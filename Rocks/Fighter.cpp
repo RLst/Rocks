@@ -34,7 +34,7 @@ Fighter::Fighter()
 	m_bulletSpeed = 750.0f;
 
 	//Health
-	m_health = m_defaultHealth = 500;
+	m_health = m_defaultHealth = 1;
 }
 
 Fighter::~Fighter()
@@ -150,7 +150,7 @@ void Fighter::angleWrap()
 
 void Fighter::ClampAroundScreen()
 {
-	static int padding = 10;
+	static float padding = 10;
 	//Clamp top
 	if (m_pos.y > SCREEN_HEIGHT + padding) {
 		m_targetPos.y = SCREEN_HEIGHT + padding;

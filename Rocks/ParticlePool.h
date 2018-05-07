@@ -9,7 +9,7 @@ namespace aie {
 namespace pkr {
 
 class Particle;
-enum PARTICLE_EFFECT;
+enum ParticleEffect;
 
 class ParticlePool
 {
@@ -25,7 +25,7 @@ public:
 	ParticlePool(int poolSize);
 	~ParticlePool();
 
-	void					create(glm::vec2 pos, PARTICLE_EFFECT type);
+	void					create(glm::vec2 pos, ParticleEffect type);
 	void					restore(Particle* particle);
 	void					update(float deltaTime);
 	void					draw(aie::Renderer2D* renderer);

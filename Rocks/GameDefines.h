@@ -18,11 +18,10 @@ enum RockType {
 int Random(int max);
 int Random(int min, int max);
 float Random(float min, float max);
+float Random(float max);
 
-//template<typename T>
-//T distance(T a, T b);
-float distance(glm::vec2 a, glm::vec2 b);
-float magnitude(glm::vec2 input);
+float getDistance(glm::vec2 a, glm::vec2 b);
+float getVecMagnitude(glm::vec2 input);
 void normalise(glm::vec2 &input);
 
 float degTOrads(float degrees); 
@@ -30,7 +29,7 @@ float degTOrads(float degrees);
 namespace pkr {	//pokoro
 //Flexi vector
 
-enum PARTICLE_EFFECT
+enum ParticleEffect
 {
 	BASIC = 0,
 	EXPLOSION
@@ -87,7 +86,6 @@ union vector2
 	}
 
 };
-
 
 }
 

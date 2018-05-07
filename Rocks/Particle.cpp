@@ -12,7 +12,7 @@ Particle::Particle() : m_life(0)
 Particle::~Particle() 
 {}
 
-void Particle::init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, PARTICLE_EFFECT type)
+void Particle::init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type)
 {
 	m_life = life;
 	m_state.live.pos = pos;

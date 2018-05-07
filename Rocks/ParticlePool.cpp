@@ -38,7 +38,7 @@ ParticlePool::~ParticlePool()
 	delete[] m_particles;
 }
 
-void ParticlePool::create(glm::vec2 pos, PARTICLE_EFFECT type)
+void ParticlePool::create(glm::vec2 pos, ParticleEffect type)
 {
 	//Make sure there are available objects in the pool
 	assert(m_firstAvailable != NULL);

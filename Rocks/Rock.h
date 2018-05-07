@@ -42,7 +42,7 @@ public:
 	void					draw(aie::Renderer2D* renderer);
 
 	//Collisions
-	bool					hasHitPlayer(Fighter * player);		//???returns true if rock hits player
+	bool					hasHitPlayer(Fighter * player);		//returns true if rock hits player
 	bool					hasBeenShot(Bullet * bullet);		//returns true if bullet hits rock
 
 	void					wrapAroundScreen();
