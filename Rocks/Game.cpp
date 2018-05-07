@@ -7,6 +7,7 @@
 #include "RockPool.h"
 #include "BulletPool.h"
 #include "GameDefines.h"
+#include "ParticlePool.h"
 
 #include <iostream>
 
@@ -29,10 +30,13 @@ bool Game::startup() {
 	m_player = new pkr::Fighter;
 
 	//Space fighter bullets
-	m_bullet_pool = new pkr::BulletPool(200);
+	m_bullet_pool = new pkr::BulletPool(25);
 
 	//Enemy asteroids
 	m_rock_pool = new pkr::RockPool(50);
+
+	//Particles
+	m_particle_pool = new pkr::ParticlePool(200);
 
 	return true;
 }
@@ -45,6 +49,7 @@ void Game::shutdown() {
 	delete m_player;
 	delete m_bullet_pool;
 	delete m_rock_pool;
+	delete m_particle_pool;
 }
 
 void Game::update(float deltaTime) {
@@ -92,14 +97,23 @@ void Game::update(float deltaTime) {
 		nextSpawnTime = m_timer + Random(spawnMinTime, spawnMaxTime);
 	}
 
+	///////////
+	//PARTICLES
+	///////////
+	m_particle_pool->update(deltaTime);
+
 	///////////////////
-	//HANDLE COLLISIONS
+	//HANDLE COLLISIONS + EXPLOSIONS
 	///////////////////
 	//Player < Rock
-	m_rock_pool->HandlePlayerCollision(m_player);
+	m_rock_pool->HandlePlayerCollision(m_player, m_particle_pool);
 	//Bullet <> Rock
-	m_rock_pool->HandleBulletCollision(m_bullet_pool);
+	m_rock_pool->HandleBulletCollision(m_bullet_pool, m_particle_pool);
 
+
+	//QUIT GAME
+	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
+		quit();
 }
 
 void Game::draw() {
@@ -119,14 +133,8 @@ void Game::draw() {
 	m_bullet_pool->draw(m_2dRenderer);
 	//Rocks
 	m_rock_pool->draw(m_2dRenderer);
-
-	//DEBUGS
-	//system("cls");
-	//std::cout << m_player->getAng() << std::endl;
-	//char dbg[32];
-	//sprintf_s(dbg, 32, "m_player::m_ang = : %i", m_player->getAng());
-	//m_2dRenderer->drawText(m_font, dbg, 0, 32);
-	//m_2dRenderer->drawText(m_font, "Fighter::m_ang = " + m_player->getAng(), 0, 32);
+	//Particles
+	m_particle_pool->draw(m_2dRenderer);
 
 	/////
 	//END

@@ -10,6 +10,7 @@ namespace pkr {
 	class Rock;
 	class Fighter;
 	class BulletPool;
+	class ParticlePool;
 
 class RockPool
 {
@@ -35,8 +36,8 @@ public:
 	void			restore(Rock* rock);
 
 	//Collisions
-	void HandlePlayerCollision(Fighter * player);
-	void HandleBulletCollision(BulletPool * bullets);
+	void HandlePlayerCollision(Fighter * player, ParticlePool* particlePool);
+	void HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool);
 				
 	//Getters and setters
 	//Rock*			operator[](int index) const;	//?

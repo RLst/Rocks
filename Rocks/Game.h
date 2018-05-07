@@ -7,6 +7,7 @@ namespace pkr {
 	class Fighter;
 	class BulletPool;
 	class RockPool;
+	class ParticlePool;
 }
 
 class Game : public aie::Application {
@@ -30,5 +31,7 @@ protected:
 	pkr::Fighter*		m_player;			//Holds the player's fighter
 	pkr::BulletPool*	m_bullet_pool;		//Holds the bullets of the player's fighter ship
 	pkr::RockPool*		m_rock_pool;		//Holds the enemy asteroids
+	pkr::ParticlePool*	m_particle_pool;	//Holds explosion particles
+
 
 };

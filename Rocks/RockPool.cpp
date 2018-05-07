@@ -6,6 +6,7 @@
 #include "GameDefines.h"
 #include "Bullet.h"
 #include "BulletPool.h"
+#include "ParticlePool.h"
 
 #include <iostream>		//For Debuggin
 
@@ -154,7 +155,7 @@ void RockPool::restore(Rock * rock)
 	m_firstAvailable = rock;
 }
 
-void RockPool::HandlePlayerCollision(Fighter * player)
+void RockPool::HandlePlayerCollision(Fighter * player, ParticlePool* particles)
 {
 	for (int i = 0; i < this->size(); ++i) {
 		//Check if rock is alive
@@ -162,12 +163,14 @@ void RockPool::HandlePlayerCollision(Fighter * player)
 			//If player is hit then deals damage to player
 			if (m_rocks[i].hasHitPlayer(player)) {
 				player->takeDamage(m_rocks[i].getAttack());
+				//Explosions
+				particles->create(m_rocks[i].getPos(), pkr::EXPLOSION);
 			}
 		}
 	}
 }
 
-void RockPool::HandleBulletCollision(BulletPool * bullets)
+void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particlePool)
 {
 	//Get each active rock from the rock pool
 	for (int i = 0; i < this->size(); ++i)
@@ -179,13 +182,10 @@ void RockPool::HandleBulletCollision(BulletPool * bullets)
 			{
 				//Check if bullet is alive
 				if (bullets->m_bullets[j].isAlive()) {
-					//If bullet hits rock...
-					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {
-						std::cout << "Nice shot!!!" << std::endl;
-						//..deals damage to rock
-						//m_rocks[i].takeDamage(bullets->getBulletDamage());
-						//..bullet dies too
-						//bullets->m_bullets[i].kill();
+					//Bullet hits rock...
+					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {	//kill bullet and damage rock
+						//Explosions
+						particlePool->create(bullets->m_bullets[j].getPos(), pkr::BASIC);
 					}
 				}
 			}

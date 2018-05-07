@@ -30,6 +30,12 @@ float degTOrads(float degrees);
 namespace pkr {	//pokoro
 //Flexi vector
 
+enum PARTICLE_EFFECT
+{
+	BASIC = 0,
+	EXPLOSION
+};
+
 //typename<typename T>
 union vector2
 {
