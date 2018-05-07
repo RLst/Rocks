@@ -37,7 +37,7 @@ public:
 	~Rock();
 
 	//Core
-	void					init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex);
+	void					init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type);
 	void					update(float deltaTime);		//Returns true rock goes out of bounds/screen
 	void					draw(aie::Renderer2D* renderer);
 
