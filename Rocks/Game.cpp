@@ -135,6 +135,11 @@ void Game::draw() {
 	m_rock_pool->draw(m_2dRenderer);
 	//Particles
 	m_particle_pool->draw(m_2dRenderer);
+	//GUI
+	ImGui::Begin("Info");
+	ImGui::Text("FPS: %d", getFPS());
+	ImGui::Text("Score: %d", getScore());
+	ImGui::End();
 
 	/////
 	//END
