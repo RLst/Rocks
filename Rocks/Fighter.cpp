@@ -27,7 +27,7 @@ Fighter::Fighter()
 
 	//Cannon settings
 	m_lastTimeShot = 0;
-	m_shootDelay = 0.2f;		//300ms in between shots
+	m_shootDelay = 0.15f;
 	m_gunOffset = 35;
 
 	//Bullet settings
