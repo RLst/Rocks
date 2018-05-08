@@ -18,7 +18,7 @@ Game::~Game() {}
 bool Game::startup() {
 
 	//Randomize seed
-	srand(getTime());
+	srand((unsigned int)time(nullptr));
 	
 	m_2dRenderer = new aie::Renderer2D();
 
