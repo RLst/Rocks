@@ -73,22 +73,22 @@ bool Rock::hasBeenShot(Bullet * bullet)
 
 void Rock::wrapAroundScreen()
 {
-	static int padding = 40;
+	static float padding = 70;
 	//Wrap from top to bottom
 	if (m_state.live.pos.y > SCREEN_HEIGHT + padding)
-		m_state.live.pos.y = 0;
+		m_state.live.pos.y = 0 - padding;
 
 	//Wrap from bottom to top
 	if (m_state.live.pos.y < 0 - padding)
-		m_state.live.pos.y = SCREEN_HEIGHT;
+		m_state.live.pos.y = SCREEN_HEIGHT + padding;
 
 	//Wrap from left to right
 	if (m_state.live.pos.x < 0 - padding)
-		m_state.live.pos.x = SCREEN_WIDTH;
+		m_state.live.pos.x = SCREEN_WIDTH + padding;
 
 	//Wrap from right to left
 	if (m_state.live.pos.x > SCREEN_WIDTH + padding)
-		m_state.live.pos.x = 0;
+		m_state.live.pos.x = 0 - padding;
 }
 
 }
