@@ -81,8 +81,9 @@ void Fighter::update(float deltaTime)
 	//Targets
 	m_targetPos += m_vel;
 
-	//Wrap around screen
+	//Clamp/wrap around screen
 	ClampAroundScreen();
+	//WrapAroundScreen();
 
 	//////////
 	//ROTATION
@@ -145,7 +146,7 @@ void Fighter::angleWrap()
 	}
 }
 
-void Fighter::ClampAroundScreen()
+void Fighter::ClampAroundScreen()	//Sliding collision at the edge of the screen
 {
 	static float padding = 10;
 	//Clamp top
@@ -170,6 +171,34 @@ void Fighter::ClampAroundScreen()
 	if (m_pos.x > SCREEN_WIDTH + padding) {
 		m_targetPos.x = SCREEN_WIDTH + padding;
 		m_pos.x = SCREEN_WIDTH + padding;
+	}
+}
+
+void Fighter::WrapAroundScreen()	//Wrap the figher around the screen; doesn't work very well
+{	
+	static float padding = 0;
+	//Wrap from top > bottom
+	if (m_pos.y > SCREEN_HEIGHT + padding) {
+		m_targetPos.y = 0 - padding;
+		m_pos.y = 0 - padding;
+	}
+
+	//Wrap from bottom > top
+	if (m_pos.y < 0 - padding) {
+		m_targetPos.y = SCREEN_HEIGHT + padding;
+		m_pos.y = SCREEN_HEIGHT + padding;
+	}
+
+	//Wrap from left > right
+	if (m_pos.x < 0 - padding) {
+		m_targetPos.x = SCREEN_WIDTH + padding;
+		m_pos.x = SCREEN_WIDTH + padding;
+	}
+
+	//Wrap from right > left
+	if (m_pos.x > SCREEN_WIDTH + padding) {
+		m_targetPos.x = 0 - padding;
+		m_pos.x = 0 - padding;
 	}
 }
 

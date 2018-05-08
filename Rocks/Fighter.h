@@ -52,6 +52,8 @@ public:
 	void			angleWrap();
 	float			getAng() { return m_ang; }
 	void			ClampAroundScreen();
+	void			WrapAroundScreen();
+
 
 	//Guns
 	glm::vec2		getGunPos();
