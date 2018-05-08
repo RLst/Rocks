@@ -57,7 +57,8 @@ bool Rock::isAlive() const
 bool Rock::hasHitPlayer(Fighter * player)
 {
 	//Return true if hit
-	if (getDistance(this->getPos(), player->getPos()) < this->getRadius() * 1.8f)	//Fighter doesn't really have a radius, so just add an arbitrary multiplier to the collision zone of the rock
+	if (getDistance(this->getPos(), player->getPos()) < this->getRadius() * 1.8f)	
+		//Fighter doesn't really have a radius, so just add an arbitrary multiplier to the collision zone of the rock
 		return true;
 	else
 		return false;
