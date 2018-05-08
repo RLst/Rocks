@@ -92,7 +92,7 @@ void Game::update(float deltaTime) {
 	//Spawn rocks
 	static float spawnMinTime = 1.0f;	//All time in seconds
 	static float spawnMaxTime = 3.0f;
-	static float nextSpawnTime = 2.0f;	//Initial delay before the first rock is spawned
+	static float nextSpawnTime = 0.0f;	//Initial delay before the first rock is spawned
 	//Spawn rock according to next spawn time
 	if (nextSpawnTime < m_timer) {
 		m_rock_pool->request(m_player);

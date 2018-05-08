@@ -28,8 +28,13 @@ void Rock::update(float deltaTime)
 	//Do nothing if rock not alive
 	if (!isAlive()) return;
 
+	//Challenge; Make the rocks speed up the longer the game goes on
+	static float baseSpeed = 0.0f;
+	baseSpeed += deltaTime * 0.01;
+
 	//Move the rock
-	m_state.live.pos += m_state.live.vel * deltaTime;
+	m_state.live.pos.x += (m_state.live.vel.x * baseSpeed) * deltaTime;
+	m_state.live.pos.y += (m_state.live.vel.y * baseSpeed) * deltaTime;
 
 	//Rotate the rock
 	m_state.live.ang.g += m_state.live.ang.r * deltaTime;

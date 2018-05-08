@@ -126,14 +126,10 @@ void RockPool::request(Fighter * player)
 
 	//Aim imprecisely at player
 	static int aimInaccuracy = 50;			//HIGHER is more inaccurate
+	static float maxRockSpeed = 100.0f;
 	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
-
-	//Normalize
 	normalise(newVec);
-
-	//Speed
-	static float maxRockSpeed = 200.0f;
-	newVec *= Random(0.0f, maxRockSpeed);
+	newVec *= Random(0.0f, maxRockSpeed);	//Add speed
 
 	////////
 	//ANGLE
