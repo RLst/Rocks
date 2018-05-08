@@ -28,9 +28,6 @@ Fighter::Fighter()
 	//Cannon settings
 	m_lastTimeShot = 0;
 	m_shootDelay = 0.15f;
-	m_gunOffset = 35;
-
-	//Bullet settings
 	m_bulletSpeed = 750.0f;
 
 	//Health
@@ -179,15 +176,14 @@ void Fighter::ClampAroundScreen()
 glm::vec2 Fighter::getGunPos()
 {
 	//Returns the position of the fighter's gun turret
-
-	//static int gunOffset = 30;		//Gun is about 20px from the centre of the ship
+	static int gunOffset = 35;		//Gun is about 20px from the centre of the ship
 
 	//Clear
 	glm::vec2 offset = { 0,0 };
 
 	//Position 
-	offset.x = cos((90.0f + m_ang) * PI / 180.0f) * m_gunOffset;
-	offset.y = sin((90.0f + m_ang) * PI / 180.0f) * m_gunOffset;
+	offset.x = cos((90.0f + m_ang) * PI / 180.0f) * gunOffset;
+	offset.y = sin((90.0f + m_ang) * PI / 180.0f) * gunOffset;
 
 	return m_pos + offset;
 }

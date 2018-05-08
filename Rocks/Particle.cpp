@@ -38,8 +38,8 @@ bool Particle::update(float deltaTime)
 void Particle::draw(aie::Renderer2D * renderer)
 {
 	//Particle settings
-	static int ExplosionAmount = 25;
-	static float ExplosionSpread = 50.0f;
+	static int ExplosionAmount = 5;
+	static float ExplosionSpread = 60;
 
 	switch (this->m_state.live.type) {
 	case EXPLOSION:
@@ -54,8 +54,8 @@ void Particle::draw(aie::Renderer2D * renderer)
 				m_state.live.pos.y + Random(-ExplosionSpread, ExplosionSpread),
 				50.0f * 0.01f / m_life,
 				50.0f * 0.01f / m_life);
-			//m_life + 0.15 / m_life	
-			//25.0f * 0.01 / m_life		//fireworks
+				//m_life + 0.15 / m_life	
+				//25.0f * 0.01 / m_life		//fireworks
 		}
 		break;
 
