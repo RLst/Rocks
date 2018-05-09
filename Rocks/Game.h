@@ -16,11 +16,13 @@ public:
 	Game();
 	virtual ~Game();
 
-	virtual bool startup();
-	virtual void shutdown();
+	virtual bool		startup();
+	virtual void		shutdown();
 
-	virtual void update(float deltaTime);
-	virtual void draw();
+	virtual void		update(float deltaTime);
+	virtual void		draw();
+
+	void				restart();
 	void				setHiScore();		//Constantly updates high score
 
 protected:

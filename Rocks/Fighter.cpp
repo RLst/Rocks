@@ -23,12 +23,12 @@ Fighter::Fighter()
 	//Basic speed and interpolation settings
 	m_speed = 600.0f;
 	m_angSpeed = 300.0f;
-	m_smooth = 2.0f;		//Lower is more lerpy
+	m_smooth = 3.0f;		//Lower is more lerpy
 
 	//Cannon settings
 	m_lastTimeShot = 0;
 	m_shootDelay = 0.15f;
-	m_bulletSpeed = 750.0f;
+	m_bulletSpeed = 1000.0f;
 
 	//Health
 	m_health = m_resetHealth = 1;		//Instant death
@@ -65,11 +65,6 @@ void Fighter::update(float deltaTime, int & deaths)
 	//////////
 	static float angAdj = 90.0f;			//Angle offset (if needed)
 
-	//Reset
-	if (input->isKeyDown(aie::INPUT_KEY_R)) {
-		reset();
-	}
-
 	m_vel = { 0 , 0 };
 	//Forward
 	if (input->isKeyDown(aie::INPUT_KEY_UP)) {
@@ -101,14 +96,6 @@ void Fighter::update(float deltaTime, int & deaths)
 	}
 	angleWrap();	//Keep angle within bounds
 
-	//////////
-	//SHOOTING
-	//////////
-	//if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
-	//	if ((timer - getTimeLastFired()) > getShootDelay()) {
-	//	}
-	//}
-
 	//////
 	//LERP
 	//Smoothly move towards the target position
@@ -129,9 +116,13 @@ void Fighter::takeDamage(float damage)
 	m_health -= damage;
 }
 
-void Fighter::reset()		//to be turned into a death function
+void Fighter::randomLocate()		//to be turned into a death function
 {
 	//Just reset the position
+	m_pos.x = m_targetPos.x = (float)Random(0, SCREEN_WIDTH);
+	m_pos.y = m_targetPos.y = (float)Random(0, SCREEN_HEIGHT);
+}
+
 void Fighter::reset()	//Resets the player
 {
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;
@@ -227,9 +218,6 @@ glm::vec2 Fighter::getGunVel()
 {
 	//Returns a gun velocity + speed of ship
 	//(That way the ship isn't able to chase after the bullets)
-
-	//static float bulletSpeed = 500.0f;
-
 	glm::vec2 gunVel = { 0,0 };
 	gunVel.x = cos((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;
 	gunVel.y = sin((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;

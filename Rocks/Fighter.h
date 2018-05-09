@@ -42,9 +42,9 @@ public:
 	void draw(aie::Renderer2D* renderer);
 
 	//Health
-	void takeDamage(float damage);
-	bool isAlive() { return m_health > 0; }
-	void reset();
+	void			takeDamage(float damage);
+	bool			isAlive() { return m_health > 0; }
+	void			randomLocate();
 	void			reset();		//Resets player position
 
 	//Vectors
@@ -54,7 +54,6 @@ public:
 	float			getAng() { return m_ang; }
 	void			ClampAroundScreen();
 	void			WrapAroundScreen();
-
 
 	//Guns
 	glm::vec2		getGunPos();

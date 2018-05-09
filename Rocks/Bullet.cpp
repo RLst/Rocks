@@ -12,7 +12,7 @@ Bullet::Bullet() : m_life(false)
 Bullet::~Bullet()
 {}
 
-void Bullet::init(glm::vec2 pos, glm::vec2 vel, int life, float attack)
+void Bullet::init(glm::vec2 pos, glm::vec2 vel, float life, float attack)
 {
 	//Set bullet as active and init with pos and velocity
 	m_life = life;

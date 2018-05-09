@@ -2,7 +2,6 @@
 #include <iostream>
 #include "GameDefines.h"
 
-
 int Random(int max) {	//Returns number between 0 and MAX
 	//assert(max < 0);	//Error if max is a negative number
 	if (max == 0) return 0;		//Returns 0 if input is 0

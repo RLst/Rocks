@@ -6,6 +6,8 @@
 #include <Renderer2D.h>
 #include "GameDefines.h"
 
+#include <iostream>
+
 namespace pkr {
 
 Rock::Rock() {}

@@ -1,3 +1,4 @@
+#include <ctime>
 #include "Game.h"
 #include "Font.h"
 #include "Input.h"
@@ -10,6 +11,7 @@
 #include "ParticlePool.h"
 
 #include <iostream>
+
 
 Game::Game() {}
 
@@ -26,7 +28,8 @@ bool Game::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	////Setup the game
+	////Reset game variables
+	//m_gameState = pkr::SPLASH_SCREEN;
 	m_timer = 0;
 	m_score = m_hiscore = 0;
 	m_deaths = 0;
@@ -38,7 +41,7 @@ bool Game::startup() {
 	m_bullet_pool = new pkr::BulletPool(30);
 
 	//Enemy asteroids
-	m_rock_pool = new pkr::RockPool(100);
+	m_rock_pool = new pkr::RockPool(500);
 
 	//Particles
 	m_particle_pool = new pkr::ParticlePool(100);
@@ -166,7 +169,7 @@ void Game::draw() {
 	//END
 	/////
 	// output some text, uses the last used colour
-	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
+	//m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 	// done drawing sprites
 	m_2dRenderer->end();
 }

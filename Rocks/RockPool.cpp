@@ -249,34 +249,6 @@ void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particl
 	}
 }
 
-void RockPool::update(float deltaTime)
-{
-	for (int i = 0; i < MAX_ROCKS; ++i) {
-		
-		//Handle rock life
-		if (!m_rocks[i].isAlive()) {
-			//Rock life is too low; Restore back to pool
-			m_rocks[i].setNext(m_firstAvailable);
-			m_firstAvailable = &m_rocks[i];
-		}
 
-		//Draw the rock
-		m_rocks[i].update(deltaTime);
-
-		//Wrap the rock if it goes off screen
-		m_rocks[i].wrapAroundScreen();
-	}
-
-}
-
-void RockPool::draw(aie::Renderer2D * renderer)
-{
-	for (int i = 0; i < MAX_ROCKS; ++i) {
-		//If the rock is active then draw it (including it's rotation)
-		if (m_rocks[i].isAlive()) {
-			m_rocks[i].draw(renderer);
-		}
-	}
-}
 
 }

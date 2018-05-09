@@ -23,7 +23,7 @@ public:
 	~Bullet();
 
 	//Core
-	void				init(glm::vec2 pos, glm::vec2 vel, int life, float attack);
+	void				init(glm::vec2 pos, glm::vec2 vel, float life, float attack);
 	bool				update(float deltaTime);
 	//void				draw(aie::Renderer2D* renderer);
 
