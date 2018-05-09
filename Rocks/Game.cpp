@@ -28,6 +28,8 @@ bool Game::startup() {
 
 	////Setup the game
 	m_timer = 0;
+	m_score = m_hiscore = 0;
+	m_deaths = 0;
 
 	//Space fighter (player)
 	m_player = new pkr::Fighter;
@@ -63,6 +65,11 @@ void Game::update(float deltaTime) {
 	//TIMER
 	///////
 	m_timer += deltaTime;
+
+	/////////
+	//HISCORE
+	/////////
+	setHiScore();
 
 	////////
 	//PLAYER
@@ -143,7 +150,8 @@ void Game::draw() {
 	//GUI
 	ImGui::Begin("Info");
 	ImGui::Text("FPS: %d", getFPS());
-	ImGui::Text("Score: %d", getScore());
+	ImGui::Text("Score: %d", m_score);
+	ImGui::Text("HiScore: %d", m_hiscore);
 	ImGui::Text("Deaths: %d", m_deaths);
 	ImGui::End();
 
@@ -154,4 +162,9 @@ void Game::draw() {
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 	// done drawing sprites
 	m_2dRenderer->end();
+}
+void Game::setHiScore()
+{
+	if (m_score > m_hiscore)
+		m_hiscore = m_score;
 }

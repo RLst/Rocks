@@ -21,6 +21,7 @@ public:
 
 	virtual void update(float deltaTime);
 	virtual void draw();
+	void				setHiScore();		//Constantly updates high score
 
 protected:
 
