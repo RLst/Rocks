@@ -35,6 +35,14 @@ enum ParticleEffect
 	EXPLOSION
 };
 
+enum GameState 
+{		//Simple game state machine
+	SPLASH_SCREEN = 0,	//Short splash intro?
+	IN_GAME,			//Playing
+	PLAY_AGAIN,			//Player got hit, show immediate score + hiScore
+	END_GAME			//Show hiscore, thanks etc
+};
+
 //typename<typename T>
 union vector2
 {

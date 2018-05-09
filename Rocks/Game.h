@@ -8,6 +8,7 @@ namespace pkr {
 	class BulletPool;
 	class RockPool;
 	class ParticlePool;
+	enum GameState;
 }
 
 class Game : public aie::Application {
@@ -27,6 +28,7 @@ public:
 
 protected:
 
+	pkr::GameState		m_gameState;
 	int					m_score;
 	int					m_hiscore;
 	int					m_deaths;
