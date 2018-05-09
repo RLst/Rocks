@@ -120,6 +120,13 @@ void Game::update(float deltaTime) {
 	//Bullet <> Rock
 	m_rock_pool->HandleBulletCollision(m_bullet_pool, m_particle_pool);
 
+	/////////
+	//RESTART
+	//Restarts the game
+	/////////
+	if (input->wasKeyPressed(aie::INPUT_KEY_GRAVE_ACCENT)) {
+		restart();
+	}
 
 	///////////
 	//QUIT GAME
@@ -163,6 +170,31 @@ void Game::draw() {
 	// done drawing sprites
 	m_2dRenderer->end();
 }
+
+void Game::restart()
+{
+	//Reset score
+	m_score = 0;
+
+	//Reset deaths
+	m_deaths = 0;
+
+	//Reset player
+	m_player->reset();
+	
+	//Reset bullet pool
+	m_bullet_pool->restoreAll();
+
+	//Reset rock pool
+	m_rock_pool->restoreAll();
+
+	//Reset particle pool
+	m_particle_pool->restoreAll();
+
+	//Reset rock spawn speed
+	m_rock_pool->resetRockSpeed();
+}
+
 void Game::setHiScore()
 {
 	if (m_score > m_hiscore)

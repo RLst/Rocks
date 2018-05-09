@@ -47,8 +47,8 @@ public:
 
 	void					wrapAroundScreen();
 
-	//void					kill();
 	bool					isAlive() const;
+	void					kill() { m_state.live.health = 0; }
 
 	float					getRadius() { return m_state.live.radius; }
 	

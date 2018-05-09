@@ -25,7 +25,7 @@ class Fighter
 
 	//Health
 	float			m_health;
-	float			m_defaultHealth;
+	float			m_resetHealth;
 
 	//Gun
 	double			m_lastTimeShot;
@@ -38,13 +38,14 @@ public:
 	~Fighter();
 
 	//Core
-	void update(float deltaTime);
+	void update(float deltaTime, int & deaths);
 	void draw(aie::Renderer2D* renderer);
 
 	//Health
 	void takeDamage(float damage);
 	bool isAlive() { return m_health > 0; }
 	void reset();
+	void			reset();		//Resets player position
 
 	//Vectors
 	glm::vec2		getPos() { return m_pos; }

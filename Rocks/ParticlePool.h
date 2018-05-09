@@ -27,8 +27,12 @@ public:
 
 	void					create(glm::vec2 pos, ParticleEffect type);
 	void					restore(Particle* particle);
+	void					restoreAll();
+
 	void					update(float deltaTime);
 	void					draw(aie::Renderer2D* renderer);
+
+	int						size() { return MAX_PARTICLES; }
 };
 
 }

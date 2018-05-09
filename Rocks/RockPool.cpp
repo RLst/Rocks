@@ -188,6 +188,15 @@ void RockPool::restore(Rock * rock)
 	m_firstAvailable = rock;
 }
 
+void RockPool::restoreAll()
+{
+	//Kill all objects and hopefully the game::update() deals with the cleanup
+	for (int i = 0; i < this->size() - 1; ++i)
+	{
+		m_rocks[i].kill();
+	}
+}
+
 void RockPool::HandlePlayerCollision(Fighter * player, ParticlePool* particles)
 {
 	for (int i = 0; i < this->size(); ++i) {

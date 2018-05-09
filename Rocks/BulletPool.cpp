@@ -62,6 +62,15 @@ void BulletPool::restore(Bullet * bullet)
 	m_firstAvailable = bullet;
 }
 
+void BulletPool::restoreAll()
+{
+	//Kill all objects and hopefully the game::update() deals with the cleanup
+	for (int i = 0; i < this->size() - 1; ++i)
+	{
+		m_bullets[i].kill();
+	}
+}
+
 void BulletPool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_BULLETS; ++i) {

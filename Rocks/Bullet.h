@@ -29,7 +29,7 @@ public:
 
 	//Active
 	bool				isAlive() const { return m_life > 0; }
-	void				kill() { m_life = 0; }
+	void				kill() { m_life = 0.0f; }
 
 	//Gets
     Bullet*				getNext() const { return m_state.next; }

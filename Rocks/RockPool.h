@@ -35,6 +35,7 @@ public:
 	
 	void			request(Fighter * player);	//A random size rock will be roughly hurled at the player
 	void			restore(Rock* rock);
+	void			restoreAll();
 	void			resetRockSpeed() { m_baseRockSpeed = 0.0f; }
 
 	//Collisions

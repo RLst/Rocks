@@ -31,7 +31,7 @@ Fighter::Fighter()
 	m_bulletSpeed = 750.0f;
 
 	//Health
-	m_health = m_defaultHealth = 1;
+	m_health = m_resetHealth = 1;		//Instant death
 }
 
 Fighter::~Fighter()
@@ -54,6 +54,10 @@ void Fighter::update(float deltaTime, int & deaths)
 
 		//Increase death counter
 		++deaths;
+
+		//TEMP move player to a random place
+		randomLocate();					//Position
+		m_health = m_resetHealth;		//Health
 	}
 
 	//////////
@@ -128,8 +132,11 @@ void Fighter::takeDamage(float damage)
 void Fighter::reset()		//to be turned into a death function
 {
 	//Just reset the position
+void Fighter::reset()	//Resets the player
+{
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;
 	m_pos.y = m_targetPos.y = SCREEN_HEIGHT / 2;
+	m_ang = m_targetAng = 0;
 }
 
 void Fighter::angleWrap()

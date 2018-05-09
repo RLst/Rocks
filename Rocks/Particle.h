@@ -37,6 +37,7 @@ public:
 	void					setNext(Particle* next) { m_state.next = next; }
 
 	bool					isAlive() { return m_life > 0; }
+	void					kill() { m_life = 0; }
 
 	bool					update(float deltaTime);
 	void					draw(aie::Renderer2D * renderer);
