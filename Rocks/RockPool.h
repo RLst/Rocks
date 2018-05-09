@@ -18,6 +18,7 @@ private:
 	int				MAX_ROCKS;
 	Rock*			m_rocks;			//Rock array
 	Rock*			m_firstAvailable;
+	float			m_baseRockSpeed;	//Adds to the speed of the rocks; crude way to increase game difficulty
 
 	//Pointers to the rock textures
 	aie::Texture*	m_tex_rock_sml;
@@ -34,6 +35,7 @@ public:
 	
 	void			request(Fighter * player);	//A random size rock will be roughly hurled at the player
 	void			restore(Rock* rock);
+	void			resetRockSpeed() { m_baseRockSpeed = 0.0f; }
 
 	//Collisions
 	void HandlePlayerCollision(Fighter * player, ParticlePool* particlePool);

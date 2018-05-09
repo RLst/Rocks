@@ -23,6 +23,9 @@ RockPool::RockPool(int PoolSize) : MAX_ROCKS(PoolSize)
 	//Create rock pool
 	m_rocks = new Rock[MAX_ROCKS];
 
+	//Reset rock base speed
+	m_baseRockSpeed = 0.0f;
+
 	////Set up the availability lists
 	//The first one is available
 	m_firstAvailable = &m_rocks[0];
@@ -43,6 +46,36 @@ RockPool::~RockPool()
 	delete m_tex_rock_sml;
 	delete m_tex_rock_med;
 	delete m_tex_rock_lge;
+}
+
+void RockPool::update(float deltaTime)
+{
+	for (int i = 0; i < MAX_ROCKS; ++i) {
+
+		//Handle rock life
+		if (!m_rocks[i].isAlive()) {
+			//Rock life is too low; Restore back to pool
+			m_rocks[i].setNext(m_firstAvailable);
+			m_firstAvailable = &m_rocks[i];
+		}
+
+		//Draw the rock
+		m_rocks[i].update(deltaTime, m_baseRockSpeed);
+
+		//Wrap the rock if it goes off screen
+		m_rocks[i].wrapAroundScreen();
+	}
+
+}
+
+void RockPool::draw(aie::Renderer2D * renderer)
+{
+	for (int i = 0; i < MAX_ROCKS; ++i) {
+		//If the rock is active then draw it (including it's rotation)
+		if (m_rocks[i].isAlive()) {
+			m_rocks[i].draw(renderer);
+		}
+	}
 }
 
 void RockPool::request(Fighter * player)
@@ -126,7 +159,7 @@ void RockPool::request(Fighter * player)
 
 	//Aim imprecisely at player
 	static int aimInaccuracy = 50;			//HIGHER is more inaccurate
-	static float maxRockSpeed = 100.0f;
+	static float maxRockSpeed = 150.0f;
 	newVec = (player->getPos() - newPos) + (float)Random(-aimInaccuracy, aimInaccuracy);
 	normalise(newVec);
 	newVec *= Random(0.0f, maxRockSpeed);	//Add speed

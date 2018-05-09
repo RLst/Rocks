@@ -23,14 +23,13 @@ void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float
 	m_state.live.type = type;
 }
 
-void Rock::update(float deltaTime)
+void Rock::update(float deltaTime, float &baseSpeed)
 {
 	//Do nothing if rock not alive
 	if (!isAlive()) return;
 
 	//Challenge; Make the rocks speed up the longer the game goes on
-	static float baseSpeed = 0.0f;
-	baseSpeed += deltaTime * 0.01;
+	baseSpeed += deltaTime * 0.01f;
 
 	//Move the rock
 	m_state.live.pos.x += (m_state.live.vel.x * baseSpeed) * deltaTime;
