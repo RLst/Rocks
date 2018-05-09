@@ -39,7 +39,7 @@ Fighter::~Fighter()
 	delete m_tex;
 }
 
-void Fighter::update(float deltaTime)
+void Fighter::update(float deltaTime, int & deaths)
 {
 	//* Process user inputs and controls (move and fire)
 	//* Clamp/Wrap angle within bounds
@@ -49,12 +49,11 @@ void Fighter::update(float deltaTime)
 
 	//Check if alive
 	if (!isAlive()) {
-		std::cout << "Player has died!" << std::endl;
-		//Explosion
+		//Player has died..
+		//[Transition to game state > PlayAgain
 
-		//Reset
-		reset();					//Position
-		m_health = m_defaultHealth;		//Health
+		//Increase death counter
+		++deaths;
 	}
 
 	//////////

@@ -144,6 +144,7 @@ void Game::draw() {
 	ImGui::Begin("Info");
 	ImGui::Text("FPS: %d", getFPS());
 	ImGui::Text("Score: %d", getScore());
+	ImGui::Text("Deaths: %d", m_deaths);
 	ImGui::End();
 
 	/////

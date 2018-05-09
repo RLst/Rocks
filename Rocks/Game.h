@@ -26,6 +26,7 @@ protected:
 
 	int					m_score;
 	int					m_hiscore;
+	int					m_deaths;
 
 	double				m_timer;
 	aie::Renderer2D*	m_2dRenderer;
