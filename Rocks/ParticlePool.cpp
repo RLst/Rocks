@@ -69,6 +69,15 @@ void ParticlePool::restore(Particle* particle)
 	m_firstAvailable = particle;
 }
 
+void ParticlePool::restoreAll()
+{
+	//Kill all objects and hopefully the game::update() deals with the cleanup
+	for (int i = 0; i < this->size() - 1; ++i)
+	{
+		m_particles[i].kill();
+	}
+}
+
 void ParticlePool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_PARTICLES; ++i) {

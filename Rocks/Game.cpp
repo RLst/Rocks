@@ -77,7 +77,7 @@ void Game::update(float deltaTime) {
 	////////
 	//PLAYER
 	////////
-	m_player->update(deltaTime);
+	m_player->update(deltaTime, m_deaths);
 
 	//SHOOTING
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE) ||
@@ -122,7 +122,7 @@ void Game::update(float deltaTime) {
 	//Player < Rock
 	m_rock_pool->HandlePlayerCollision(m_player, m_particle_pool);
 	//Bullet <> Rock
-	m_rock_pool->HandleBulletCollision(m_bullet_pool, m_particle_pool);
+	m_rock_pool->HandleBulletCollision(m_bullet_pool, m_particle_pool, m_score);
 
 	/////////
 	//RESTART
