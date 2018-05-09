@@ -80,8 +80,9 @@ void Game::update(float deltaTime) {
 	m_player->update(deltaTime);
 
 	//SHOOTING
-	if (input->isKeyDown(aie::INPUT_KEY_SPACE)) {
-
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE) ||
+		input->isKeyDown(aie::INPUT_KEY_F) ) 
+	{
 		//Delay bullets so they don't shoot too fast
 		//if ((timer - lastFired) > fireRate)	//PSEUDO
 		if ((m_timer - m_player->getTimeLastFired()) > m_player->getShootDelay()) {
