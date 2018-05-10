@@ -8,8 +8,6 @@
 #include "BulletPool.h"
 #include "ParticlePool.h"
 
-#include <iostream>		//For Debuggin
-
 namespace pkr {
 
 //Overload
@@ -104,9 +102,10 @@ void RockPool::request(Fighter * player)
 	///////////////////////////
 	//HEALTH, RADIUS and ATTACK
 	///////////////////////////
+	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
 	newHealth = 25.0f * RockSize;
 	newRadius = 13.0f * RockSize;
-	newAttack = 10.0f * RockSize;	//Large kills instantly, Med kills in 2 hits, Sml kills in 3 hits
+	newAttack = 10.0f * RockSize;	
 
 	/////////
 	//TEXTURE
@@ -223,22 +222,22 @@ void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particl
 			for (int j = 0; j < bullets->size(); ++j)
 			{
 				//Check if bullet is alive
-				if ((*bullets)[j]->isAlive()) {
+				if ( (*bullets)[j]->isAlive( )) {
 					//Bullet hits rock...
-					if (m_rocks[i].hasBeenShot((*bullets)[j])) {	//kill bullet and damage rock
+					if (m_rocks[i].hasBeenShot( (*bullets)[j]) ) {	//kills bullet and damages the rock
 						//Explosions
-						particlePool->create((*bullets)[j]->getPos(), pkr::BASIC);
+						particlePool->create( (*bullets)[j]->getPos(), pkr::BASIC );
 						//Scoring
 						static int ScoreMultiplier = 100;
 						switch (m_rocks[i].getType())
 						{
-						case LGE_ROCK:	//Gives you 300
+						case LGE_ROCK:
 							score += ScoreMultiplier * 1;
 							break;
-						case MED_ROCK:	//Gives you 600
+						case MED_ROCK:
 							score += ScoreMultiplier * 3;
 							break;
-						case SML_ROCK:	//900
+						case SML_ROCK:
 							score += ScoreMultiplier * 9;
 							break;
 						}

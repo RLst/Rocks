@@ -38,11 +38,10 @@ public:
 	void					draw(aie::Renderer2D* renderer);
 
 	//Get pointers to in use
-	//Bullet*					getNextInUse();	//Test
 	float					getBulletDamage() { return m_bulletAttack; }
 
 	//Getters and setters
-	Bullet*					operator[](int index) const;	//?
+	Bullet*					operator[](int index) const;
 	int						size() { return MAX_BULLETS; }
 };
 

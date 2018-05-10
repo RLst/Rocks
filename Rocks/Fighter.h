@@ -15,12 +15,15 @@ class Fighter
 {
 	aie::Texture*	m_tex;
 
+	//Position and Rotation
+	glm::vec2		m_pos, m_targetPos;		
+	float			m_ang, m_targetAng;		
+
 	//Movement
-	glm::vec2		m_pos, m_targetPos;		//t for target
-	glm::vec2		m_vel;				//Unit vectors
-	float			m_ang, m_targetAng;
-	float			m_speed;			//Linear speed
-	float			m_angSpeed;			//Angular speed
+	glm::vec2		m_vel;
+	float			m_speed, m_angSpeed;
+
+	//LERP
 	float			m_smooth;
 
 	//Health
@@ -29,7 +32,7 @@ class Fighter
 
 	//Gun
 	double			m_lastTimeShot;
-	float			m_shootDelay;		//in seconds
+	float			m_shootDelay;			//in seconds
 	int				m_gunOffset;
 	float			m_bulletSpeed;
 
@@ -61,9 +64,6 @@ public:
 	double			getTimeLastFired() { return m_lastTimeShot; }
 	float			getShootDelay() { return m_shootDelay; }
 	void			setLastFired(double timer) { m_lastTimeShot = timer; }
-
-	//debugs
-	//glm::vec2		getTargetPos() { return m_targetPos; }
 
 };
 
