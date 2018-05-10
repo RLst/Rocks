@@ -13,8 +13,7 @@ namespace pkr {
 
 class BulletPool
 {
-	//static const int POOL_SIZE = 25;
-	//Bullet* m_bullets[POOL_SIZE];
+	Bullet*					m_bullets;		
 	int						MAX_BULLETS;
 	float					m_bulletLifeTime;
 	float					m_bulletAttack;
@@ -28,7 +27,6 @@ public:
 	BulletPool(int poolsize);
 	~BulletPool();
 
-	Bullet*					m_bullets;		//BAD!!! THIS SHOULD BE PRIVATE!!!
 	BulletIterator			begin() { return BulletIterator(m_firstAvailable); }
 	BulletIterator			end() { return BulletIterator(); }
 

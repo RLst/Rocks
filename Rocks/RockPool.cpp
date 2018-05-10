@@ -223,11 +223,11 @@ void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particl
 			for (int j = 0; j < bullets->size(); ++j)
 			{
 				//Check if bullet is alive
-				if (bullets->m_bullets[j].isAlive()) {
+				if ((*bullets)[j]->isAlive()) {
 					//Bullet hits rock...
-					if (m_rocks[i].hasBeenShot(&bullets->m_bullets[j])) {	//kill bullet and damage rock
+					if (m_rocks[i].hasBeenShot((*bullets)[j])) {	//kill bullet and damage rock
 						//Explosions
-						particlePool->create(bullets->m_bullets[j].getPos(), pkr::BASIC);
+						particlePool->create((*bullets)[j]->getPos(), pkr::BASIC);
 						//Scoring
 						static int ScoreMultiplier = 100;
 						switch (m_rocks[i].getType())
