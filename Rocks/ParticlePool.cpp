@@ -82,7 +82,7 @@ void ParticlePool::update(float deltaTime)
 {
 	for (int i = 0; i < MAX_PARTICLES; ++i) {
 		//Handle particle life
-		if (m_particles[i].update(deltaTime) || !m_particles[i].isAlive()) {
+		if (m_particles[i].update(deltaTime)) {
 			//Restore back to pool once particle life ends
 			restore(&m_particles[i]);
 		}

@@ -31,7 +31,7 @@ bool Particle::update(float deltaTime)
 	//Decrease the life of the particle
 	m_life -= deltaTime;
 
-	//Return true if the particle ends
+	//Return true if the particle's life goes below 0
 	return m_life <= 0;
 }
 
@@ -62,14 +62,16 @@ void Particle::draw(aie::Renderer2D * renderer)
 	//Basic or unspecified particle type
 	case BASIC:
 	default:
+		static float explMaxSize = 60.0f;		//Size of the explosion
+		float explSize = explMaxSize * (1.0f - m_life * 5.0f);		//This makes the explosions animate nicely based on m_life
+
 		renderer->drawSprite(
 		m_state.live.tex, 
 		m_state.live.pos.x, 
 		m_state.live.pos.y, 
-		0.5f / m_life, 
-		0.5f / m_life);
+		explSize,		
+		explSize);
 	}
-
 
 }
 
