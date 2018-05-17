@@ -91,7 +91,7 @@ void RockPool::request(Fighter * player)
 	float			newRadius = 0.0f;
 	float			newAttack = 0.0f;
 	aie::Texture*	newTex = nullptr;
-	RockType		newType;
+	RockType		newType = SML_ROCK;
 
 	///////////
 	//ROCK SIZE

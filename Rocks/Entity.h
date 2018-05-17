@@ -6,52 +6,61 @@
 //1. I can make one universal object pool to hold all objects
 //2. Collisions should be easier to calculate since they're all the same entity
 
+namespace aie {
+	class Texture;
+}
+
+namespace pkr {
+
+enum ParticleEffect;
+enum RockType;
 
 class Entity
 {
-	/*
-	bool			m_alive;
+	
+	//bool			m_alive;
 	union {
 		//In use
 		struct {
 			//General
-			glm::vec2		pos;
-			glm::vec2		vel;
-			float			smooth;
-			float			life;
-			float			resetlife;
-			aie::Texture*	tex;
-
+			glm::vec2		m_pos;
+			glm::vec2		m_vel;
+			float			m_smooth;
+			float			m_life;
+			float			m_resetlife;
+			aie::Texture*	m_tex;
+			/*
 			//Fighter related (move these later)
-			glm::vec2		tarPos;
-			glm::vec2		tarAng;
-			float			speed;
-			float			angSpeed;
+			glm::vec2		m_tarPos;
+			glm::vec2		m_tarAng;
+			float			m_speed;
+			float			m_angSpeed;
 
-			float			bulletSpeed;
-			float			lastTimeShot;
-			float			shootDelay;
-			float			gunOffset;
+			float			m_bulletSpeed;
+			float			m_lastTimeShot;
+			float			m_shootDelay;
+			float			m_gunOffset;
 
 			//Bullet
-			float			damage;
+			float			m_damage;
 
 			//Particle
-			ParticleEffect	type;
+			ParticleEffect	m_type;
 
 			//Rock
-			RockType		type;
-			float			collisionRadius;
-			float			damage;
-
+			RockType		m_type;
+			float			m_collisionRadius;
+			float			m_damage;
+			*/
 		} live;
 
 		//Free
-		Entity*			next;
-	} m_state;
-	*/
+		Entity*				m_next;
+	};
+	
 public:
 	Entity();
 	~Entity();
 };
 
+}
