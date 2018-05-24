@@ -27,7 +27,7 @@ Fighter::Fighter()
 
 	//Cannon settings
 	m_lastTimeShot = 0;
-	m_shootDelay = 0.15f;
+	m_shootDelay = 0.05f;
 	m_bulletSpeed = 1000.0f;
 
 	//Health
@@ -68,14 +68,16 @@ void Fighter::update(float deltaTime, int & deaths)
 	m_vel = { 0 , 0 };
 	//Forward
 	if (input->isKeyDown(aie::INPUT_KEY_UP) ||
-		input->isKeyDown(aie::INPUT_KEY_I) ) 
+		input->isKeyDown(aie::INPUT_KEY_I) ||
+		input->isKeyDown(aie::INPUT_KEY_W) ) 
 	{
 		m_vel.x = cos((angAdj + m_ang) * PI / 180.0f) * (m_speed * deltaTime);
 		m_vel.y = sin((angAdj + m_ang) * PI / 180.0f) * (m_speed * deltaTime);
 	}
 	//Backward
 	if (input->isKeyDown(aie::INPUT_KEY_DOWN) ||
-		input->isKeyDown(aie::INPUT_KEY_K) ) 
+		input->isKeyDown(aie::INPUT_KEY_K) ||
+		input->isKeyDown(aie::INPUT_KEY_S))
 	{
 		m_vel.x = cos((angAdj + m_ang) * PI / 180.0f) * (-m_speed * deltaTime);
 		m_vel.y = sin((angAdj + m_ang) * PI / 180.0f) * (-m_speed * deltaTime);
@@ -92,13 +94,15 @@ void Fighter::update(float deltaTime, int & deaths)
 	//////////
 	//Rotate left
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT) ||
-		input->isKeyDown(aie::INPUT_KEY_J) ) 
+		input->isKeyDown(aie::INPUT_KEY_J) ||
+		input->isKeyDown(aie::INPUT_KEY_A))
 	{
 		m_targetAng += m_angSpeed * deltaTime;	//Why is this seemingly inverted?
 	}
 	//Rotate right
 	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) ||
-		input->isKeyDown(aie::INPUT_KEY_L) ) {
+		input->isKeyDown(aie::INPUT_KEY_L) ||
+		input->isKeyDown(aie::INPUT_KEY_D)) {
 		m_targetAng -= m_angSpeed * deltaTime;
 	}
 	angleWrap();	//Keep angle within bounds

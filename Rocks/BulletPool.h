@@ -43,6 +43,10 @@ public:
 	//Getters and setters
 	Bullet*					operator[](int index) const;
 	int						size() { return MAX_BULLETS; }
+
+	//test
+	Bullet*		operator -> () { return m_bullets; }
+
 };
 
 }

@@ -226,7 +226,9 @@ void RockPool::HandleBulletCollision(BulletPool * bullets, ParticlePool* particl
 					//Bullet hits rock...
 					if (m_rocks[i].hasBeenShot( (*bullets)[j]) ) {	//kills bullet and damages the rock
 						//Explosions
-						particlePool->create( (*bullets)[j]->getPos(), pkr::BASIC );
+						//particlePool->create( (*bullets)[j]->getPos(), pkr::BASIC );
+						particlePool->create((*bullets)[j]->getPos(), pkr::BASIC);
+
 						//Scoring
 						static int ScoreMultiplier = 100;
 						switch (m_rocks[i].getType())
