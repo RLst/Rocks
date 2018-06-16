@@ -32,7 +32,10 @@
 *.app
 
 /bin
-/Bootstrap
-/dependencies
-/temp
+**/Bootstrap
+**/dependencies
+**/temp
 **/.vs
+**/x64
+**/x86
+**/Debug
