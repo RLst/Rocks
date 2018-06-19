@@ -15,13 +15,13 @@ Rock::~Rock() {}
 
 void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type)
 {
-	m_state.live.pos = pos;
-	m_state.live.vel = vec;
-	m_state.live.ang = ang;
-	m_state.live.health = health;
+	m_state.live.m_pos = pos;
+	m_state.live.m_vel = vec;
+	m_state.live.m_ang = ang;
+	m_state.live.m_health = health;
 	m_state.live.radius = radius;
 	m_state.live.attack = attack;
-	m_state.live.tex = tex;
+	m_state.live.m_tex = tex;
 	m_state.live.type = type;
 }
 
@@ -34,11 +34,11 @@ void Rock::update(float deltaTime, float &baseSpeed)
 	baseSpeed += deltaTime * 0.01f;
 
 	//Move the rock
-	m_state.live.pos.x += (m_state.live.vel.x * baseSpeed) * deltaTime;
-	m_state.live.pos.y += (m_state.live.vel.y * baseSpeed) * deltaTime;
+	m_state.live.m_pos.x += (m_state.live.m_vel.x * baseSpeed) * deltaTime;
+	m_state.live.m_pos.y += (m_state.live.m_vel.y * baseSpeed) * deltaTime;
 
 	//Rotate the rock
-	m_state.live.ang.g += m_state.live.ang.r * deltaTime;
+	m_state.live.m_ang.g += m_state.live.m_ang.r * deltaTime;
 }
 
 void Rock::draw(aie::Renderer2D * renderer)
@@ -47,12 +47,12 @@ void Rock::draw(aie::Renderer2D * renderer)
 	//renderer->drawCircle(m_state.live.pos.x, m_state.live.pos.y, m_state.live.radius * 2.0f);
 	
 	//Rock
-	renderer->drawSprite(m_state.live.tex, m_state.live.pos.x, m_state.live.pos.y, 0.0f, 0.0f, m_state.live.ang.g);
+	renderer->drawSprite(m_state.live.m_tex, m_state.live.m_pos.x, m_state.live.m_pos.y, 0.0f, 0.0f, m_state.live.m_ang.g);
 }
 
 bool Rock::isAlive() const
 {
-	return m_state.live.health > 0;
+	return m_state.live.m_health > 0;
 }
 
 bool Rock::hasHitPlayer(Fighter * player)
@@ -82,20 +82,20 @@ void Rock::wrapAroundScreen()
 {
 	static float padding = 70;
 	//Wrap from top to bottom
-	if (m_state.live.pos.y > SCREEN_HEIGHT + padding)
-		m_state.live.pos.y = 0 - padding;
+	if (m_state.live.m_pos.y > SCREEN_HEIGHT + padding)
+		m_state.live.m_pos.y = 0 - padding;
 
 	//Wrap from bottom to top
-	if (m_state.live.pos.y < 0 - padding)
-		m_state.live.pos.y = SCREEN_HEIGHT + padding;
+	if (m_state.live.m_pos.y < 0 - padding)
+		m_state.live.m_pos.y = SCREEN_HEIGHT + padding;
 
 	//Wrap from left to right
-	if (m_state.live.pos.x < 0 - padding)
-		m_state.live.pos.x = SCREEN_WIDTH + padding;
+	if (m_state.live.m_pos.x < 0 - padding)
+		m_state.live.m_pos.x = SCREEN_WIDTH + padding;
 
 	//Wrap from right to left
-	if (m_state.live.pos.x > SCREEN_WIDTH + padding)
-		m_state.live.pos.x = 0 - padding;
+	if (m_state.live.m_pos.x > SCREEN_WIDTH + padding)
+		m_state.live.m_pos.x = 0 - padding;
 }
 
 }

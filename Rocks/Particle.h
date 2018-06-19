@@ -1,5 +1,6 @@
 #pragma once
 #include <glm\vec2.hpp>
+#include "Object.h"
 
 namespace aie {
 	class Texture;
@@ -10,39 +11,37 @@ namespace pkr {
 
 enum ParticleEffect;
 
-class Particle
+class Particle : public Object
 {
 private:
-	float					m_life;	//Life in seconds
-									//Also adjusts the alpha/size?
-	union {
-		//Live
-		struct {
-			glm::vec2		pos;	//Position
-			glm::vec2		vel;	//Velocity
-			aie::Texture*	tex;	//Texture
-			ParticleEffect	type;	//Particle effect type
-		} live;
-		//Free
-		Particle*			next;
-	} m_state;
-	
+	ParticleEffect	type;	//Particle effect type
+
+	//union {
+	//	//Live
+	//	struct {
+	//		glm::vec2		pos;	//Position
+	//		glm::vec2		vel;	//Velocity
+	//		aie::Texture*	tex;	//Texture
+	//	} live;
+	//	//Free
+	//	Particle*			next;
+	//} m_state;
+
 public:
 	Particle();
 	~Particle();
 
-	void					init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type);
-	
-	Particle*				getNext() { return m_state.next; }
-	void					setNext(Particle* next) { m_state.next = next; }
+	//Particle specific constructor
+	//Particle(const Vector2 &pos, const Vector2 &vel, float life, aie::Texture* tex, ParticleEffect type);
 
-	bool					isAlive() { return m_life > 0; }
-	void					kill() { m_life = 0; }
+	//void			dervInit();
+	void			init(const Vector2 &pos, const Vector2 &vel, float life, aie::Texture *tex, ParticleEffect type);
 
-	bool					update(float deltaTime);
-	void					draw(aie::Renderer2D * renderer);
+	void			update(float deltaTime) override;
+	void			draw(aie::Renderer2D * renderer) override;
 
-
+	//void			onInit();
+	//void			init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type);
 };
 
 }

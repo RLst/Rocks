@@ -17,7 +17,10 @@ enum RockType;
 
 class Entity
 {
-	
+	//Free list essentials
+
+
+
 	//bool			m_alive;
 	union {
 		//In use

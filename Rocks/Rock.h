@@ -17,12 +17,12 @@ private:
 	union {
 		//State while in use/unavailable
 		struct {
-			aie::Texture*	tex;		//Points to a texture stored in RockPool
-			glm::vec2		pos;
-			glm::vec2		vel;
-			glm::vec2		ang;		//r = angular velocity, g = current rotation
+			aie::Texture*	m_tex;		//Points to a texture stored in RockPool
+			glm::vec2		m_pos;
+			glm::vec2		m_vel;
+			glm::vec2		m_ang;		//r = angular velocity, g = current rotation
 			
-			float			health;
+			float			m_health;
 			float			radius;
 			float			attack;
 			RockType		type;
@@ -48,7 +48,7 @@ public:
 	void					wrapAroundScreen();
 
 	bool					isAlive() const;
-	void					kill() { m_state.live.health = 0; }
+	void					kill() { m_state.live.m_health = 0; }
 
 	float					getRadius() { return m_state.live.radius; }
 	
@@ -57,14 +57,14 @@ public:
 	void					setNext(Rock* next) { m_state.next = next; }
 
 	//Vectors
-	glm::vec2				getPos() { return m_state.live.pos; }
-	glm::vec2				getVec() { return m_state.live.vel; }
+	glm::vec2				getPos() { return m_state.live.m_pos; }
+	glm::vec2				getVec() { return m_state.live.m_vel; }
 	RockType				getType() { return m_state.live.type; }
 
 	//Damage and health
-	float					getHealth() { return m_state.live.health; }
+	float					getHealth() { return m_state.live.m_health; }
 	float					getAttack() { return m_state.live.attack; }
-	void					takeDamage(float damage) { m_state.live.health -= damage; }
+	void					takeDamage(float damage) { m_state.live.m_health -= damage; }
 	
 };
 

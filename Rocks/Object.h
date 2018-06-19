@@ -1,6 +1,5 @@
 #pragma once
 #include <Vector2.h>
-//#include <Matrix3.h>
 
 namespace aie {
 	class Texture;
@@ -20,7 +19,6 @@ protected:
 		struct {
 			Vector2		m_pos;
 			Vector2		m_vel;
-			//Matrix3		m_worldTransform;
 		};
 
 		//Inactive
@@ -32,14 +30,20 @@ public:
 	virtual ~Object();
 
 	//Core essentials for object pool
-	void			init(const Vector2 &pos, const Vector2 &vel);
-	void			update(float deltaTime); //Maybe should use onUpdate/update combo
-	//Active
+	virtual void	update(float deltaTime) = 0;
+	virtual void	draw(aie::Renderer2D* renderer) {};
+
+	//State control
 	bool			isAlive() const { return m_life > 0; }
 	void			kill() { m_life = 0; }
+
 	//Pointers to next
 	Object*			getNext() const { return m_next; }
 	void			setNext(Object* next) { m_next = next; }
+
+	//void			init(const Vector2 &pos, const Vector2 &vel);
+	//virtual void	derivUpdate(float deltaTime) = 0;
+	//virtual void	derivDraw(aie::Renderer2D* renderer) = 0;
 };
 
 } //namespace pkr

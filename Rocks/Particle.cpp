@@ -12,13 +12,20 @@ Particle::Particle() : m_life(0)
 Particle::~Particle() 
 {}
 
-void Particle::init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type)
+//void Particle::init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type)
+//{
+//	m_life = life;
+//	m_state.live.pos = pos;
+//	m_state.live.vel = vel;
+//	m_state.live.tex = tex;
+//	m_state.live.type = type;
+//}
+
+Particle::Particle(const Vector2 & pos, const Vector2 & vel, float life, aie::Texture * tex, ParticleEffect type)
+	:	m_pos(pos), test(life)
+		
 {
-	m_life = life;
-	m_state.live.pos = pos;
-	m_state.live.vel = vel;
-	m_state.live.tex = tex;
-	m_state.live.type = type;
+	init()
 }
 
 bool Particle::update(float deltaTime)
