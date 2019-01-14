@@ -1,5 +1,7 @@
 #pragma once
-#include <glm/vec2.hpp>
+
+//#include <glm/vec2.hpp>
+#include <pkr\math\Vector2.h>
 
 namespace aie {
 	class Texture;
@@ -25,7 +27,7 @@ public:
 	ParticlePool(int poolSize);
 	~ParticlePool();
 
-	void					create(glm::vec2 pos, ParticleEffect type);
+	void					create(Vector2 pos, ParticleEffect type);
 	void					restore(Particle* particle);
 	void					restoreAll();
 

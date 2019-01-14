@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "RockPool.h"
-#include <glm/vec2.hpp>
+#include <pkr\math\Vector2.h>
 #include "GameDefines.h"
 #include <Renderer2D.h>
 
@@ -12,7 +12,7 @@ Bullet::Bullet() : m_life(false)
 Bullet::~Bullet()
 {}
 
-void Bullet::init(glm::vec2 pos, glm::vec2 vel, float life, float attack)
+void Bullet::init(Vector2 pos, Vector2 vel, float life, float attack)
 {
 	//Set bullet as active and init with pos and velocity
 	m_life = life;

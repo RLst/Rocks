@@ -1,5 +1,6 @@
 #pragma once
-#include <glm/vec2.hpp>
+
+#include <pkr\math\Vector2.h>
 
 //This class is a base class that holds all game objects ie. fighter, rocks, bullets
 //Benefits:
@@ -26,16 +27,16 @@ class Entity
 		//In use
 		struct {
 			//General
-			glm::vec2		m_pos;
-			glm::vec2		m_vel;
+			Vector2		m_pos;
+			Vector2		m_vel;
 			float			m_smooth;
 			float			m_life;
 			float			m_resetlife;
 			aie::Texture*	m_tex;
 			/*
 			//Fighter related (move these later)
-			glm::vec2		m_tarPos;
-			glm::vec2		m_tarAng;
+			Vector2		m_tarPos;
+			Vector2		m_tarAng;
 			float			m_speed;
 			float			m_angSpeed;
 

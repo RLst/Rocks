@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/vec2.hpp>
+#include <pkr\math\Vector2.h>
 #include "GameDefines.h"
 namespace aie {
 	class Texture;
@@ -18,9 +18,9 @@ private:
 		//State while in use/unavailable
 		struct {
 			aie::Texture*	m_tex;		//Points to a texture stored in RockPool
-			glm::vec2		m_pos;
-			glm::vec2		m_vel;
-			glm::vec2		m_ang;		//r = angular velocity, g = current rotation
+			Vector2			m_pos;
+			Vector2			m_vel;
+			Vector2			m_ang;		//r = angular velocity, g = current rotation
 			
 			float			m_health;
 			float			radius;
@@ -37,7 +37,7 @@ public:
 	~Rock();
 
 	//Core
-	void					init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type);
+	void					init(Vector2 pos, Vector2 vec, Vector2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type);
 	void					update(float deltaTime, float &baseSpeed);		//Returns true rock goes out of bounds/screen
 	void					draw(aie::Renderer2D* renderer);
 
@@ -57,8 +57,8 @@ public:
 	void					setNext(Rock* next) { m_state.next = next; }
 
 	//Vectors
-	glm::vec2				getPos() { return m_state.live.m_pos; }
-	glm::vec2				getVec() { return m_state.live.m_vel; }
+	Vector2				getPos() { return m_state.live.m_pos; }
+	Vector2				getVec() { return m_state.live.m_vel; }
 	RockType				getType() { return m_state.live.type; }
 
 	//Damage and health

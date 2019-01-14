@@ -1,5 +1,6 @@
 #pragma once
-#include <glm\vec2.hpp>
+
+#include <pkr\math\Vector2.h>
 #include "Object.h"
 
 namespace aie {
@@ -16,20 +17,21 @@ class Particle : public Object
 private:
 	ParticleEffect	type;	//Particle effect type
 
-	//union {
-	//	//Live
-	//	struct {
-	//		glm::vec2		pos;	//Position
-	//		glm::vec2		vel;	//Velocity
-	//		aie::Texture*	tex;	//Texture
-	//	} live;
-	//	//Free
-	//	Particle*			next;
-	//} m_state;
+	union {
+		//Live
+		struct {
+			Vector2			pos;	//Position
+			Vector2			vel;	//Velocity
+			aie::Texture*	tex;	//Texture
+			ParticleEffect	type;
+		} live;
+		//Free
+		Particle*			next;
+	} m_state;
 
 public:
 	Particle();
-	~Particle();
+	~Particle() override;
 
 	//Particle specific constructor
 	//Particle(const Vector2 &pos, const Vector2 &vel, float life, aie::Texture* tex, ParticleEffect type);
@@ -37,11 +39,11 @@ public:
 	//void			dervInit();
 	void			init(const Vector2 &pos, const Vector2 &vel, float life, aie::Texture *tex, ParticleEffect type);
 
-	void			update(float deltaTime) override;
+	bool			update(float deltaTime) override;
 	void			draw(aie::Renderer2D * renderer) override;
 
 	//void			onInit();
-	//void			init(glm::vec2 pos, glm::vec2 vel, float life, aie::Texture* tex, ParticleEffect type);
+	//void			init(Vector2 pos, Vector2 vel, float life, aie::Texture* tex, ParticleEffect type);
 };
 
 }

@@ -2,6 +2,7 @@
 #include "Particle.h"
 #include <Texture.h>
 #include "GameDefines.h"
+#include <cassert>
 
 namespace pkr {
 
@@ -38,7 +39,7 @@ ParticlePool::~ParticlePool()
 	delete[] m_particles;
 }
 
-void ParticlePool::create(glm::vec2 pos, ParticleEffect type)
+void ParticlePool::create(Vector2 pos, ParticleEffect type)
 {
 	//Make sure there are available objects in the pool
 	assert(m_firstAvailable != NULL);
@@ -46,17 +47,17 @@ void ParticlePool::create(glm::vec2 pos, ParticleEffect type)
 
 	//Allocate free particle from the pool
 	Particle* newParticle = m_firstAvailable;
-	m_firstAvailable = newParticle->getNext();
+	m_firstAvailable = (Particle)newParticle->getNext();
 
 	///////
 	//Setup 
 	///////
 	//Random velocity
 	//static float maxParticleSpeed = 250.0f;
-	//glm::vec2 vel;
+	//Vector2 vel;
 	//vel.x = Random(-maxParticleSpeed, maxParticleSpeed);
 	//vel.y = Random(-maxParticleSpeed, maxParticleSpeed);
-	glm::vec2 vel = { 0,0 };	//Meh... particles don't really need to move; life too short
+	Vector2 vel = { 0,0 };	//Meh... particles don't really need to move; life too short
 
 	//Initialise the particle
 	newParticle->init(pos, vel, m_DEFAULT_life, m_tex, type);

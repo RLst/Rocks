@@ -1,8 +1,10 @@
 #pragma once
-#include <Vector2.h>
+
+#include <pkr\math\Vector2.h>
 
 namespace aie {
 	class Texture;
+	class Renderer2D;
 }
 
 namespace pkr {
@@ -30,7 +32,7 @@ public:
 	virtual ~Object();
 
 	//Core essentials for object pool
-	virtual void	update(float deltaTime) = 0;
+	virtual bool	update(float deltaTime) = 0;
 	virtual void	draw(aie::Renderer2D* renderer) {};
 
 	//State control

@@ -1,5 +1,5 @@
 #pragma once
-#include <glm\vec2.hpp>
+#include <pkr\math\Vector2.h>
 #include "BulletIterator.h"
 
 //Prototypes
@@ -30,7 +30,7 @@ public:
 	BulletIterator			begin() { return BulletIterator(m_firstAvailable); }
 	BulletIterator			end() { return BulletIterator(); }
 
-	void					request(glm::vec2 pos, glm::vec2 vel);
+	void					request(Vector2 pos, Vector2 vel);
 	void					restore(Bullet* bullet);
 	void					restoreAll();	//Frees up all objects in pool
 

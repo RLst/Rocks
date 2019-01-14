@@ -2,7 +2,7 @@
 #include "Bullet.h"
 #include "Fighter.h"
 #include <Texture.h>
-#include "glm/vec2.hpp"
+#include <pkr\math\Vector2.h>
 #include <Renderer2D.h>
 #include "GameDefines.h"
 
@@ -13,7 +13,7 @@ namespace pkr {
 Rock::Rock() {}
 Rock::~Rock() {}
 
-void Rock::init(glm::vec2 pos, glm::vec2 vec, glm::vec2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type)
+void Rock::init(Vector2 pos, Vector2 vec, Vector2 ang, float health, float radius, float attack, aie::Texture* tex, RockType type)
 {
 	m_state.live.m_pos = pos;
 	m_state.live.m_vel = vec;

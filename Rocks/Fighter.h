@@ -1,7 +1,7 @@
 #pragma once
 
 //References and prototype
-#include <glm\vec2.hpp>
+#include <pkr\math\Vector2.h>
 namespace aie
 {
 	class Texture;
@@ -16,11 +16,11 @@ class Fighter
 	aie::Texture*	m_tex;
 
 	//Position and Rotation
-	glm::vec2		m_pos, m_targetPos;		
+	Vector2		m_pos, m_targetPos;		
 	float			m_ang, m_targetAng;		
 
 	//Movement
-	glm::vec2		m_vel;
+	Vector2		m_vel;
 	float			m_speed, m_angSpeed;
 
 	//LERP
@@ -51,16 +51,16 @@ public:
 	void			reset();		//Resets player position
 
 	//Vectors
-	glm::vec2		getPos() { return m_pos; }
-	glm::vec2		getVel() { return m_vel; }
+	Vector2		getPos() { return m_pos; }
+	Vector2		getVel() { return m_vel; }
 	void			angleWrap();
 	float			getAng() { return m_ang; }
 	void			ClampAroundScreen();
 	void			WrapAroundScreen();
 
 	//Guns
-	glm::vec2		getGunPos();
-	glm::vec2		getGunVel();
+	Vector2		getGunPos();
+	Vector2		getGunVel();
 	double			getTimeLastFired() { return m_lastTimeShot; }
 	float			getShootDelay() { return m_shootDelay; }
 	void			setLastFired(double timer) { m_lastTimeShot = timer; }

@@ -84,9 +84,9 @@ void RockPool::request(Fighter * player)
 	//////////////////
 	//INIT AND NULLIFY variables to be passed in
 	//////////////////
-	glm::vec2		newPos = { 0, 0 };
-	glm::vec2		newVec = { 0,0 };			//****** NOT DOING THIS TRIGGERED THE MAJOR HEADACHE!!!!
-	glm::vec2		newAng = { 0,0 };
+	Vector2		newPos = { 0, 0 };
+	Vector2		newVec = { 0,0 };			//****** NOT DOING THIS TRIGGERED THE MAJOR HEADACHE!!!!
+	Vector2		newAng = { 0,0 };
 	float			newHealth = 0.0f;
 	float			newRadius = 0.0f;
 	float			newAttack = 0.0f;

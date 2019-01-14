@@ -210,13 +210,13 @@ void Fighter::WrapAroundScreen()	//Wrap the figher around the screen; doesn't wo
 	}
 }
 
-glm::vec2 Fighter::getGunPos()
+Vector2 Fighter::getGunPos()
 {
 	//Returns the position of the fighter's gun turret
 	static int gunOffset = 35;		//Gun is about 20px from the centre of the ship
 
 	//Clear
-	glm::vec2 offset = { 0,0 };
+	Vector2 offset = { 0,0 };
 
 	//Position 
 	offset.x = cos((90.0f + m_ang) * PI / 180.0f) * gunOffset;
@@ -225,11 +225,11 @@ glm::vec2 Fighter::getGunPos()
 	return m_pos + offset;
 }
 
-glm::vec2 Fighter::getGunVel()
+Vector2 Fighter::getGunVel()
 {
 	//Returns a gun velocity + speed of ship
 	//(That way the ship isn't able to chase after the bullets)
-	glm::vec2 gunVel = { 0,0 };
+	Vector2 gunVel = { 0,0 };
 	gunVel.x = cos((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;
 	gunVel.y = sin((90.0f + m_ang) * PI / 180.0f) * m_bulletSpeed;
 

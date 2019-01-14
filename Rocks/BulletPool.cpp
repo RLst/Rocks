@@ -7,7 +7,6 @@
 
 #include <iostream>		//DEBUG
 
-
 namespace pkr {
 //Overloaded Constructor
 BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
@@ -39,7 +38,7 @@ BulletPool::~BulletPool()
 	delete m_tex_bullet;
 }
 
-void BulletPool::request(glm::vec2 pos, glm::vec2 vel)
+void BulletPool::request(Vector2 pos, Vector2 vel)
 {
 	//Make sure the pool has objects to take
 	assert(m_firstAvailable != NULL);			//All pool objects exhausted!!!

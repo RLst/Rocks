@@ -9,13 +9,13 @@ Object::Object()
 Object::~Object()
 {}
 
-void pkr::Object::init(const Vector2 & pos, const Vector2 & vel)
-{
-	m_pos = pos;
-	m_vel = vel;
-}
+//void pkr::Object::init(const Vector2 & pos, const Vector2 & vel)
+//{
+//	m_pos = pos;
+//	m_vel = vel;
+//}
 
-void Object::update(float deltaTime)
+bool Object::update(float deltaTime)
 {
 	//If no more life then kill object straight away
 	if (!isAlive()) kill();

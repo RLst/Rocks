@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/vec2.hpp>
+#include <pkr\math\Vector2.h>
 
 //Game settings and constatns
 const unsigned int SCREEN_WIDTH = 1280;
@@ -20,9 +20,9 @@ int Random(int min, int max);
 float Random(float min, float max);
 float Random(float max);
 
-float getDistance(glm::vec2 a, glm::vec2 b);
-float getVecMagnitude(glm::vec2 input);
-void normalise(glm::vec2 &input);
+float getDistance(Vector2 a, Vector2 b);
+float getVecMagnitude(Vector2 input);
+void normalise(Vector2 &input);
 
 float degTOrads(float degrees); 
 

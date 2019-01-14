@@ -1,5 +1,5 @@
 #pragma once
-#include <glm/vec2.hpp>
+#include <pkr\math\Vector2.h>
 
 namespace pkr {
 
@@ -9,8 +9,8 @@ class Bullet
 	union {
 		//In use
 		struct {
-			glm::vec2	pos;
-			glm::vec2	vel;
+			Vector2	pos;
+			Vector2	vel;
 			float		attack;
 		} live;
 
@@ -23,7 +23,7 @@ public:
 	~Bullet();
 
 	//Core
-	void				init(glm::vec2 pos, glm::vec2 vel, float life, float attack);
+	void				init(Vector2 pos, Vector2 vel, float life, float attack);
 	bool				update(float deltaTime);
 	//void				draw(aie::Renderer2D* renderer);
 
@@ -33,8 +33,8 @@ public:
 
 	//Gets
     Bullet*				getNext() const { return m_state.next; }
-	glm::vec2			getPos() const { return m_state.live.pos; }
-	glm::vec2			getVel() const { return m_state.live.vel; }
+	Vector2			getPos() const { return m_state.live.pos; }
+	Vector2			getVel() const { return m_state.live.vel; }
 	float				getAttack() const { return m_state.live.attack; }
 
 	//Sets

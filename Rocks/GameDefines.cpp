@@ -27,17 +27,17 @@ float Random(float max)
 	return max * percentage;
 }
 
-float getDistance(glm::vec2 a, glm::vec2 b)
+float getDistance(Vector2 a, Vector2 b)
 {
 	return ( sqrt((b.x - a.x)*(b.x - a.x) + (b.y - a.y)*(b.y - a.y)) );
 }
 
-float getVecMagnitude(glm::vec2 vec2)
+float getVecMagnitude(Vector2 vec2)
 {
 	return sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
 }
 
-void normalise(glm::vec2 & input)
+void normalise(Vector2 & input)
 {
 	input /= sqrt(input.x * input.x + input.y * input.y);
 }
