@@ -31,11 +31,15 @@
 *.out
 *.app
 
-/bin
-**/Bootstrap
-**/dependencies
-**/temp
+# Temporaries
 **/.vs
 **/x64
 **/x86
 **/Debug
+**/Release
+**/temp
+
+# Don't ignore critical libraries ie. bootstrap
+#**/bootstrap
+#**/dependencies
+#**/bin
