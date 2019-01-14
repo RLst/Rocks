@@ -73,7 +73,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)dependencies\pkrMathLib\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)dependencies\pkr\math\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)dependencies\pkr\math\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -85,7 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)dependencies\pkrMathLib\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)dependencies\pkr\math\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)dependencies\pkr\math\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -101,10 +103,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)\*.h" "$(SolutionDir)dependencies\pkrMathLib"</Command>
+      <Command>copy "$(ProjectDir)*.h" "$(SolutionDir)dependencies\pkr\math"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>Auto copy header files</Message>
+      <Message>Auto Copy Header Files</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -163,7 +165,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)\*.h" "$(SolutionDir)dependencies\pkrMathLib"</Command>
+      <Command>copy "$(ProjectDir)*.h" "$(SolutionDir)dependencies\pkr\math"</Command>
+      <Message>Auto Copy Header Files</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
