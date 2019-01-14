@@ -31,8 +31,10 @@
 *.out
 *.app
 
-/bin
-/Bootstrap
-/dependencies
-/temp
+#/bin
+#/bootstrap
+#/dependencies
+**/temp
 **/.vs
+**/Debug
+**/Release
