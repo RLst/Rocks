@@ -7,7 +7,7 @@ int main() {
 	auto app = new Game();
 
 	// initialise and loop
-	app->run("AIE", SCREEN_WIDTH, SCREEN_HEIGHT, false);
+	app->run("Rocks v1.1", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 
 	// deallocation
 	delete app;

@@ -13,7 +13,11 @@ namespace pkr {
 Fighter::Fighter()
 {
 	//New ship texture on heap
+#ifdef _DEBUG
 	m_tex = new aie::Texture("../bin/textures/ship.png");	
+#else
+	m_tex = new aie::Texture("./textures/ship.png");
+#endif
 	
 	//Position in centre of screen, 0 degrees is facing upwards
 	m_pos.x = m_targetPos.x = SCREEN_WIDTH / 2;

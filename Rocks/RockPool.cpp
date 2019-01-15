@@ -14,9 +14,15 @@ namespace pkr {
 RockPool::RockPool(int PoolSize) : MAX_ROCKS(PoolSize)
 {
 	//Load rock textures
+#ifdef _DEBUG
 	m_tex_rock_sml = new aie::Texture("../bin/textures/rock_small.png");
 	m_tex_rock_med = new aie::Texture("../bin/textures/rock_medium.png");
 	m_tex_rock_lge = new aie::Texture("../bin/textures/rock_large.png");
+#else
+	m_tex_rock_sml = new aie::Texture("./textures/rock_small.png");
+	m_tex_rock_med = new aie::Texture("./textures/rock_medium.png");
+	m_tex_rock_lge = new aie::Texture("./textures/rock_large.png");
+#endif
 
 	//Create rock pool
 	m_rocks = new Rock[MAX_ROCKS];
@@ -40,10 +46,10 @@ RockPool::RockPool(int PoolSize) : MAX_ROCKS(PoolSize)
 //Deconstructor
 RockPool::~RockPool()
 {
-	delete[] m_rocks;
 	delete m_tex_rock_sml;
 	delete m_tex_rock_med;
 	delete m_tex_rock_lge;
+	delete[] m_rocks;
 }
 
 void RockPool::update(float deltaTime)
@@ -91,7 +97,7 @@ void RockPool::request(Fighter * player)
 	float			newRadius = 0.0f;
 	float			newAttack = 0.0f;
 	aie::Texture*	newTex = nullptr;
-	RockType		newType;
+	RockType		newType = SML_ROCK;
 
 	///////////
 	//ROCK SIZE

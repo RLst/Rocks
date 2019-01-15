@@ -26,7 +26,11 @@ bool Game::startup() {
 
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
+#ifdef _DEBUG
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+#else
+	m_font = new aie::Font("./font/consolas.ttf", 32);
+#endif
 
 	////Reset game variables
 	//m_gameState = pkr::SPLASH_SCREEN;

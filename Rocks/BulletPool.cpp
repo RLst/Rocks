@@ -17,7 +17,11 @@ BulletPool::BulletPool(int PoolSize) : MAX_BULLETS(PoolSize)
 	m_bulletAttack = 25.0f;			//Amount of damage a bullet does
 
 	//Load textures
-	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png");
+#ifdef _DEBUG
+	m_tex_bullet = new aie::Texture("../bin/textures/bullet.png"); 
+#else
+	m_tex_bullet = new aie::Texture("./textures/bullet.png");
+#endif
 
 	//Create bullet pool
 	m_bullets = new Bullet[MAX_BULLETS];

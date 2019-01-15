@@ -15,7 +15,11 @@ ParticlePool::ParticlePool(int poolSize) : MAX_PARTICLES(poolSize)
 	m_DEFAULT_life = 0.25f;	//seconds
 
 	//Load textures
+#ifdef _DEBUG
 	m_tex = new aie::Texture("../bin/textures/ball.png");
+#else
+	m_tex = new aie::Texture("./textures/ball.png");
+#endif
 
 	//Create object pool
 	m_particles = new Particle[MAX_PARTICLES];
@@ -35,6 +39,7 @@ ParticlePool::ParticlePool(int poolSize) : MAX_PARTICLES(poolSize)
 
 ParticlePool::~ParticlePool()
 {
+	delete m_tex;
 	delete[] m_particles;
 }
 
